@@ -214,6 +214,34 @@ The run was manually inspected after generation. It was accepted as a technicall
 baseline execution but not accepted as the frozen reference prompt because concision and precision
 need improvement.
 
+### Ten-case development trajectory
+
+| Prompt | Run | Successful | Failed | Retry |
+|---|---|---:|---:|---|
+| `nutrition-baseline-v1` | `20260829T230906Z` | 10 | 0 | None |
+| `nutrition-baseline-v2` | `20260829T230902Z` | 10 | 0 | None |
+| `nutrition-baseline-v3` | `20260829T230907Z` | 10 | 0 | None |
+| `nutrition-baseline-v4` | `20260829T232323Z` | 10 | 0 | None |
+
+```text
+1. The runner validated nutrition_cases_dev.json against EvaluationDataset.
+2. For each prompt version it sent the same ten patient intakes to gpt-5-mini.
+3. The API returned a structured BaselineBrief for every request; no retry was needed.
+4. Pydantic enforced the common output budgets.
+5. The evaluator calculated lexical metrics, deterministic checks, and labelled proxies.
+6. The runner saved manifests, outputs, failures, and aggregate metrics locally.
+7. The comparison tool aligned all ten shared case IDs and generated three pairwise reports.
+8. Human checkpoint: v3 remains a candidate because grounding improved but token cost rose and
+   referral scores require manual adjudication.
+```
+
+The development runs contain synthetic patient data only. Raw run artifacts remain git-ignored;
+the aggregate and case-level comparison reports are retained under `evaluation/reports/development/`.
+
+V4 added the instruction not to fill optional sections to their maximum and became the frozen
+baseline. Its reference run recorded 39,825 output tokens: 23,872 reasoning tokens and 15,953
+visible output tokens. The arithmetic was checked for every case, with no mismatches.
+
 ## 2. Nutrition Reasoning Agent trajectory
 
 ### Status

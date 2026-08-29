@@ -85,6 +85,8 @@ def main(argv: list[str] | None = None) -> int:
                 "latency_ms": result.latency_ms,
                 "input_tokens": result.input_tokens,
                 "output_tokens": result.output_tokens,
+                "reasoning_tokens": result.reasoning_tokens,
+                "visible_output_tokens": result.visible_output_tokens,
             })
         except Exception as exc:
             failures.append({"case_id": case.case_id, "error": f"{type(exc).__name__}: {exc}"})

@@ -68,9 +68,13 @@ La salida sigue una estructura fija:
 
 Cada consideracion generada debe indicar que campos del paciente la motivaron.
 
-La version `nutrition-baseline-v3` limita el brief a un maximo de 5 gaps, 3
+La version congelada `nutrition-baseline-v4` limita el brief a un maximo de 5 gaps, 3
 consideraciones nutricionales, 4 factores de riesgo, 2 referral flags y 3 blind spots. Todos los
 racionales deben tener una sola oracion concisa.
+
+Los limites son techos, no objetivos. Las listas opcionales pueden quedar vacias cuando no exista
+un elemento relevante y respaldado por el intake; `suggested_questions` conserva entre 3 y 5
+preguntas. Cada corrida registra por separado tokens de razonamiento y tokens de salida visible.
 
 Ademas, evita expandir riesgos genericos por patron alimentario, prioriza solo informacion capaz de
 cambiar la consulta, prohibe asumir adherencia o respuesta al tratamiento, diferencia lo no

@@ -10,6 +10,7 @@ AVAILABLE_PROMPT_VERSIONS = (
     "nutrition-baseline-v1",
     "nutrition-baseline-v2",
     "nutrition-baseline-v3",
+    "nutrition-baseline-v4",
 )
 PROMPT_VERSION = AVAILABLE_PROMPT_VERSIONS[-1]
 

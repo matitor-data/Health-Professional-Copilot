@@ -11,7 +11,8 @@ The repository currently includes:
 - A single-prompt LLM baseline.
 - A structured `BaselineBrief` validated with Pydantic.
 - A locked dataset containing 20 synthetic nutrition cases.
-- Deterministic lexical evaluation metrics.
+- A separate development dataset containing 10 synthetic guardrail cases.
+- Deterministic lexical evaluation metrics, structural checks, and labelled heuristic proxies.
 - Unit tests and a no-cost dry-run mode.
 
 The complete two-agent solution is not implemented yet. The Nutrition Reasoning Agent, Evidence
@@ -29,7 +30,7 @@ The recorded development environment uses:
 | OpenAI Python SDK | 3.6.0 |
 | Pydantic | 2.13.5 or later within the lock file |
 | Baseline model | `gpt-5-mini` |
-| Current prompt | `nutrition-baseline-v3` |
+| Frozen prompt | `nutrition-baseline-v4` |
 
 Git and an OpenAI API key are also required for a real model execution.
 
@@ -63,7 +64,7 @@ Never commit `.env`. It is excluded by `.gitignore`.
 
 ## 5. Required data
 
-The current dataset is:
+The locked dataset is:
 
 ```text
 data/cases/locked_test/nutrition_cases_021_040.json
@@ -83,7 +84,7 @@ It contains 20 synthetic cases, from `case_021` to `case_040`. Each case contain
 
 The dataset is synthetic and has not yet been clinically validated. It is treated as a locked test
 set and should not be used to tune the prompt. Prompt experiments require a separate development
-dataset.
+dataset, provided at `data/cases/development/nutrition_cases_dev.json`.
 
 ## 6. Validate the environment without API cost
 
@@ -96,7 +97,7 @@ uv run python -m unittest discover -s tests -v
 Expected result:
 
 ```text
-Ran 5 tests
+Ran 10 tests
 OK
 ```
 
@@ -110,7 +111,7 @@ Expected result:
 
 ```text
 Validated 20 cases from data/cases/locked_test/nutrition_cases_021_040.json
-Prompt version: nutrition-baseline-v3
+Prompt version: nutrition-baseline-v4
 ```
 
 ## 7. Run the baseline
@@ -119,14 +120,14 @@ Start with one case:
 
 ```bash
 uv run python -m baseline.runner \
-  --prompt-version nutrition-baseline-v3 \
+  --prompt-version nutrition-baseline-v4 \
   --case-id case_021
 ```
 
 Run all locked cases:
 
 ```bash
-uv run python -m baseline.runner --prompt-version nutrition-baseline-v3
+uv run python -m baseline.runner --prompt-version nutrition-baseline-v4
 ```
 
 The baseline performs one structured LLM call per case. It has no tools, retrieval, Evidence Agent,
@@ -151,6 +152,8 @@ evaluation/runs/<run_id>/
 - `manifest.json` records the model, prompt version and hash, dataset path and hash, timestamp, and
   selected cases.
 - `outputs.jsonl` contains the structured brief, usage, latency, and per-case metrics.
+- Token usage separates `reasoning_tokens` from `visible_output_tokens`; `output_tokens` is their
+  total and remains the value used for API cost estimation.
 - `failures.jsonl` contains cases that could not be completed.
 - `metrics.json` contains aggregate metrics for successful cases.
 
@@ -167,7 +170,23 @@ uv run python -m evaluation.compare \
 ```
 
 The command creates `comparison.json` and `comparison.md` with per-case deltas for metrics, tokens,
-visible brief size, latency, estimated cost, and section counts.
+visible brief size, latency, estimated cost, section counts, and an aggregate mean.
+
+To reproduce the development prompt experiment, run each version against the development data with
+a separate output root, then pass the resulting timestamped directories to `evaluation.compare`:
+
+```bash
+uv run python -m baseline.runner --dataset data/cases/development/nutrition_cases_dev.json \
+  --prompt-version nutrition-baseline-v1 --output-root evaluation/runs/development/v1
+uv run python -m baseline.runner --dataset data/cases/development/nutrition_cases_dev.json \
+  --prompt-version nutrition-baseline-v2 --output-root evaluation/runs/development/v2
+uv run python -m baseline.runner --dataset data/cases/development/nutrition_cases_dev.json \
+  --prompt-version nutrition-baseline-v3 --output-root evaluation/runs/development/v3
+```
+
+The recorded 30-call experiment took approximately five minutes with the three runs executed in
+parallel and cost an estimated USD 0.23562. Results are summarized in
+`evaluation/reports/development/README.md`.
 
 ## 9. Run the complete solution
 
@@ -245,7 +264,7 @@ nutrition and medical review.
 - [ ] Clone the recorded commit.
 - [ ] Run `uv sync --locked`.
 - [ ] Configure `.env` without committing it.
-- [ ] Run all eight tests.
+- [ ] Run all ten tests.
 - [ ] Run the dry-run and validate 20 cases.
 - [ ] Run at least one baseline case.
 - [ ] Confirm that four run files were created.

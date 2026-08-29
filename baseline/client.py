@@ -16,6 +16,8 @@ class GenerationResult:
     latency_ms: int
     input_tokens: int | None
     output_tokens: int | None
+    reasoning_tokens: int | None
+    visible_output_tokens: int | None
 
 
 class OpenAIBaselineClient:
@@ -43,10 +45,20 @@ class OpenAIBaselineClient:
         if response.output_parsed is None:
             raise RuntimeError("Model response did not contain a parsed BaselineBrief")
         usage = response.usage
+        output_tokens = getattr(usage, "output_tokens", None)
+        output_details = getattr(usage, "output_tokens_details", None)
+        reasoning_tokens = getattr(output_details, "reasoning_tokens", None)
+        visible_output_tokens = (
+            output_tokens - reasoning_tokens
+            if output_tokens is not None and reasoning_tokens is not None
+            else None
+        )
         return GenerationResult(
             brief=response.output_parsed,
             response_id=response.id,
             latency_ms=latency_ms,
             input_tokens=getattr(usage, "input_tokens", None),
-            output_tokens=getattr(usage, "output_tokens", None),
+            output_tokens=output_tokens,
+            reasoning_tokens=reasoning_tokens,
+            visible_output_tokens=visible_output_tokens,
         )

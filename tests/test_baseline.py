@@ -14,11 +14,12 @@ from baseline.prompt import (
     load_system_prompt,
 )
 from baseline.runner import load_dataset
-from baseline.schemas import BaselineBrief, BriefItem, ExistingLabSummary
+from baseline.schemas import BaselineBrief, BriefItem, ExistingLabSummary, NutritionConsideration
 from evaluation.metrics import evaluate_case
 
 
 DATASET = Path("data/cases/locked_test/nutrition_cases_021_040.json")
+DEVELOPMENT_DATASET = Path("data/cases/development/nutrition_cases_dev.json")
 
 
 class BaselineTests(unittest.TestCase):
@@ -44,10 +45,12 @@ class BaselineTests(unittest.TestCase):
         self.assertIn('distinguish "not reported"', prompt)
         self.assertIn("requires at least two specific supporting elements", prompt)
         self.assertIn("must describe exactly what was observed", prompt)
-        self.assertEqual(PROMPT_VERSION, "nutrition-baseline-v3")
+        self.assertIn("do not fill a section to its maximum", prompt)
+        self.assertIn("all list sections may be empty", prompt)
+        self.assertEqual(PROMPT_VERSION, "nutrition-baseline-v4")
 
     def test_all_prompt_versions_are_loadable(self) -> None:
-        self.assertEqual(len(AVAILABLE_PROMPT_VERSIONS), 3)
+        self.assertEqual(len(AVAILABLE_PROMPT_VERSIONS), 4)
         for version in AVAILABLE_PROMPT_VERSIONS:
             self.assertIn("Stay within nutrition practice", load_system_prompt(version))
         self.assertEqual(
@@ -91,6 +94,47 @@ class BaselineTests(unittest.TestCase):
     def test_dataset_is_valid_json(self) -> None:
         raw = json.loads(DATASET.read_text())
         self.assertEqual(raw["dataset_metadata"]["number_of_cases"], len(raw["cases"]))
+
+    def test_development_dataset_contract(self) -> None:
+        dataset = load_dataset(DEVELOPMENT_DATASET)
+        self.assertEqual(len(dataset.cases), 10)
+        self.assertEqual(dataset.cases[0].case_id, "dev_001")
+        self.assertEqual(dataset.cases[-1].case_id, "dev_010")
+
+    def test_frozen_baseline_matches_current_prompt(self) -> None:
+        frozen = json.loads(Path("baseline/frozen_baseline.json").read_text())
+        self.assertEqual(frozen["status"], "frozen")
+        self.assertEqual(frozen["prompt_version"], PROMPT_VERSION)
+        self.assertEqual(
+            frozen["reference_run"]["output_tokens"],
+            frozen["reference_run"]["reasoning_tokens"]
+            + frozen["reference_run"]["visible_output_tokens"],
+        )
+
+    def test_guardrail_proxies_detect_unsupported_grounding(self) -> None:
+        case = load_dataset(DEVELOPMENT_DATASET).cases[1]
+        question = BriefItem(topic="Question", rationale="Clarify a relevant detail.")
+        brief = BaselineBrief(
+            patient_overview="Overview.",
+            suggested_questions=[question, question, question],
+            nutrition_considerations=[
+                NutritionConsideration(
+                    topic="Primary",
+                    rationale="Use reported context.",
+                    source_patient_fields=["known_diagnoses"],
+                ),
+                NutritionConsideration(
+                    topic="Secondary",
+                    rationale="Not responding to treatment. This adds an unsupported claim.",
+                    source_patient_fields=["recent_weight_change", "unknown_field"],
+                ),
+            ],
+        )
+        metrics = evaluate_case(case, brief)
+        self.assertEqual(metrics["rationale_sentence_violation_proxy"], 1)
+        self.assertEqual(metrics["secondary_consideration_grounding_proxy"], 0)
+        self.assertGreater(metrics["treatment_assumption_proxy_hits"], 0)
+        self.assertLess(metrics["valid_source_field_rate"], 1)
 
 
 if __name__ == "__main__":

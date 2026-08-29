@@ -17,7 +17,6 @@ COUNT_FIELDS = (
     "potential_blind_spots",
 )
 
-
 def _read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -47,6 +46,19 @@ def _visible_size(row: dict[str, Any]) -> dict[str, int]:
     return {"characters": len(serialized), "words": len(serialized.split())}
 
 
+def _average_numeric(records: list[dict[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key in records[0]:
+        values = [record[key] for record in records if record.get(key) is not None]
+        if not values:
+            result[key] = None
+        elif isinstance(values[0], dict):
+            result[key] = _average_numeric(values)
+        elif isinstance(values[0], (int, float)):
+            result[key] = sum(float(value) for value in values) / len(values)
+    return result
+
+
 def compare_runs(
     baseline_dir: Path,
     candidate_dir: Path,
@@ -73,6 +85,8 @@ def compare_runs(
                 "baseline": {
                     "input_tokens": before.get("input_tokens"),
                     "output_tokens": before.get("output_tokens"),
+                    "reasoning_tokens": before.get("reasoning_tokens"),
+                    "visible_output_tokens": before.get("visible_output_tokens"),
                     "latency_ms": before.get("latency_ms"),
                     "estimated_cost_usd": before_cost,
                     "visible_output": _visible_size(before),
@@ -82,6 +96,8 @@ def compare_runs(
                 "candidate": {
                     "input_tokens": after.get("input_tokens"),
                     "output_tokens": after.get("output_tokens"),
+                    "reasoning_tokens": after.get("reasoning_tokens"),
+                    "visible_output_tokens": after.get("visible_output_tokens"),
                     "latency_ms": after.get("latency_ms"),
                     "estimated_cost_usd": after_cost,
                     "visible_output": _visible_size(after),
@@ -91,6 +107,16 @@ def compare_runs(
                 "delta": {
                     "input_tokens": (after.get("input_tokens") or 0) - (before.get("input_tokens") or 0),
                     "output_tokens": (after.get("output_tokens") or 0) - (before.get("output_tokens") or 0),
+                    "reasoning_tokens": (
+                        (after.get("reasoning_tokens") or 0) - (before.get("reasoning_tokens") or 0)
+                        if after.get("reasoning_tokens") is not None and before.get("reasoning_tokens") is not None
+                        else None
+                    ),
+                    "visible_output_tokens": (
+                        (after.get("visible_output_tokens") or 0) - (before.get("visible_output_tokens") or 0)
+                        if after.get("visible_output_tokens") is not None and before.get("visible_output_tokens") is not None
+                        else None
+                    ),
                     "latency_ms": (after.get("latency_ms") or 0) - (before.get("latency_ms") or 0),
                     "estimated_cost_usd": after_cost - before_cost,
                     "visible_output": {
@@ -108,6 +134,10 @@ def compare_runs(
             }
         )
 
+    aggregate = {
+        side: _average_numeric([case[side] for case in cases])
+        for side in ("baseline", "candidate", "delta")
+    }
     return {
         "baseline_run": baseline_manifest,
         "candidate_run": candidate_manifest,
@@ -116,6 +146,7 @@ def compare_runs(
             "output_usd_per_million_tokens": output_price,
         },
         "shared_cases": shared_cases,
+        "aggregate": aggregate,
         "cases": cases,
     }
 
@@ -139,7 +170,29 @@ def render_markdown(report: dict[str, Any]) -> str:
         f"- Model: `{candidate['model']}`",
         f"- Shared successful cases: {len(report['shared_cases'])}",
         "",
+        "## Aggregate results (mean per case)",
+        "",
+        "| Efficiency | Baseline | Candidate | Delta |",
+        "|---|---:|---:|---:|",
     ]
+    aggregate = report["aggregate"]
+    for label, key in (
+        ("Input tokens", "input_tokens"),
+        ("Output tokens", "output_tokens"),
+        ("Reasoning tokens", "reasoning_tokens"),
+        ("Visible output tokens", "visible_output_tokens"),
+        ("Latency (ms)", "latency_ms"),
+        ("Estimated cost (USD)", "estimated_cost_usd"),
+    ):
+        lines.append(
+            f"| {label} | {_fmt(aggregate['baseline'][key], 5)} | {_fmt(aggregate['candidate'][key], 5)} | {_fmt(aggregate['delta'][key], 5)} |"
+        )
+    lines.extend(["", "| Metric | Baseline | Candidate | Delta |", "|---|---:|---:|---:|"])
+    for name in sorted(aggregate["delta"]["metrics"]):
+        lines.append(
+            f"| `{name}` | {_fmt(aggregate['baseline']['metrics'][name])} | {_fmt(aggregate['candidate']['metrics'][name])} | {_fmt(aggregate['delta']['metrics'][name])} |"
+        )
+    lines.append("")
 
     for case in report["cases"]:
         before, after, delta = case["baseline"], case["candidate"], case["delta"]
@@ -151,6 +204,8 @@ def render_markdown(report: dict[str, Any]) -> str:
                 "|---|---:|---:|---:|",
                 f"| Input tokens | {_fmt(before['input_tokens'])} | {_fmt(after['input_tokens'])} | {_fmt(delta['input_tokens'])} |",
                 f"| Output tokens | {_fmt(before['output_tokens'])} | {_fmt(after['output_tokens'])} | {_fmt(delta['output_tokens'])} |",
+                f"| Reasoning tokens | {_fmt(before['reasoning_tokens'])} | {_fmt(after['reasoning_tokens'])} | {_fmt(delta['reasoning_tokens'])} |",
+                f"| Visible output tokens | {_fmt(before['visible_output_tokens'])} | {_fmt(after['visible_output_tokens'])} | {_fmt(delta['visible_output_tokens'])} |",
                 f"| Visible brief characters | {_fmt(before['visible_output']['characters'])} | {_fmt(after['visible_output']['characters'])} | {_fmt(delta['visible_output']['characters'])} |",
                 f"| Visible brief words | {_fmt(before['visible_output']['words'])} | {_fmt(after['visible_output']['words'])} | {_fmt(delta['visible_output']['words'])} |",
                 f"| Latency (s) | {_fmt(before['latency_ms'] / 1000)} | {_fmt(after['latency_ms'] / 1000)} | {_fmt(delta['latency_ms'] / 1000)} |",

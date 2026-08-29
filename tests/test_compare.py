@@ -23,6 +23,7 @@ class CompareTests(unittest.TestCase):
                 }))
             base_row = {
                 "case_id": "case_021", "input_tokens": 1000, "output_tokens": 3000,
+                "reasoning_tokens": 2000, "visible_output_tokens": 1000,
                 "latency_ms": 40000, "metrics": {"referral_flag_recall": 1.0},
                 "brief": {field: [1, 2] for field in (
                     "information_to_clarify", "suggested_questions", "nutrition_considerations",
@@ -30,12 +31,17 @@ class CompareTests(unittest.TestCase):
                 )},
             }
             candidate_row = json.loads(json.dumps(base_row))
-            candidate_row.update({"output_tokens": 1000, "latency_ms": 20000})
+            candidate_row.update({
+                "output_tokens": 1000, "reasoning_tokens": 400,
+                "visible_output_tokens": 600, "latency_ms": 20000,
+            })
             (before / "outputs.jsonl").write_text(json.dumps(base_row) + "\n")
             (after / "outputs.jsonl").write_text(json.dumps(candidate_row) + "\n")
             report = compare_runs(before, after)
             delta = report["cases"][0]["delta"]
             self.assertEqual(delta["output_tokens"], -2000)
+            self.assertEqual(delta["reasoning_tokens"], -1600)
+            self.assertEqual(delta["visible_output_tokens"], -400)
             self.assertEqual(delta["latency_ms"], -20000)
             self.assertEqual(delta["visible_output"]["characters"], 0)
             self.assertIn("case_021", render_markdown(report))
