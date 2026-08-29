@@ -57,7 +57,7 @@ La salida sigue una estructura fija:
 - `patient_overview`: resumen breve del caso.
 - `known_medical_context`: diagnosticos y contexto medico ya informado.
 - `information_to_clarify`: informacion ausente, ambigua o contradictoria.
-- `suggested_questions`: entre 3 y 7 preguntas de alto valor cuando corresponda.
+- `suggested_questions`: entre 3 y 5 preguntas de alto valor.
 - `nutrition_considerations`: aspectos nutricionales para revisar durante la consulta.
 - `nutritional_risk_factors`: factores de riesgo relevantes para la evaluacion nutricional.
 - `referral_escalation_flags`: situaciones que pueden requerir evaluacion medica.
@@ -67,6 +67,15 @@ La salida sigue una estructura fija:
 - `limitations`: informacion insuficiente o elementos fuera del alcance.
 
 Cada consideracion generada debe indicar que campos del paciente la motivaron.
+
+La version `nutrition-baseline-v3` limita el brief a un maximo de 5 gaps, 3
+consideraciones nutricionales, 4 factores de riesgo, 2 referral flags y 3 blind spots. Todos los
+racionales deben tener una sola oracion concisa.
+
+Ademas, evita expandir riesgos genericos por patron alimentario, prioriza solo informacion capaz de
+cambiar la consulta, prohibe asumir adherencia o respuesta al tratamiento, diferencia lo no
+informado de lo ausente, exige dos elementos especificos para consideraciones secundarias y obliga a
+que cada referral flag describa solamente hechos observados.
 
 ## Limites de seguridad
 

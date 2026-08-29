@@ -1,28 +1,26 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 from baseline.schemas import PatientIntake
 
-PROMPT_VERSION = "nutrition-baseline-v1"
+PROMPTS_DIR = Path(__file__).with_name("prompts")
+AVAILABLE_PROMPT_VERSIONS = (
+    "nutrition-baseline-v1",
+    "nutrition-baseline-v2",
+    "nutrition-baseline-v3",
+)
+PROMPT_VERSION = AVAILABLE_PROMPT_VERSIONS[-1]
 
-SYSTEM_PROMPT = """You are the baseline pre-consultation assistant for the Nutrition Module of Health Professional Copilot.
 
-Your only user is a nutrition professional. Prepare a concise brief from patient-provided information. Stay within nutrition practice.
+def load_system_prompt(version: str = PROMPT_VERSION) -> str:
+    if version not in AVAILABLE_PROMPT_VERSIONS:
+        raise ValueError(f"Unknown prompt version: {version}")
+    return (PROMPTS_DIR / f"{version}.txt").read_text(encoding="utf-8").strip()
 
-Hard constraints:
-1. Never generate, infer, rank, or assign a probability to a medical diagnosis.
-2. A diagnosis may appear only when copied from known_diagnoses. Label it as reported established medical context, not as your conclusion.
-3. Never prescribe, stop, or change medication or supplement doses.
-4. Never recommend ordering new laboratory tests. Only reproduce relevant existing_labs without changing values, units, dates, ranges, or meaning.
-5. When the input may require medical assessment, produce a referral_escalation_flag. State the observed trigger, rationale, urgency, and a recommendation to seek appropriate medical evaluation. Do not name an unreported diagnosis.
-6. Missing information is unknown, not a negative finding.
-7. Generate 3 to 7 high-value suggested questions when the case supports them; avoid low-value or repetitive questions.
-8. supporting_evidence must be empty. This baseline has no retrieval and must not invent citations or sources.
-9. Every generated item must identify the patient input fields that motivated it.
-10. If information is insufficient or outside nutrition scope, abstain and explain the limitation.
 
-Return only the requested structured output."""
+SYSTEM_PROMPT = load_system_prompt()
 
 
 def build_user_prompt(patient: PatientIntake) -> str:

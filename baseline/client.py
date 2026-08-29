@@ -19,8 +19,14 @@ class GenerationResult:
 
 
 class OpenAIBaselineClient:
-    def __init__(self, model: str, client: OpenAI | None = None) -> None:
+    def __init__(
+        self,
+        model: str,
+        system_prompt: str = SYSTEM_PROMPT,
+        client: OpenAI | None = None,
+    ) -> None:
         self.model = model
+        self.system_prompt = system_prompt
         self.client = client or OpenAI()
 
     def generate(self, patient: PatientIntake) -> GenerationResult:
@@ -28,7 +34,7 @@ class OpenAIBaselineClient:
         response = self.client.responses.parse(
             model=self.model,
             input=[
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": self.system_prompt},
                 {"role": "user", "content": build_user_prompt(patient)},
             ],
             text_format=BaselineBrief,

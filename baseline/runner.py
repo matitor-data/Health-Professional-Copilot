@@ -11,7 +11,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from baseline.client import OpenAIBaselineClient
-from baseline.prompt import PROMPT_VERSION, SYSTEM_PROMPT, build_user_prompt
+from baseline.prompt import (
+    AVAILABLE_PROMPT_VERSIONS,
+    PROMPT_VERSION,
+    build_user_prompt,
+    load_system_prompt,
+)
 from baseline.schemas import EvaluationDataset
 from evaluation.metrics import aggregate_metrics, evaluate_case
 
@@ -30,6 +35,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the single-call Nutrition Module baseline")
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
     parser.add_argument("--model", default=os.getenv("OPENAI_MODEL", "gpt-5-mini"))
+    parser.add_argument(
+        "--prompt-version",
+        choices=AVAILABLE_PROMPT_VERSIONS,
+        default=PROMPT_VERSION,
+    )
     parser.add_argument("--case-id", action="append", help="Run only this case; repeatable")
     parser.add_argument("--output-root", type=Path, default=Path("evaluation/runs"))
     parser.add_argument("--dry-run", action="store_true", help="Validate data and prompts without calling the API")
@@ -39,6 +49,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     load_dotenv()
     args = parse_args(argv)
+    system_prompt = load_system_prompt(args.prompt_version)
     dataset = load_dataset(args.dataset)
     selected = [case for case in dataset.cases if not args.case_id or case.case_id in args.case_id]
     if args.case_id and len(selected) != len(set(args.case_id)):
@@ -50,13 +61,13 @@ def main(argv: list[str] | None = None) -> int:
         for case in selected:
             build_user_prompt(case.patient_intake)
         print(f"Validated {len(selected)} cases from {args.dataset}")
-        print(f"Prompt version: {PROMPT_VERSION}")
+        print(f"Prompt version: {args.prompt_version}")
         return 0
 
     run_id = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     run_dir = args.output_root / run_id
     run_dir.mkdir(parents=True, exist_ok=False)
-    client = OpenAIBaselineClient(args.model)
+    client = OpenAIBaselineClient(args.model, system_prompt=system_prompt)
     rows: list[dict[str, object]] = []
     metric_rows: list[dict[str, float | int]] = []
     failures: list[dict[str, str]] = []
@@ -82,8 +93,8 @@ def main(argv: list[str] | None = None) -> int:
         "run_id": run_id,
         "created_at": datetime.now(UTC).isoformat(),
         "model": args.model,
-        "prompt_version": PROMPT_VERSION,
-        "prompt_sha256": hashlib.sha256(SYSTEM_PROMPT.encode()).hexdigest(),
+        "prompt_version": args.prompt_version,
+        "prompt_sha256": hashlib.sha256(system_prompt.encode()).hexdigest(),
         "dataset": str(args.dataset),
         "dataset_sha256": sha256(args.dataset),
         "selected_cases": [case.case_id for case in selected],

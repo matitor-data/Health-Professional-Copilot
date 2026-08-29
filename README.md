@@ -1,11 +1,72 @@
 # Health Professional Copilot - Nutrition Module
 
-AI-assisted preparation for nutrition consultations. The module organizes patient intake,
-surfaces nutrition-relevant information gaps and blind spots, and flags cases that may require
-medical referral while remaining within the nutritionist's scope of practice.
+## 01 - Who has this problem?
 
-Medical diagnoses are input context only. The system must not create diagnostic hypotheses,
-change medication, or recommend new laboratory tests.
+Nutrition professionals preparing for patient consultations.
+
+During a consultation, nutrition professionals must combine patient-reported symptoms, dietary
+patterns, established medical diagnoses, medications, supplements, lifestyle factors, relevant
+existing laboratory results, and other contextual information while deciding what questions to ask
+and which nutrition-related factors deserve further consideration.
+
+Even experienced professionals cannot keep every possible presentation, nutritional risk factor,
+interaction, and applicable guideline actively in mind during every consultation.
+
+## 02 - What bottleneck makes it worth solving?
+
+Nutrition consultations involve a large amount of information under limited time and attention.
+
+Important details may be missing from the initial intake, information that appears unrelated may
+become relevant when considered together, and useful follow-up questions may never be asked.
+
+The problem is not simply access to information. The bottleneck is connecting the specific patient
+context with the right questions, relevant nutrition considerations, nutritional risk factors, and
+supporting evidence without overwhelming the professional.
+
+A static intake form collects information, but it cannot determine what is still missing, what
+deserves further exploration, or when the patient may require medical assessment.
+
+## 03 - Does the agent solve it well?
+
+Health Professional Copilot analyzes patient intake information before the consultation and acts as
+a second layer of attention for the nutrition professional.
+
+The Nutrition Module identifies potentially relevant missing information, suggests follow-up
+questions, surfaces nutrition considerations and nutritional risk factors, and retrieves supporting
+clinical evidence. When appropriate, it can raise a referral or escalation flag recommending that
+the patient receive medical assessment.
+
+Medical diagnoses are input context established by an appropriate medical professional. The module
+does not generate diagnoses, prescribe or change medication, recommend new laboratory tests, or
+make autonomous clinical decisions. The nutrition professional remains responsible for decisions
+within their scope of practice.
+
+To test whether the system improves consultation preparation, we use a fixed set of synthetic
+patient cases with a predefined rubric and compare the two-agent system with a simple, single-prompt
+LLM baseline.
+
+The central evaluation question is:
+
+> Does the agent identify more expected information gaps, nutrition considerations, nutritional
+> risk factors, and appropriate referral flags while producing fewer unsupported or out-of-scope
+> suggestions?
+
+## 04 - Can another person reproduce the result?
+
+Use a fixed set of synthetic patient cases and, for the complete MVP, a curated collection of
+approved clinical and nutrition guidelines.
+
+Run both the baseline and Health Professional Copilot on exactly the same cases. Evaluate them with
+the same predefined rubric for information gaps, suggested questions, nutrition considerations,
+nutritional risk factors, referral flags, evidence coverage, and scope violations.
+
+Every evidence-backed nutrition consideration or referral recommendation in the complete system
+must trace back to an approved guideline passage or an approved deterministic rule. The baseline
+does not use retrieval and must leave `supporting_evidence` empty.
+
+A second person starting from a clean environment should be able to run the baseline and the agent
+on the same cases, using the recorded model, prompt version, dataset hash, and configuration, and
+reproduce the evaluation process.
 
 ## Current status
 
@@ -59,8 +120,9 @@ a substitute for clinical adjudication or semantic evaluation by qualified revie
 
 ```text
 baseline/                  Prompt, schemas, OpenAI client, and runner
+baseline/prompts/          Reproducible prompt versions v1-v3
 data/cases/locked_test/    Synthetic cases not used for prompt tuning
-evaluation/                Deterministic metrics and generated run artifacts
+evaluation/                Metrics, run comparison, reports, and generated artifacts
 tests/                     Contract and safety tests
 docs/                      Product specification
 ```

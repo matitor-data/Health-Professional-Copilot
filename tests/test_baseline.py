@@ -4,7 +4,15 @@ import json
 import unittest
 from pathlib import Path
 
-from baseline.prompt import PROMPT_VERSION, SYSTEM_PROMPT, build_user_prompt
+from pydantic import ValidationError
+
+from baseline.prompt import (
+    AVAILABLE_PROMPT_VERSIONS,
+    PROMPT_VERSION,
+    SYSTEM_PROMPT,
+    build_user_prompt,
+    load_system_prompt,
+)
 from baseline.runner import load_dataset
 from baseline.schemas import BaselineBrief, BriefItem, ExistingLabSummary
 from evaluation.metrics import evaluate_case
@@ -27,7 +35,25 @@ class BaselineTests(unittest.TestCase):
         self.assertIn("never generate, infer, rank", prompt)
         self.assertIn("never recommend ordering new laboratory tests", prompt)
         self.assertIn("supporting_evidence must be empty", prompt)
-        self.assertEqual(PROMPT_VERSION, "nutrition-baseline-v1")
+        self.assertIn("at most 5 information_to_clarify", prompt)
+        self.assertIn("between 3 and 5 suggested_questions", prompt)
+        self.assertIn("every rationale must be one concise sentence", prompt)
+        self.assertIn("do not expand an entire category of risks", prompt)
+        self.assertIn("prioritize only information that could change", prompt)
+        self.assertIn("never assume treatment duration, adherence", prompt)
+        self.assertIn('distinguish "not reported"', prompt)
+        self.assertIn("requires at least two specific supporting elements", prompt)
+        self.assertIn("must describe exactly what was observed", prompt)
+        self.assertEqual(PROMPT_VERSION, "nutrition-baseline-v3")
+
+    def test_all_prompt_versions_are_loadable(self) -> None:
+        self.assertEqual(len(AVAILABLE_PROMPT_VERSIONS), 3)
+        for version in AVAILABLE_PROMPT_VERSIONS:
+            self.assertIn("Stay within nutrition practice", load_system_prompt(version))
+        self.assertEqual(
+            "db7a6fc5c03cf83911914d0cc6effcb33cd50b61bc157e78f1640ca350e0273a",
+            __import__("hashlib").sha256(load_system_prompt("nutrition-baseline-v1").encode()).hexdigest(),
+        )
 
     def test_user_prompt_contains_only_intake(self) -> None:
         case = self.dataset.cases[0]
@@ -40,11 +66,27 @@ class BaselineTests(unittest.TestCase):
         brief = BaselineBrief(
             patient_overview="Nutrition consultation preparation.",
             information_to_clarify=[BriefItem(topic="HbA1c result", rationale="Actual value is unavailable")],
+            suggested_questions=[
+                BriefItem(topic="Question 1", rationale="Clarify the first relevant topic."),
+                BriefItem(topic="Question 2", rationale="Clarify the second relevant topic."),
+                BriefItem(topic="Question 3", rationale="Clarify the third relevant topic."),
+            ],
             relevant_existing_labs=[ExistingLabSummary(reported_result=case.patient_intake.existing_labs[0])],
         )
         metrics = evaluate_case(case, brief)
         self.assertEqual(metrics["existing_lab_fidelity"], 1)
         self.assertEqual(metrics["supporting_evidence_count"], 0)
+
+    def test_brief_enforces_output_budgets(self) -> None:
+        item = BriefItem(topic="Topic", rationale="One concise rationale.")
+        with self.assertRaises(ValidationError):
+            BaselineBrief(
+                patient_overview="Overview",
+                information_to_clarify=[item] * 6,
+                suggested_questions=[item] * 3,
+            )
+        with self.assertRaises(ValidationError):
+            BaselineBrief(patient_overview="Overview", suggested_questions=[item] * 2)
 
     def test_dataset_is_valid_json(self) -> None:
         raw = json.loads(DATASET.read_text())

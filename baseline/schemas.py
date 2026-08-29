@@ -74,7 +74,7 @@ class EvaluationDataset(StrictModel):
 
 class BriefItem(StrictModel):
     topic: str
-    rationale: str
+    rationale: str = Field(description="Exactly one concise sentence.")
     source_patient_fields: list[str] = Field(default_factory=list)
 
 
@@ -84,14 +84,14 @@ class NutritionConsideration(BriefItem):
 
 class NutritionalRiskFactor(StrictModel):
     factor: str
-    rationale: str
+    rationale: str = Field(description="Exactly one concise sentence.")
     priority: Literal["low", "medium", "high"]
     source_patient_fields: list[str] = Field(default_factory=list)
 
 
 class ReferralEscalationFlag(StrictModel):
     trigger: str
-    rationale: str
+    rationale: str = Field(description="Exactly one concise sentence.")
     urgency: Literal["routine", "prompt", "urgent"]
     recommendation: str
     source_patient_fields: list[str] = Field(default_factory=list)
@@ -106,12 +106,12 @@ class ExistingLabSummary(StrictModel):
 class BaselineBrief(StrictModel):
     patient_overview: str
     known_medical_context: list[str] = Field(default_factory=list)
-    information_to_clarify: list[BriefItem] = Field(default_factory=list)
-    suggested_questions: list[BriefItem] = Field(default_factory=list, max_length=7)
-    nutrition_considerations: list[NutritionConsideration] = Field(default_factory=list)
-    nutritional_risk_factors: list[NutritionalRiskFactor] = Field(default_factory=list)
-    referral_escalation_flags: list[ReferralEscalationFlag] = Field(default_factory=list)
-    potential_blind_spots: list[BriefItem] = Field(default_factory=list)
+    information_to_clarify: list[BriefItem] = Field(default_factory=list, max_length=5)
+    suggested_questions: list[BriefItem] = Field(min_length=3, max_length=5)
+    nutrition_considerations: list[NutritionConsideration] = Field(default_factory=list, max_length=3)
+    nutritional_risk_factors: list[NutritionalRiskFactor] = Field(default_factory=list, max_length=4)
+    referral_escalation_flags: list[ReferralEscalationFlag] = Field(default_factory=list, max_length=2)
+    potential_blind_spots: list[BriefItem] = Field(default_factory=list, max_length=3)
     supporting_evidence: list[str] = Field(default_factory=list)
     relevant_existing_labs: list[ExistingLabSummary] = Field(default_factory=list)
     limitations: list[str] = Field(default_factory=list)
