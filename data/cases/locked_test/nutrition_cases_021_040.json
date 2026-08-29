@@ -1,0 +1,1342 @@
+{
+  "dataset_metadata": {
+    "dataset_name": "health_professional_copilot_synthetic_eval_v0_part2",
+    "specialty": "nutrition",
+    "generation_method": "LLM_generated_synthetic_cases_not_clinically_validated",
+    "number_of_cases": 20,
+    "case_id_range": "case_021-case_040",
+    "notes": "Synthetic MVP evaluation cases. Known diagnoses are clinician-provided context, not diagnoses for the nutrition professional to make. supporting_sources is intentionally empty for v0."
+  },
+  "cases": [
+    {
+      "case_id": "case_021",
+      "case_type": [
+        "known_diagnosis",
+        "missing_information"
+      ],
+      "difficulty": "medium",
+      "patient_intake": {
+        "age": 34,
+        "sex": "female",
+        "height_cm": 165,
+        "weight_kg": 62,
+        "reason_for_consultation": "Improve diet and energy levels",
+        "primary_goal": "Improve eating habits",
+        "known_diagnoses": [
+          "Iron deficiency anemia"
+        ],
+        "symptoms": [
+          "fatigue"
+        ],
+        "symptom_duration": "3 months",
+        "medications": [],
+        "supplements": [
+          "Iron supplement prescribed by physician"
+        ],
+        "dietary_pattern": "Vegetarian",
+        "physical_activity": "Strength training 3 times per week",
+        "sleep": "7-8 hours",
+        "recent_weight_change": null,
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "iron-rich food intake",
+          "supplement timing and adherence",
+          "recent follow-up labs",
+          "menstrual history if relevant"
+        ],
+        "expected_followup_topics": [
+          "vegetarian iron sources",
+          "meal composition around iron intake",
+          "treatment follow-up"
+        ],
+        "expected_nutrition_considerations": [
+          "adequate dietary iron within a vegetarian pattern",
+          "overall energy and protein adequacy"
+        ],
+        "expected_risk_factors": [
+          "vegetarian dietary pattern",
+          "ongoing fatigue"
+        ],
+        "expected_referral_flags": [
+          "persistent or worsening fatigue despite treatment"
+        ],
+        "expected_existing_context": [
+          "Iron deficiency anemia is already physician-diagnosed",
+          "Iron supplementation is already prescribed"
+        ],
+        "should_not_suggest": [
+          "diagnose anemia as a new condition",
+          "change prescribed iron dose",
+          "stop prescribed supplementation"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_022",
+      "case_type": [
+        "known_diagnosis",
+        "straightforward"
+      ],
+      "difficulty": "easy",
+      "patient_intake": {
+        "age": 52,
+        "sex": "male",
+        "height_cm": 176,
+        "weight_kg": 91,
+        "reason_for_consultation": "Nutrition support after prediabetes diagnosis",
+        "primary_goal": "Improve blood sugar and lose some weight",
+        "known_diagnoses": [
+          "Prediabetes"
+        ],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [],
+        "supplements": [],
+        "dietary_pattern": "Frequent refined grains and sweetened drinks; few vegetables",
+        "physical_activity": "Sedentary apart from weekend walks",
+        "sleep": "6 hours",
+        "recent_weight_change": "Gained 5 kg over the last year",
+        "existing_labs": [
+          "Reports elevated HbA1c; value unavailable"
+        ],
+        "family_history": [
+          "Mother has type 2 diabetes"
+        ],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "actual HbA1c/glucose results",
+          "portion sizes",
+          "meal timing",
+          "medical follow-up plan"
+        ],
+        "expected_followup_topics": [
+          "sweetened beverages",
+          "carbohydrate quality",
+          "fiber-rich foods",
+          "physical activity",
+          "sleep"
+        ],
+        "expected_nutrition_considerations": [
+          "improve dietary quality and fiber intake",
+          "reduce frequent sugar-sweetened beverages",
+          "sustainable weight management"
+        ],
+        "expected_risk_factors": [
+          "family history",
+          "sedentary lifestyle",
+          "weight gain",
+          "short sleep"
+        ],
+        "expected_referral_flags": [
+          "symptoms of marked hyperglycemia if they appear"
+        ],
+        "expected_existing_context": [
+          "Prediabetes is an established diagnosis"
+        ],
+        "should_not_suggest": [
+          "diagnose type 2 diabetes",
+          "eliminate all carbohydrates"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_023",
+      "case_type": [
+        "negative_control",
+        "sports_nutrition"
+      ],
+      "difficulty": "easy",
+      "patient_intake": {
+        "age": 27,
+        "sex": "male",
+        "height_cm": 182,
+        "weight_kg": 78,
+        "reason_for_consultation": "Optimize nutrition for marathon training",
+        "primary_goal": "Improve endurance and recovery",
+        "known_diagnoses": [],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [],
+        "supplements": [
+          "Creatine monohydrate"
+        ],
+        "dietary_pattern": "Mixed diet with four meals per day",
+        "physical_activity": "Running 5 days/week plus strength training twice weekly",
+        "sleep": "8 hours",
+        "recent_weight_change": "Stable",
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "training volume",
+          "pre/during/post-training intake",
+          "hydration",
+          "approximate carbohydrate and protein intake"
+        ],
+        "expected_followup_topics": [
+          "training-day fueling",
+          "recovery meals",
+          "hydration"
+        ],
+        "expected_nutrition_considerations": [
+          "match energy/carbohydrate intake to training",
+          "distribute protein across meals"
+        ],
+        "expected_risk_factors": [
+          "high endurance training volume"
+        ],
+        "expected_referral_flags": [],
+        "expected_existing_context": [
+          "No known diagnosis or current symptoms"
+        ],
+        "should_not_suggest": [
+          "routine diagnostic testing",
+          "hormonal disorder",
+          "unnecessary restrictive diet"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_024",
+      "case_type": [
+        "known_diagnosis",
+        "blind_spot"
+      ],
+      "difficulty": "medium",
+      "patient_intake": {
+        "age": 61,
+        "sex": "female",
+        "height_cm": 160,
+        "weight_kg": 70,
+        "reason_for_consultation": "Dietary help for high cholesterol",
+        "primary_goal": "Improve cardiovascular health",
+        "known_diagnoses": [
+          "Hypercholesterolemia"
+        ],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [
+          "Statin prescribed by physician"
+        ],
+        "supplements": [],
+        "dietary_pattern": "Frequent cheese, processed meat and pastries",
+        "physical_activity": "Walks twice per week",
+        "sleep": "7 hours",
+        "recent_weight_change": "Stable",
+        "existing_labs": [
+          "Recent lipid panel; values unavailable"
+        ],
+        "family_history": [
+          "Father had myocardial infarction at 58"
+        ],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "actual lipid values",
+          "medication adherence/tolerance",
+          "fiber-rich food intake",
+          "smoking status",
+          "blood pressure history"
+        ],
+        "expected_followup_topics": [
+          "dietary fat quality",
+          "fiber-rich foods",
+          "physical activity"
+        ],
+        "expected_nutrition_considerations": [
+          "replace frequent saturated-fat-rich foods",
+          "increase fiber-rich foods"
+        ],
+        "expected_risk_factors": [
+          "known hypercholesterolemia",
+          "family cardiovascular history",
+          "low activity"
+        ],
+        "expected_referral_flags": [
+          "new cardiovascular symptoms",
+          "medication concerns"
+        ],
+        "expected_existing_context": [
+          "Hypercholesterolemia and statin therapy are established context"
+        ],
+        "should_not_suggest": [
+          "stop statin",
+          "diagnose coronary disease",
+          "replace prescribed therapy with nutrition"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_025",
+      "case_type": [
+        "missing_information",
+        "gastrointestinal"
+      ],
+      "difficulty": "hard",
+      "patient_intake": {
+        "age": 29,
+        "sex": "female",
+        "height_cm": 168,
+        "weight_kg": 64,
+        "reason_for_consultation": "Bloating and abdominal discomfort",
+        "primary_goal": "Identify foods that may be causing symptoms",
+        "known_diagnoses": [],
+        "symptoms": [
+          "bloating",
+          "intermittent abdominal discomfort"
+        ],
+        "symptom_duration": "5 months",
+        "medications": [],
+        "supplements": [],
+        "dietary_pattern": "Mixed diet; suspects gluten",
+        "physical_activity": "Pilates twice weekly",
+        "sleep": "7 hours",
+        "recent_weight_change": "Stable",
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": "Has started avoiding bread on some days."
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "bowel habits",
+          "food-symptom timing",
+          "alarm GI symptoms",
+          "degree of restriction",
+          "previous medical evaluation"
+        ],
+        "expected_followup_topics": [
+          "symptom timing",
+          "bowel pattern",
+          "food-symptom relationship"
+        ],
+        "expected_nutrition_considerations": [
+          "avoid unnecessarily broad restriction",
+          "maintain nutritional adequacy during assessment"
+        ],
+        "expected_risk_factors": [
+          "self-directed dietary restriction"
+        ],
+        "expected_referral_flags": [
+          "alarm GI features",
+          "persistent/worsening symptoms without medical assessment"
+        ],
+        "expected_existing_context": [
+          "No GI diagnosis is established"
+        ],
+        "should_not_suggest": [
+          "diagnose celiac disease",
+          "diagnose gluten intolerance",
+          "recommend broad elimination diet"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_026",
+      "case_type": [
+        "known_diagnosis",
+        "weight_management"
+      ],
+      "difficulty": "medium",
+      "patient_intake": {
+        "age": 45,
+        "sex": "female",
+        "height_cm": 163,
+        "weight_kg": 86,
+        "reason_for_consultation": "Weight management with hypothyroidism",
+        "primary_goal": "Lose weight gradually",
+        "known_diagnoses": [
+          "Hypothyroidism"
+        ],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [
+          "Levothyroxine prescribed by physician"
+        ],
+        "supplements": [],
+        "dietary_pattern": "Mixed diet; skips breakfast and snacks at night",
+        "physical_activity": "Low",
+        "sleep": "6 hours",
+        "recent_weight_change": "Gained 4 kg over 18 months",
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "thyroid treatment follow-up",
+          "usual intake and portions",
+          "nighttime eating context",
+          "weight history"
+        ],
+        "expected_followup_topics": [
+          "meal pattern",
+          "satiety",
+          "activity",
+          "sleep"
+        ],
+        "expected_nutrition_considerations": [
+          "sustainable energy deficit if appropriate",
+          "adequate protein and fiber"
+        ],
+        "expected_risk_factors": [
+          "low activity",
+          "short sleep",
+          "weight gain"
+        ],
+        "expected_referral_flags": [
+          "concerns suggesting inadequately controlled known condition"
+        ],
+        "expected_existing_context": [
+          "Hypothyroidism is diagnosed and medically treated"
+        ],
+        "should_not_suggest": [
+          "adjust levothyroxine",
+          "claim hypothyroidism fully explains weight gain",
+          "extreme calorie restriction"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_027",
+      "case_type": [
+        "known_diagnosis",
+        "sports_nutrition"
+      ],
+      "difficulty": "medium",
+      "patient_intake": {
+        "age": 24,
+        "sex": "female",
+        "height_cm": 171,
+        "weight_kg": 59,
+        "reason_for_consultation": "Sports nutrition with celiac disease",
+        "primary_goal": "Fuel training while maintaining gluten-free diet",
+        "known_diagnoses": [
+          "Celiac disease"
+        ],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [],
+        "supplements": [],
+        "dietary_pattern": "Gluten-free diet",
+        "physical_activity": "Competitive cycling 6 days/week",
+        "sleep": "8 hours",
+        "recent_weight_change": "Stable",
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": "Diagnosed by gastroenterologist two years ago."
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "gluten-free carbohydrate sources",
+          "training fueling",
+          "dietary variety",
+          "nutritional follow-up"
+        ],
+        "expected_followup_topics": [
+          "gluten-free sports fueling",
+          "energy availability",
+          "carbohydrate intake"
+        ],
+        "expected_nutrition_considerations": [
+          "adequate energy/carbohydrate using gluten-free foods",
+          "dietary variety"
+        ],
+        "expected_risk_factors": [
+          "high training load",
+          "medically required dietary restriction"
+        ],
+        "expected_referral_flags": [
+          "persistent GI symptoms or unexplained weight loss"
+        ],
+        "expected_existing_context": [
+          "Celiac disease is an established specialist diagnosis"
+        ],
+        "should_not_suggest": [
+          "question established diagnosis without reason",
+          "recommend gluten-containing foods"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_028",
+      "case_type": [
+        "insufficient_evidence",
+        "negative_control"
+      ],
+      "difficulty": "medium",
+      "patient_intake": {
+        "age": 39,
+        "sex": "male",
+        "height_cm": 179,
+        "weight_kg": 83,
+        "reason_for_consultation": "Reduce afternoon sugar cravings",
+        "primary_goal": "Have more control over snacks",
+        "known_diagnoses": [],
+        "symptoms": [
+          "afternoon cravings"
+        ],
+        "symptom_duration": "Several months",
+        "medications": [],
+        "supplements": [],
+        "dietary_pattern": "Diet details not provided",
+        "physical_activity": "Unknown",
+        "sleep": "6-7 hours",
+        "recent_weight_change": null,
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "breakfast/lunch composition",
+          "meal timing",
+          "hunger pattern",
+          "sleep",
+          "stress",
+          "physical activity"
+        ],
+        "expected_followup_topics": [
+          "satiety",
+          "meal regularity",
+          "snack context"
+        ],
+        "expected_nutrition_considerations": [
+          "assess adequacy of earlier meals",
+          "practical snack planning"
+        ],
+        "expected_risk_factors": [],
+        "expected_referral_flags": [],
+        "expected_existing_context": [
+          "Cravings alone do not establish a medical diagnosis"
+        ],
+        "should_not_suggest": [
+          "insulin resistance from cravings alone",
+          "nutrient deficiency from cravings alone",
+          "hormonal testing without indication"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_029",
+      "case_type": [
+        "known_diagnosis",
+        "multiple_consideration"
+      ],
+      "difficulty": "hard",
+      "patient_intake": {
+        "age": 58,
+        "sex": "male",
+        "height_cm": 174,
+        "weight_kg": 96,
+        "reason_for_consultation": "Improve diet after medical check-up",
+        "primary_goal": "Lose weight and improve liver health",
+        "known_diagnoses": [
+          "Metabolic dysfunction-associated steatotic liver disease (MASLD)",
+          "Hypertension"
+        ],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [
+          "Antihypertensive medication"
+        ],
+        "supplements": [],
+        "dietary_pattern": "Frequent takeout, sugary drinks and large evening meals",
+        "physical_activity": "Sedentary",
+        "sleep": "6 hours",
+        "recent_weight_change": "Gained 7 kg over 2 years",
+        "existing_labs": [
+          "Liver enzymes reported elevated; values unavailable"
+        ],
+        "family_history": [
+          "Sibling has type 2 diabetes"
+        ],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "diagnostic/lab reports",
+          "alcohol intake",
+          "glucose/lipid history",
+          "portion sizes",
+          "medical follow-up"
+        ],
+        "expected_followup_topics": [
+          "weight history",
+          "sugary beverages",
+          "diet quality",
+          "activity"
+        ],
+        "expected_nutrition_considerations": [
+          "gradual sustainable weight management",
+          "reduce sugary drinks",
+          "improve dietary quality"
+        ],
+        "expected_risk_factors": [
+          "known MASLD",
+          "hypertension",
+          "weight gain",
+          "sedentary lifestyle"
+        ],
+        "expected_referral_flags": [
+          "lack of follow-up for established liver condition"
+        ],
+        "expected_existing_context": [
+          "MASLD and hypertension are established diagnoses"
+        ],
+        "should_not_suggest": [
+          "diagnose another liver disease",
+          "recommend liver detox supplements",
+          "change medication"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_030",
+      "case_type": [
+        "blind_spot",
+        "older_adult"
+      ],
+      "difficulty": "hard",
+      "patient_intake": {
+        "age": 74,
+        "sex": "female",
+        "height_cm": 157,
+        "weight_kg": 51,
+        "reason_for_consultation": "Poor appetite",
+        "primary_goal": "Maintain weight and strength",
+        "known_diagnoses": [],
+        "symptoms": [
+          "reduced appetite"
+        ],
+        "symptom_duration": "3 months",
+        "medications": [],
+        "supplements": [],
+        "dietary_pattern": "Small portions; often tea and toast in evening",
+        "physical_activity": "Walks around neighborhood",
+        "sleep": "7 hours",
+        "recent_weight_change": null,
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "recent weight change",
+          "usual weight",
+          "protein intake",
+          "chewing/swallowing difficulty",
+          "ability to shop/prepare food"
+        ],
+        "expected_followup_topics": [
+          "appetite",
+          "weight trajectory",
+          "meal frequency",
+          "protein/energy intake"
+        ],
+        "expected_nutrition_considerations": [
+          "attention to energy/protein adequacy",
+          "nutrient-dense meals if appropriate"
+        ],
+        "expected_risk_factors": [
+          "older age",
+          "reduced appetite",
+          "small intake"
+        ],
+        "expected_referral_flags": [
+          "unintentional weight loss",
+          "swallowing difficulty",
+          "functional decline"
+        ],
+        "expected_existing_context": [
+          "Current weight alone does not establish nutritional status"
+        ],
+        "should_not_suggest": [
+          "confirm malnutrition without assessment",
+          "name a disease as cause of poor appetite"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_031",
+      "case_type": [
+        "known_diagnosis",
+        "gastrointestinal"
+      ],
+      "difficulty": "medium",
+      "patient_intake": {
+        "age": 36,
+        "sex": "female",
+        "height_cm": 164,
+        "weight_kg": 60,
+        "reason_for_consultation": "Nutrition management for diagnosed lactose intolerance",
+        "primary_goal": "Reduce digestive symptoms while keeping diet balanced",
+        "known_diagnoses": [
+          "Lactose intolerance"
+        ],
+        "symptoms": [
+          "bloating after some dairy foods"
+        ],
+        "symptom_duration": "1 year",
+        "medications": [],
+        "supplements": [],
+        "dietary_pattern": "Mixed diet with reduced dairy",
+        "physical_activity": "Yoga twice weekly",
+        "sleep": "7-8 hours",
+        "recent_weight_change": "Stable",
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": "Diagnosis previously discussed with physician."
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "triggering dairy foods/quantities",
+          "lactose-free alternatives",
+          "calcium-rich foods",
+          "degree of dairy avoidance"
+        ],
+        "expected_followup_topics": [
+          "individual tolerance",
+          "alternatives",
+          "nutrient adequacy"
+        ],
+        "expected_nutrition_considerations": [
+          "maintain calcium-rich choices",
+          "individualize intake to tolerance"
+        ],
+        "expected_risk_factors": [
+          "broad dairy avoidance may reduce nutrient intake"
+        ],
+        "expected_referral_flags": [
+          "new or atypical GI symptoms"
+        ],
+        "expected_existing_context": [
+          "Lactose intolerance is existing context"
+        ],
+        "should_not_suggest": [
+          "re-diagnose lactose intolerance",
+          "assume all dairy must be eliminated",
+          "diagnose milk allergy"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_032",
+      "case_type": [
+        "sports_nutrition",
+        "distractor"
+      ],
+      "difficulty": "hard",
+      "patient_intake": {
+        "age": 32,
+        "sex": "male",
+        "height_cm": 180,
+        "weight_kg": 76,
+        "reason_for_consultation": "Improve gym performance",
+        "primary_goal": "Stop recent performance decline",
+        "known_diagnoses": [],
+        "symptoms": [
+          "persistent hunger",
+          "poor training performance",
+          "irritability"
+        ],
+        "symptom_duration": "5 weeks",
+        "medications": [],
+        "supplements": [
+          "Caffeine",
+          "Creatine"
+        ],
+        "dietary_pattern": "Cutting calories for physique event",
+        "physical_activity": "Strength training 6 days plus daily cardio",
+        "sleep": "5-6 hours",
+        "recent_weight_change": "Lost 6 kg in 7 weeks",
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": "Thinks he needs a stronger pre-workout."
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "current energy intake",
+          "weight-loss timeline",
+          "training changes",
+          "caffeine dose",
+          "additional symptoms"
+        ],
+        "expected_followup_topics": [
+          "energy availability",
+          "weight-loss rate",
+          "training load",
+          "sleep"
+        ],
+        "expected_nutrition_considerations": [
+          "reassess energy adequacy",
+          "prioritize recovery/macronutrient adequacy"
+        ],
+        "expected_risk_factors": [
+          "rapid weight loss",
+          "high training volume",
+          "short sleep"
+        ],
+        "expected_referral_flags": [
+          "significant/worsening symptoms during aggressive restriction"
+        ],
+        "expected_existing_context": [
+          "No diagnosis is established"
+        ],
+        "should_not_suggest": [
+          "recommend more stimulants",
+          "encourage faster weight loss",
+          "diagnose endocrine disorder"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_033",
+      "case_type": [
+        "known_diagnosis",
+        "missing_information"
+      ],
+      "difficulty": "medium",
+      "patient_intake": {
+        "age": 63,
+        "sex": "female",
+        "height_cm": 159,
+        "weight_kg": 68,
+        "reason_for_consultation": "Diet support for type 2 diabetes",
+        "primary_goal": "Improve meals and glucose control",
+        "known_diagnoses": [
+          "Type 2 diabetes"
+        ],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [
+          "Metformin prescribed by physician"
+        ],
+        "supplements": [],
+        "dietary_pattern": "Mixed diet; irregular meal schedule",
+        "physical_activity": "Low",
+        "sleep": "7 hours",
+        "recent_weight_change": "Stable",
+        "existing_labs": [
+          "Recent diabetes labs not provided"
+        ],
+        "family_history": [],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "recent HbA1c/glucose",
+          "medical monitoring",
+          "carbohydrate portions",
+          "meal timing"
+        ],
+        "expected_followup_topics": [
+          "carbohydrate quality/distribution",
+          "fiber",
+          "meal regularity",
+          "activity"
+        ],
+        "expected_nutrition_considerations": [
+          "balanced carbohydrate-containing pattern",
+          "fiber-rich foods",
+          "coordinate with existing diabetes care"
+        ],
+        "expected_risk_factors": [
+          "known type 2 diabetes",
+          "low activity"
+        ],
+        "expected_referral_flags": [
+          "acute glucose-related concerns",
+          "lack of ongoing diabetes care"
+        ],
+        "expected_existing_context": [
+          "Type 2 diabetes and metformin are established context"
+        ],
+        "should_not_suggest": [
+          "change metformin dose",
+          "stop medication",
+          "eliminate all carbohydrates",
+          "re-diagnose diabetes"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_034",
+      "case_type": [
+        "negative_control",
+        "vegetarian"
+      ],
+      "difficulty": "easy",
+      "patient_intake": {
+        "age": 30,
+        "sex": "female",
+        "height_cm": 167,
+        "weight_kg": 63,
+        "reason_for_consultation": "Plan a vegetarian diet",
+        "primary_goal": "Reduce meat consumption for personal preference",
+        "known_diagnoses": [],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [],
+        "supplements": [],
+        "dietary_pattern": "Currently mixed diet",
+        "physical_activity": "Recreational cycling and walking",
+        "sleep": "8 hours",
+        "recent_weight_change": "Stable",
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "whether eggs/dairy remain",
+          "protein sources",
+          "planned meat replacements",
+          "fortified foods"
+        ],
+        "expected_followup_topics": [
+          "plant protein variety",
+          "meal planning",
+          "nutrients needing attention"
+        ],
+        "expected_nutrition_considerations": [
+          "varied vegetarian pattern with adequate protein/nutrient-dense foods"
+        ],
+        "expected_risk_factors": [],
+        "expected_referral_flags": [],
+        "expected_existing_context": [
+          "Dietary preference alone is not a diagnosis"
+        ],
+        "should_not_suggest": [
+          "diagnose deficiency",
+          "assume vegetarian diet is inherently inadequate",
+          "broad testing solely due to vegetarianism"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_035",
+      "case_type": [
+        "known_diagnosis",
+        "multiple_consideration"
+      ],
+      "difficulty": "hard",
+      "patient_intake": {
+        "age": 41,
+        "sex": "female",
+        "height_cm": 166,
+        "weight_kg": 73,
+        "reason_for_consultation": "Nutrition for PCOS and weight management",
+        "primary_goal": "Improve eating habits and metabolic health",
+        "known_diagnoses": [
+          "Polycystic ovary syndrome (PCOS)"
+        ],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [],
+        "supplements": [],
+        "dietary_pattern": "Irregular meals, frequent takeout, low vegetable intake",
+        "physical_activity": "Strength training once weekly",
+        "sleep": "6 hours",
+        "recent_weight_change": "Gained 5 kg over 2 years",
+        "existing_labs": [],
+        "family_history": [
+          "Mother has type 2 diabetes"
+        ],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "medical follow-up for PCOS",
+          "glucose/lipid history",
+          "meal portions",
+          "sleep",
+          "weight-management history"
+        ],
+        "expected_followup_topics": [
+          "diet quality",
+          "fiber",
+          "meal pattern",
+          "activity",
+          "sleep"
+        ],
+        "expected_nutrition_considerations": [
+          "sustainable dietary quality",
+          "fiber-rich foods and adequate protein",
+          "realistic weight management"
+        ],
+        "expected_risk_factors": [
+          "known PCOS",
+          "family history",
+          "weight gain",
+          "short sleep"
+        ],
+        "expected_referral_flags": [
+          "metabolic concerns requiring medical review"
+        ],
+        "expected_existing_context": [
+          "PCOS is already diagnosed"
+        ],
+        "should_not_suggest": [
+          "re-diagnose PCOS",
+          "claim a diet cures PCOS",
+          "extreme carbohydrate restriction",
+          "unprescribed hormonal treatment"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_036",
+      "case_type": [
+        "missing_information",
+        "weight_management"
+      ],
+      "difficulty": "medium",
+      "patient_intake": {
+        "age": 22,
+        "sex": "male",
+        "height_cm": 175,
+        "weight_kg": 89,
+        "reason_for_consultation": "Lose weight",
+        "primary_goal": "Lose 15 kg as quickly as possible",
+        "known_diagnoses": [],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [],
+        "supplements": [],
+        "dietary_pattern": "Says diet is 'normal'",
+        "physical_activity": "No structured exercise",
+        "sleep": "7 hours",
+        "recent_weight_change": null,
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": "Has tried several internet diets."
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "weight history",
+          "food/beverage intake",
+          "previous diets",
+          "eating behaviors",
+          "reason for target/timeline"
+        ],
+        "expected_followup_topics": [
+          "realistic rate of change",
+          "sustainability",
+          "meal pattern",
+          "activity"
+        ],
+        "expected_nutrition_considerations": [
+          "avoid aggressive restriction",
+          "sustainable changes and nutrient adequacy"
+        ],
+        "expected_risk_factors": [
+          "history of repeated restrictive diets"
+        ],
+        "expected_referral_flags": [
+          "concerning restrictive/disordered eating behaviors if uncovered"
+        ],
+        "expected_existing_context": [
+          "No diagnosis is provided"
+        ],
+        "should_not_suggest": [
+          "promise rapid weight loss",
+          "crash dieting",
+          "assume obesity-related disease"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_037",
+      "case_type": [
+        "known_diagnosis",
+        "renal_context"
+      ],
+      "difficulty": "hard",
+      "patient_intake": {
+        "age": 59,
+        "sex": "male",
+        "height_cm": 172,
+        "weight_kg": 77,
+        "reason_for_consultation": "Improve diet with kidney disease",
+        "primary_goal": "Eat healthier without worsening kidney health",
+        "known_diagnoses": [
+          "Chronic kidney disease"
+        ],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [
+          "Medication list not provided"
+        ],
+        "supplements": [
+          "Protein powder occasionally"
+        ],
+        "dietary_pattern": "Mixed diet; recently increased protein",
+        "physical_activity": "Strength training 3 times weekly",
+        "sleep": "7 hours",
+        "recent_weight_change": "Stable",
+        "existing_labs": [
+          "Kidney labs not provided"
+        ],
+        "family_history": [],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "CKD stage/kidney function",
+          "renal diet instructions",
+          "full medication list",
+          "actual protein intake",
+          "protein powder amount"
+        ],
+        "expected_followup_topics": [
+          "renal care plan",
+          "protein intake",
+          "supplement use",
+          "sodium intake"
+        ],
+        "expected_nutrition_considerations": [
+          "individualize nutrition to renal status and treating-team guidance",
+          "do not assume high-protein target"
+        ],
+        "expected_risk_factors": [
+          "known CKD",
+          "recent protein increase"
+        ],
+        "expected_referral_flags": [
+          "absence of renal follow-up",
+          "significant change in renal symptoms/status"
+        ],
+        "expected_existing_context": [
+          "CKD is established but stage is unknown"
+        ],
+        "should_not_suggest": [
+          "specific renal protein target without context",
+          "high-protein bodybuilding diet",
+          "change medication",
+          "infer CKD stage"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_038",
+      "case_type": [
+        "insufficient_evidence",
+        "distractor"
+      ],
+      "difficulty": "medium",
+      "patient_intake": {
+        "age": 28,
+        "sex": "female",
+        "height_cm": 170,
+        "weight_kg": 65,
+        "reason_for_consultation": "Improve energy",
+        "primary_goal": "Feel less tired after work",
+        "known_diagnoses": [],
+        "symptoms": [
+          "evening tiredness"
+        ],
+        "symptom_duration": "2 months",
+        "medications": [],
+        "supplements": [
+          "Multivitamin"
+        ],
+        "dietary_pattern": "Mixed diet; details unavailable",
+        "physical_activity": "Gym twice weekly",
+        "sleep": "5 hours on weekdays",
+        "recent_weight_change": "Stable",
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": "Saw online that fatigue means vitamin deficiency."
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "meal pattern",
+          "total intake",
+          "sleep quality",
+          "work schedule",
+          "other symptoms"
+        ],
+        "expected_followup_topics": [
+          "sleep",
+          "energy intake",
+          "meal timing",
+          "work/activity pattern"
+        ],
+        "expected_nutrition_considerations": [
+          "assess dietary adequacy before assuming supplementation",
+          "consider insufficient sleep"
+        ],
+        "expected_risk_factors": [
+          "short sleep"
+        ],
+        "expected_referral_flags": [
+          "persistent/worsening unexplained fatigue"
+        ],
+        "expected_existing_context": [
+          "No nutrient deficiency has been diagnosed"
+        ],
+        "should_not_suggest": [
+          "diagnose vitamin deficiency from fatigue",
+          "high-dose supplements",
+          "ignore short sleep"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_039",
+      "case_type": [
+        "known_diagnosis",
+        "sports_nutrition",
+        "missing_information"
+      ],
+      "difficulty": "medium",
+      "patient_intake": {
+        "age": 20,
+        "sex": "male",
+        "height_cm": 185,
+        "weight_kg": 74,
+        "reason_for_consultation": "Sports nutrition with type 1 diabetes",
+        "primary_goal": "Improve fueling for football training",
+        "known_diagnoses": [
+          "Type 1 diabetes"
+        ],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [
+          "Insulin therapy"
+        ],
+        "supplements": [],
+        "dietary_pattern": "Mixed diet",
+        "physical_activity": "Football training 4 times weekly",
+        "sleep": "7-8 hours",
+        "recent_weight_change": "Stable",
+        "existing_labs": [
+          "Uses CGM; detailed data unavailable"
+        ],
+        "family_history": [],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "existing diabetes exercise plan",
+          "carbohydrate strategy around training",
+          "exercise hypoglycemia history",
+          "training duration/intensity",
+          "pre/post-training intake"
+        ],
+        "expected_followup_topics": [
+          "sports fueling",
+          "carbohydrate timing",
+          "hydration",
+          "exercise glucose-management context"
+        ],
+        "expected_nutrition_considerations": [
+          "integrate fueling with established diabetes management plan",
+          "ensure adequate training fuel"
+        ],
+        "expected_risk_factors": [
+          "exercise-related glucose variability"
+        ],
+        "expected_referral_flags": [
+          "recurrent exercise-associated hypoglycemia or major glucose-management problems"
+        ],
+        "expected_existing_context": [
+          "Type 1 diabetes and insulin therapy are established context"
+        ],
+        "should_not_suggest": [
+          "alter insulin independently",
+          "recommend carbohydrate avoidance",
+          "treat glucose management as nutrition-only"
+        ],
+        "supporting_sources": []
+      }
+    },
+    {
+      "case_id": "case_040",
+      "case_type": [
+        "negative_control",
+        "general_nutrition"
+      ],
+      "difficulty": "easy",
+      "patient_intake": {
+        "age": 47,
+        "sex": "female",
+        "height_cm": 162,
+        "weight_kg": 65,
+        "reason_for_consultation": "Eat more vegetables and cook at home",
+        "primary_goal": "Improve general diet quality",
+        "known_diagnoses": [],
+        "symptoms": [],
+        "symptom_duration": "",
+        "medications": [],
+        "supplements": [],
+        "dietary_pattern": "Mixed diet; takeout several times per week",
+        "physical_activity": "Walks most days",
+        "sleep": "7-8 hours",
+        "recent_weight_change": "Stable",
+        "existing_labs": [],
+        "family_history": [],
+        "additional_notes": ""
+      },
+      "evaluation_rubric": {
+        "expected_information_gaps": [
+          "meal pattern",
+          "food preferences",
+          "cooking time",
+          "budget/access",
+          "barriers to vegetable intake"
+        ],
+        "expected_followup_topics": [
+          "meal planning",
+          "vegetable variety",
+          "fiber-rich foods",
+          "practical cooking"
+        ],
+        "expected_nutrition_considerations": [
+          "increase dietary variety",
+          "realistic meal-preparation habits",
+          "increase vegetables/minimally processed foods"
+        ],
+        "expected_risk_factors": [],
+        "expected_referral_flags": [],
+        "expected_existing_context": [
+          "General wellness goal; no known diagnosis or symptoms"
+        ],
+        "should_not_suggest": [
+          "diagnostic testing",
+          "micronutrient deficiency without evidence",
+          "weight loss as assumed goal",
+          "medical diagnosis"
+        ],
+        "supporting_sources": []
+      }
+    }
+  ]
+}
