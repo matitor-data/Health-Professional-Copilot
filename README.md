@@ -70,9 +70,9 @@ reproduce the evaluation process.
 
 ## Current status
 
-The repository currently contains the single-call LLM baseline and a locked synthetic evaluation
-set. The two-agent MVP, evidence retrieval, and evidence gate are intentionally not part of the
-baseline.
+The repository contains the frozen single-call LLM baseline, Nutrition Reasoning Agent v3 with a
+deterministic safety gate, and synthetic development and locked evaluation sets. Evidence retrieval
+and the Evidence Gate are not implemented yet.
 
 ## Setup
 
@@ -107,6 +107,27 @@ uv run python -m baseline.runner
 Each execution writes a versioned manifest, JSONL outputs, failures, and aggregate metrics under
 `evaluation/runs/<run_id>/`. These run artifacts are ignored by Git.
 
+## Run the Nutrition Agent
+
+Validate its deterministic preprocessing without an API call:
+
+```bash
+uv run python -m nutrition_agent.runner \
+  --dataset data/cases/development/nutrition_cases_dev.json --dry-run
+```
+
+Run one development case:
+
+```bash
+uv run python -m nutrition_agent.runner \
+  --dataset data/cases/development/nutrition_cases_dev.json --case-id dev_004
+```
+
+The agent normalizes the intake, generates a compact structured reasoning draft, applies
+deterministic gap coverage, grounding, scope, and referral-eligibility checks, removes unsupported
+items locally without a general retry, and renders the same `BaselineBrief` contract used by the baseline. Agent trajectories are saved under
+`evaluation/agent_runs/<run_id>/` and ignored by Git.
+
 ## Baseline boundary
 
 The baseline uses one structured patient intake, one versioned prompt, one LLM call, and one
@@ -120,7 +141,9 @@ a substitute for clinical adjudication or semantic evaluation by qualified revie
 
 ```text
 baseline/                  Prompt, schemas, OpenAI client, and runner
-baseline/prompts/          Reproducible prompt versions v1-v3
+baseline/prompts/          Reproducible prompt versions v1-v4
+nutrition_agent/           Patient state, reasoning client, safety gate, renderer, and runner
+data/cases/development/    Synthetic cases used for iteration
 data/cases/locked_test/    Synthetic cases not used for prompt tuning
 evaluation/                Metrics, run comparison, reports, and generated artifacts
 tests/                     Contract and safety tests

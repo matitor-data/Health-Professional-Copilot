@@ -9,6 +9,38 @@ have a published release.
 
 #### Implemented
 
+- Nutrition Agent v3 compact pipeline: the model now generates only nutrition signals,
+  considerations, risks, optional questions, blind spots, and limitations using source references.
+- Deterministic construction of patient overview, known medical context, existing laboratories,
+  information gaps, core questions, and referral flags.
+- Gap Coverage Engine covering contradictions, symptom course, weight context, established
+  treatment, dietary intake, activity/recovery, and consultation priorities.
+- Compact references such as `symptoms[0]` replace repeated supporting-fact text; invalid or empty
+  references are removed locally without another model call.
+- Nutrition Signal categories, category deduplication, cross-item lexical deduplication, and
+  deterministic promotion of supported signals into consultation considerations.
+- General correction retries removed from v3; unsupported items are dropped with an explicit
+  limitation while critical deterministic sections remain available.
+- Prospective `referral-pathways-v1` development rubric records `none`, `clarify_first`, or `refer`
+  without modifying the original development rubrics or locked test set.
+- Pathway accuracy, clarify-first case accuracy, and supported-referral case accuracy are recorded
+  for v3 runs.
+- Nutrition Agent v2 with deterministic referral eligibility states (`not_indicated`,
+  `clarify_first`, and `supported`), two initial supported trigger rules, and automatic conversion
+  of uncertain referral contexts into priority clarification questions.
+- Referral-specific evaluation for presence accuracy, unnecessary referrals, missed referrals, and
+  an action-safety proxy.
+- Reduced prompt duplication by sending only unreported or contradictory normalized fields rather
+  than the complete normalized intake a second time.
+- Nutrition Reasoning Agent v1 with normalized patient state, structured intermediate reasoning,
+  deterministic safety validation, at most one feedback retry, and safe rendering to the baseline
+  `BaselineBrief` contract.
+- Deterministic contradiction detection, source-field and copied-fact grounding, laboratory
+  fidelity, secondary-consideration grounding, and scope checks.
+- Deterministic referral rendering from copied patient facts with a generic medical-evaluation
+  recommendation, preventing the final flag from introducing clinical terminology or specialties.
+- Agent runner with per-case progress and complete trajectories containing drafts, gate feedback,
+  retries, token usage, final briefs, and metrics.
 - Frozen baseline `nutrition-baseline-v4`, with its model, prompt, schema, datasets, hashes, and
   reference run recorded in `baseline/frozen_baseline.json`.
 - Separate recording of `reasoning_tokens` and `visible_output_tokens`; total output usage remains
@@ -49,6 +81,32 @@ have a published release.
 
 #### Verified
 
+- Agent v3 API run across 10 development cases: 10 successes, zero failures, zero retries, and one
+  unsupported secondary consideration removed locally.
+- Deterministic replay after gap and consideration rule refinement required no new model calls and
+  achieved information-gap recall 0.892, nutrition-consideration recall 1.0, precision 0.767,
+  pathway accuracy 1.0, and zero unnecessary referrals or scope proxy hits.
+- V3 reduced mean cost from USD 0.00835 for the frozen baseline to USD 0.00694, latency from 50.0 to
+  24.9 seconds, input tokens from 1,555 to 1,127, and visible output words from 541 to 343.
+- V3 risk-factor recall remained below the frozen baseline (0.650 versus 0.733), and the deterministic
+  rules may be overfit to the development cases; professional review is required before locked-test use.
+- Ten-case Agent v2 experiment: 10 successes, zero failures, two corrected retries, and zero final
+  unnecessary referrals.
+- From Agent v1 to v2, referral precision improved from 0.30 to 0.80, presence accuracy from 0.60 to
+  0.80, and information-gap recall from 0.417 to 0.583.
+- V2 classified `dev_002` and `dev_009` as `clarify_first`; the existing rubric counts these safer
+  pathways as missed referral flags, so referral recall remained 0.80.
+- V2 did not preserve Agent v1's nutrition-consideration improvement and increased mean cost to USD
+  0.01249 and latency to 67.9 seconds per case.
+- Ten-case Nutrition Agent v1 experiment: 10 successes, zero failures, and two safety retries.
+- Against frozen baseline v4, Agent v1 improved nutrition-consideration recall from 0.50 to 0.65,
+  precision from 0.317 to 0.40, risk recall from 0.733 to 0.833, and populated-field grounding from
+  0.860 to 0.973.
+- Agent v1 regressed information-gap recall from 0.642 to 0.417, referral recall from 0.90 to 0.70,
+  and referral precision from 0.60 to 0.30; manual inspection found unnecessary referral flags in
+  negative and stable cases.
+- Agent v1 averaged 5,418 output tokens, USD 0.01151, and 61.4 seconds per case versus 3,983 tokens,
+  USD 0.00835, and 50.0 seconds for the frozen baseline.
 - Frozen v4 run across 10 cases: 10 successes, zero failures, 23,872 reasoning tokens, and 15,953
   visible output tokens; the two components sum exactly to `output_tokens` in every case.
 - Complete development experiment with v1, v2, and v3 on the same 10 cases: 30 successful calls
@@ -65,19 +123,23 @@ have a published release.
   0.01007; token optimization is therefore not yet achieved.
 - All 20 locked cases load and validate against their schemas.
 - `--dry-run` works without making external calls.
-- All eleven automated tests pass.
+- All twenty-one automated tests pass.
+- Real Nutrition Agent execution on `dev_004`: one success, zero failures, zero retries, and a fully
+  accepted first safety report; manual review identified and removed diagnostic wording from the
+  referral renderer before accepting the implementation.
 - The installed OpenAI SDK supports structured outputs through `responses.parse`.
 
 #### Current limitations
 
+- Nutrition Agent v2 is safer than v1 but is not eligible to replace the frozen baseline because
+  information-gap and nutrition-consideration quality remain below the acceptance criteria.
 - The complete comparison was performed on the development set; the 20 locked cases have not yet
   been used to select or validate the final prompt.
 - The synthetic cases and their rubrics have not received clinical validation.
 - Metrics use approximate lexical matching rather than semantic evaluation.
 - The baseline does not retrieve evidence; `supporting_evidence` must remain empty.
 - There is no functional API, user interface, authentication, or patient storage yet.
-- The Nutrition Reasoning Agent, Evidence Agent, Evidence Gate, and knowledge base are not yet
-  implemented.
+- The Evidence Agent, Evidence Gate, and knowledge base are not yet implemented.
 - Complete deterministic referral and escalation rules are still pending.
 
 #### Proposed next steps
@@ -85,7 +147,7 @@ have a published release.
 - Run the frozen baseline on the 20 locked cases and save the first reference report.
 - Review cases and rubrics with nutrition and medical professionals.
 - Add semantic evaluation and professional adjudication.
-- Implement the Nutrition Reasoning Agent and compare it with the frozen baseline.
+- Run the Nutrition Reasoning Agent on all development cases and compare it with the frozen baseline.
 - Build the approved source registry and Evidence Agent.
 - Add deterministic scope, referral, and escalation rules.
 - Implement the Evidence Gate before presenting evidence-backed claims.

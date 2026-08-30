@@ -15,9 +15,9 @@ The repository currently includes:
 - Deterministic lexical evaluation metrics, structural checks, and labelled heuristic proxies.
 - Unit tests and a no-cost dry-run mode.
 
-The complete two-agent solution is not implemented yet. The Nutrition Reasoning Agent, Evidence
-Agent, approved knowledge base, retrieval pipeline, and Evidence Gate are described in the product
-specification but are not currently runnable.
+Nutrition Reasoning Agent v3 and its deterministic gap, safety, and referral gates are runnable. The Evidence Agent,
+approved knowledge base, retrieval pipeline, and Evidence Gate remain pending, so the complete
+evidence-grounded workflow is not implemented yet.
 
 ## 2. Requirements
 
@@ -97,7 +97,7 @@ uv run python -m unittest discover -s tests -v
 Expected result:
 
 ```text
-Ran 10 tests
+Ran 18 tests
 OK
 ```
 
@@ -190,7 +190,38 @@ parallel and cost an estimated USD 0.23562. Results are summarized in
 
 ## 9. Run the complete solution
 
-There is no complete solution command yet. Once both agents and the evidence workflow exist, this
+Run the implemented Nutrition Reasoning Agent on one development case:
+
+```bash
+uv run python -m nutrition_agent.runner \
+  --dataset data/cases/development/nutrition_cases_dev.json \
+  --case-id dev_004
+```
+
+Run all development cases:
+
+```bash
+uv run python -m nutrition_agent.runner \
+  --dataset data/cases/development/nutrition_cases_dev.json
+```
+
+The command writes trajectories to `evaluation/agent_runs/<run_id>/`, including normalized patient
+state, the reasoning draft, deterministic safety feedback, retry count, final brief, tokens, and
+metrics. Agent v3 performs exactly one model call per case; unsupported optional items are removed
+locally instead of triggering a correction call.
+
+Agent v3 performs exactly one call per case and supports deterministic replay after gate or renderer
+changes:
+
+```bash
+uv run python -m nutrition_agent.replay \
+  --source-run evaluation/agent_runs/<agent_v3_run_id> \
+  --output-root evaluation/agent_runs/replayed
+```
+
+Replay reuses the stored compact drafts and recorded token usage; it does not call the API.
+
+There is no complete evidence-grounded solution command yet. Once the Evidence Agent exists, this
 section must include exact commands for:
 
 1. Building or loading the approved knowledge index.
@@ -264,7 +295,7 @@ nutrition and medical review.
 - [ ] Clone the recorded commit.
 - [ ] Run `uv sync --locked`.
 - [ ] Configure `.env` without committing it.
-- [ ] Run all ten tests.
+- [ ] Run all twenty-one tests.
 - [ ] Run the dry-run and validate 20 cases.
 - [ ] Run at least one baseline case.
 - [ ] Confirm that four run files were created.

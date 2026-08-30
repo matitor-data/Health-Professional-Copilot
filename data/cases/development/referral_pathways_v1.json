@@ -1,0 +1,17 @@
+{
+  "rubric_version": "referral-pathways-v1",
+  "created_before_agent_version": "nutrition-agent-v3",
+  "notes": "Prospective development-only pathway labels. Original case rubrics and the locked test set remain unchanged.",
+  "cases": {
+    "dev_001": "none",
+    "dev_002": "clarify_first",
+    "dev_003": "none",
+    "dev_004": "refer",
+    "dev_005": "refer",
+    "dev_006": "none",
+    "dev_007": "none",
+    "dev_008": "none",
+    "dev_009": "clarify_first",
+    "dev_010": "none"
+  }
+}

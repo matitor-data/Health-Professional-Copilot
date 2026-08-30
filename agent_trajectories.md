@@ -246,16 +246,112 @@ visible output tokens. The arithmetic was checked for every case, with no mismat
 
 ### Status
 
-Not implemented.
+Implemented as `nutrition-agent-v1`; evidence retrieval remains pending.
 
-When available, add at least one representative trajectory containing:
+### Representative execution
 
-- The structured Patient State and deterministic scope/safety result.
-- Gaps, suggested questions, nutrition considerations, risks, referral flags, and blind spots.
-- Every evidence request sent to the Evidence Agent.
-- Schema feedback and any retry.
-- Any referral rule or human checkpoint that changes the output.
-- The final structured result before evidence gating.
+| Field | Value |
+|---|---:|
+| Synthetic case | `dev_004` |
+| Run | `20260829T234753Z` |
+| Model | `gpt-5-mini` |
+| Successful / failed | 1 / 0 |
+| Safety retries | 0 |
+| Input tokens | 1,908 |
+| Output tokens | 4,436 |
+| Reasoning tokens | 2,240 |
+| Visible output tokens | 2,196 |
+| Latency | 45,856 ms |
+
+```text
+1. EvaluationDataset validates the synthetic patient intake.
+2. PatientState marks reported and unreported fields, derives a non-diagnostic BMI, and checks
+   contradictions.
+3. nutrition-agent-v1 receives only the intake and normalized state.
+4. The API returns a valid NutritionReasoningResult.
+5. The deterministic gate verifies copied facts, populated source fields, secondary grounding,
+   scope patterns, and exact existing-lab fidelity.
+6. The first safety report is accepted, so no retry is sent.
+7. The renderer converts the draft to BaselineBrief and the common evaluator calculates metrics.
+8. The runner stores the patient state, draft, gate report, response identifiers, final brief,
+   tokens, latency, and metrics locally.
+```
+
+### Human checkpoint and resulting change
+
+An earlier run (`20260829T234525Z`) changed the observed phrase “food feels stuck” to
+the clinical term “dysphagia” and named medical specialties in its referral recommendation. The
+lexical gate had not caught this transformation. The final referral renderer was therefore changed
+to build its trigger only from verbatim `supporting_patient_facts` and to use a fixed, generic
+medical-evaluation recommendation determined by urgency. Run `20260829T234753Z` then verified the
+corrected final trigger using only four copied intake facts and the recommendation “Seek prompt
+medical evaluation.” It achieved referral recall and precision of 1.0 on this case with zero scope
+proxy hits and no retry.
+
+### Ten-case experiment trajectory
+
+| Field | Value |
+|---|---:|
+| Run | `20260829T235358Z` |
+| Successful / failed | 10 / 0 |
+| Cases with retry | 2 |
+| Total input tokens | 27,033 |
+| Total output tokens | 54,181 |
+| Reasoning / visible output tokens | 31,360 / 22,821 |
+| Sum of per-case latency | 614,350 ms |
+
+`dev_006` retried after the first draft referenced a derived BMI as though it were a patient field
+and failed verbatim-fact grounding. `dev_007` retried after a referral candidate recommended a new
+investigation. Both corrected drafts passed the gate.
+
+The aggregate comparison improved nutrition-consideration recall/precision and patient-field
+grounding, but referral recall/precision and information-gap recall regressed. Human inspection
+identified unnecessary referrals in stable or negative-control cases. The checkpoint decision is
+to reject Agent v1 as a baseline replacement and add deterministic referral eligibility rules
+before rerunning the experiment.
+
+### Agent v2 ten-case trajectory
+
+| Field | Value |
+|---|---:|
+| Run | `20260830T003855Z` |
+| Successful / failed | 10 / 0 |
+| Cases with retry | 2 |
+| Total input tokens | 23,314 |
+| Total output tokens | 59,530 |
+| Reasoning / visible output tokens | 35,648 / 23,882 |
+| Sum of per-case latency | 678,923 ms |
+
+V2 replaced model-selected referrals with deterministic eligibility decisions. It returned six
+`not_indicated`, two `clarify_first`, and two `supported` decisions. This removed every unnecessary
+referral observed in v1. `dev_002` retried after a medication-change scope violation and `dev_010`
+retried after unsupported facts and secondary-grounding violations; both corrections passed.
+
+Compared with v1, referral precision rose from 0.30 to 0.80 and gap recall from 0.417 to 0.583.
+Nutrition-consideration recall fell from 0.65 to 0.45, and mean cost and latency increased. The
+human checkpoint keeps the deterministic referral engine but rejects v2 as a baseline replacement.
+The two rubric-level referral misses are `clarify_first` cases, which should be reviewed
+prospectively rather than relabelled after observing the score.
+
+### Agent v3 compact trajectory
+
+| Field | Value |
+|---|---:|
+| API run | `20260830T010612Z` |
+| Final deterministic replay | `20260830T011416Z` |
+| Successful / failed | 10 / 0 |
+| Retries | 0 |
+| Total input / output tokens | 11,265 / 33,307 |
+| Reasoning / visible output tokens | 25,856 / 7,451 |
+| Sum of per-case latency | 249,232 ms |
+| Items removed locally | 1 |
+
+V3 made one compact model call per case. Source references were resolved locally; overview, known
+medical context, existing labs, gaps, questions, referrals, and supported considerations were
+rendered deterministically. The first deterministic output exposed generic gap wording, so the
+stored drafts were replayed after adding signal-driven coverage rules without another API call.
+The final checkpoint accepts v3 for professional review, not locked-test execution, because the
+rules were tuned against the development rubrics and may be overfit.
 
 ## 3. Evidence Agent trajectory
 

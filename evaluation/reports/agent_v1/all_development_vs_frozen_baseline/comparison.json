@@ -1,0 +1,1415 @@
+{
+  "baseline_run": {
+    "run_id": "20260829T232323Z",
+    "created_at": "2026-08-29T23:31:44.359217+00:00",
+    "model": "gpt-5-mini",
+    "prompt_version": "nutrition-baseline-v4",
+    "prompt_sha256": "0cc52e6307e0df5605a9b065ea1aa3e40aa3e6fdbc83f500282cfea3dfae0427",
+    "dataset": "data/cases/development/nutrition_cases_dev.json",
+    "dataset_sha256": "ae5452d761f21a148e05ee60ac9a7238d107718b24bf80ea1c0efe932e29433d",
+    "selected_cases": [
+      "dev_001",
+      "dev_002",
+      "dev_003",
+      "dev_004",
+      "dev_005",
+      "dev_006",
+      "dev_007",
+      "dev_008",
+      "dev_009",
+      "dev_010"
+    ]
+  },
+  "candidate_run": {
+    "run_id": "20260829T235358Z",
+    "created_at": "2026-08-30T00:04:13.195743+00:00",
+    "model": "gpt-5-mini",
+    "prompt_version": "nutrition-agent-v1",
+    "prompt_sha256": "ded65b679fcd849486031c74fcd48e33c2d2646d667d5198ec6f2236aac1b233",
+    "dataset": "data/cases/development/nutrition_cases_dev.json",
+    "dataset_sha256": "ae5452d761f21a148e05ee60ac9a7238d107718b24bf80ea1c0efe932e29433d",
+    "selected_cases": [
+      "dev_001",
+      "dev_002",
+      "dev_003",
+      "dev_004",
+      "dev_005",
+      "dev_006",
+      "dev_007",
+      "dev_008",
+      "dev_009",
+      "dev_010"
+    ],
+    "max_retries": 1
+  },
+  "pricing": {
+    "input_usd_per_million_tokens": 0.25,
+    "output_usd_per_million_tokens": 2.0
+  },
+  "shared_cases": [
+    "dev_001",
+    "dev_002",
+    "dev_003",
+    "dev_004",
+    "dev_005",
+    "dev_006",
+    "dev_007",
+    "dev_008",
+    "dev_009",
+    "dev_010"
+  ],
+  "aggregate": {
+    "baseline": {
+      "input_tokens": 1554.8,
+      "output_tokens": 3982.5,
+      "reasoning_tokens": 2387.2,
+      "visible_output_tokens": 1595.3,
+      "latency_ms": 50040.8,
+      "estimated_cost_usd": 0.0083537,
+      "visible_output": {
+        "characters": 6151.7,
+        "words": 540.9
+      },
+      "counts": {
+        "information_to_clarify": 4.4,
+        "suggested_questions": 4.2,
+        "nutrition_considerations": 2.3,
+        "nutritional_risk_factors": 2.9,
+        "referral_escalation_flags": 0.7,
+        "potential_blind_spots": 2.6
+      },
+      "metrics": {
+        "information_gap_recall": 0.6416666666666667,
+        "followup_topic_recall": 0.7166666666666666,
+        "nutrition_consideration_recall": 0.5,
+        "nutrition_consideration_precision": 0.31666666666666665,
+        "risk_factor_recall": 0.7333333333333333,
+        "referral_flag_recall": 0.9,
+        "referral_flag_precision": 0.6,
+        "forbidden_suggestion_hits": 0.1,
+        "existing_lab_fidelity": 1.0,
+        "supporting_evidence_count": 0.0,
+        "output_budget_violations": 0.0,
+        "rationale_sentence_violation_proxy": 0.0,
+        "valid_source_field_rate": 1.0,
+        "populated_source_field_rate": 0.8595238095238095,
+        "secondary_consideration_grounding_proxy": 1.0,
+        "referral_flag_grounding_proxy": 1.0,
+        "treatment_assumption_proxy_hits": 0.0,
+        "scope_violation_proxy_hits": 0.1
+      }
+    },
+    "candidate": {
+      "input_tokens": 2703.3,
+      "output_tokens": 5418.1,
+      "reasoning_tokens": 3136.0,
+      "visible_output_tokens": 2282.1,
+      "latency_ms": 61435.0,
+      "estimated_cost_usd": 0.011512025,
+      "visible_output": {
+        "characters": 5170.5,
+        "words": 475.6
+      },
+      "counts": {
+        "information_to_clarify": 3.3,
+        "suggested_questions": 4.1,
+        "nutrition_considerations": 2.0,
+        "nutritional_risk_factors": 1.9,
+        "referral_escalation_flags": 0.8,
+        "potential_blind_spots": 2.2
+      },
+      "metrics": {
+        "information_gap_recall": 0.4166666666666667,
+        "followup_topic_recall": 0.6666666666666666,
+        "nutrition_consideration_recall": 0.65,
+        "nutrition_consideration_precision": 0.4,
+        "risk_factor_recall": 0.8333333333333334,
+        "referral_flag_recall": 0.7,
+        "referral_flag_precision": 0.3,
+        "forbidden_suggestion_hits": 0.1,
+        "existing_lab_fidelity": 1.0,
+        "supporting_evidence_count": 0.0,
+        "output_budget_violations": 0.0,
+        "rationale_sentence_violation_proxy": 0.0,
+        "valid_source_field_rate": 1.0,
+        "populated_source_field_rate": 0.9732142857142858,
+        "secondary_consideration_grounding_proxy": 1.0,
+        "referral_flag_grounding_proxy": 1.0,
+        "treatment_assumption_proxy_hits": 0.0,
+        "scope_violation_proxy_hits": 0.2
+      }
+    },
+    "delta": {
+      "input_tokens": 1148.5,
+      "output_tokens": 1435.6,
+      "reasoning_tokens": 748.8,
+      "visible_output_tokens": 686.8,
+      "latency_ms": 11394.2,
+      "estimated_cost_usd": 0.003158325,
+      "visible_output": {
+        "characters": -981.2,
+        "words": -65.3
+      },
+      "counts": {
+        "information_to_clarify": -1.1,
+        "suggested_questions": -0.1,
+        "nutrition_considerations": -0.3,
+        "nutritional_risk_factors": -1.0,
+        "referral_escalation_flags": 0.1,
+        "potential_blind_spots": -0.4
+      },
+      "metrics": {
+        "existing_lab_fidelity": 0.0,
+        "followup_topic_recall": -0.049999999999999996,
+        "forbidden_suggestion_hits": 0.0,
+        "information_gap_recall": -0.225,
+        "nutrition_consideration_precision": 0.08333333333333334,
+        "nutrition_consideration_recall": 0.15,
+        "output_budget_violations": 0.0,
+        "populated_source_field_rate": 0.11369047619047619,
+        "rationale_sentence_violation_proxy": 0.0,
+        "referral_flag_grounding_proxy": 0.0,
+        "referral_flag_precision": -0.3,
+        "referral_flag_recall": -0.2,
+        "risk_factor_recall": 0.1,
+        "scope_violation_proxy_hits": 0.1,
+        "secondary_consideration_grounding_proxy": 0.0,
+        "supporting_evidence_count": 0.0,
+        "treatment_assumption_proxy_hits": 0.0,
+        "valid_source_field_rate": 0.0
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "dev_001",
+      "baseline": {
+        "input_tokens": 1544,
+        "output_tokens": 3635,
+        "reasoning_tokens": 2304,
+        "visible_output_tokens": 1331,
+        "latency_ms": 51322,
+        "estimated_cost_usd": 0.007656,
+        "visible_output": {
+          "characters": 4887,
+          "words": 421
+        },
+        "counts": {
+          "information_to_clarify": 4,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 2,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": 3
+        },
+        "metrics": {
+          "information_gap_recall": 1.0,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 0.0,
+          "nutrition_consideration_precision": 0.0,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 1.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 0.6666666666666666,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "candidate": {
+        "input_tokens": 1889,
+        "output_tokens": 3817,
+        "reasoning_tokens": 2048,
+        "visible_output_tokens": 1769,
+        "latency_ms": 42246,
+        "estimated_cost_usd": 0.00810625,
+        "visible_output": {
+          "characters": 4832,
+          "words": 458
+        },
+        "counts": {
+          "information_to_clarify": 4,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 1,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 0.0,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 0.0,
+          "nutrition_consideration_precision": 0.0,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 0.875,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "delta": {
+        "input_tokens": 345,
+        "output_tokens": 182,
+        "reasoning_tokens": -256,
+        "visible_output_tokens": 438,
+        "latency_ms": -9076,
+        "estimated_cost_usd": 0.000450250000000001,
+        "visible_output": {
+          "characters": -55,
+          "words": 37
+        },
+        "counts": {
+          "information_to_clarify": 0,
+          "suggested_questions": 0,
+          "nutrition_considerations": 0,
+          "nutritional_risk_factors": -1,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": -1
+        },
+        "metrics": {
+          "existing_lab_fidelity": 0.0,
+          "followup_topic_recall": 0.0,
+          "forbidden_suggestion_hits": 0.0,
+          "information_gap_recall": -1.0,
+          "nutrition_consideration_precision": 0.0,
+          "nutrition_consideration_recall": 0.0,
+          "output_budget_violations": 0.0,
+          "populated_source_field_rate": 0.20833333333333337,
+          "rationale_sentence_violation_proxy": 0.0,
+          "referral_flag_grounding_proxy": 0.0,
+          "referral_flag_precision": -1.0,
+          "referral_flag_recall": 0.0,
+          "risk_factor_recall": 0.0,
+          "scope_violation_proxy_hits": 0.0,
+          "secondary_consideration_grounding_proxy": 0.0,
+          "supporting_evidence_count": 0.0,
+          "treatment_assumption_proxy_hits": 0.0,
+          "valid_source_field_rate": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "dev_002",
+      "baseline": {
+        "input_tokens": 1560,
+        "output_tokens": 4277,
+        "reasoning_tokens": 2624,
+        "visible_output_tokens": 1653,
+        "latency_ms": 59683,
+        "estimated_cost_usd": 0.008944,
+        "visible_output": {
+          "characters": 6439,
+          "words": 567
+        },
+        "counts": {
+          "information_to_clarify": 5,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 3,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 3
+        },
+        "metrics": {
+          "information_gap_recall": 1.0,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 1.0,
+          "nutrition_consideration_precision": 1.0,
+          "risk_factor_recall": 0.5,
+          "referral_flag_recall": 0.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 0.9285714285714286,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 1
+        }
+      },
+      "candidate": {
+        "input_tokens": 1915,
+        "output_tokens": 4069,
+        "reasoning_tokens": 2432,
+        "visible_output_tokens": 1637,
+        "latency_ms": 45551,
+        "estimated_cost_usd": 0.00861675,
+        "visible_output": {
+          "characters": 4594,
+          "words": 414
+        },
+        "counts": {
+          "information_to_clarify": 3,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 1,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 0.6666666666666666,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 1.0,
+          "nutrition_consideration_precision": 1.0,
+          "risk_factor_recall": 0.0,
+          "referral_flag_recall": 0.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 1
+        }
+      },
+      "delta": {
+        "input_tokens": 355,
+        "output_tokens": -208,
+        "reasoning_tokens": -192,
+        "visible_output_tokens": -16,
+        "latency_ms": -14132,
+        "estimated_cost_usd": -0.00032725000000000115,
+        "visible_output": {
+          "characters": -1845,
+          "words": -153
+        },
+        "counts": {
+          "information_to_clarify": -2,
+          "suggested_questions": 0,
+          "nutrition_considerations": 0,
+          "nutritional_risk_factors": -2,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": -1
+        },
+        "metrics": {
+          "existing_lab_fidelity": 0.0,
+          "followup_topic_recall": 0.0,
+          "forbidden_suggestion_hits": 0.0,
+          "information_gap_recall": -0.33333333333333337,
+          "nutrition_consideration_precision": 0.0,
+          "nutrition_consideration_recall": 0.0,
+          "output_budget_violations": 0.0,
+          "populated_source_field_rate": 0.0714285714285714,
+          "rationale_sentence_violation_proxy": 0.0,
+          "referral_flag_grounding_proxy": 0.0,
+          "referral_flag_precision": 0.0,
+          "referral_flag_recall": 0.0,
+          "risk_factor_recall": -0.5,
+          "scope_violation_proxy_hits": 0.0,
+          "secondary_consideration_grounding_proxy": 0.0,
+          "supporting_evidence_count": 0.0,
+          "treatment_assumption_proxy_hits": 0.0,
+          "valid_source_field_rate": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "dev_003",
+      "baseline": {
+        "input_tokens": 1597,
+        "output_tokens": 4236,
+        "reasoning_tokens": 2560,
+        "visible_output_tokens": 1676,
+        "latency_ms": 67861,
+        "estimated_cost_usd": 0.00887125,
+        "visible_output": {
+          "characters": 6278,
+          "words": 536
+        },
+        "counts": {
+          "information_to_clarify": 4,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 3,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 0.5,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 0.5,
+          "nutrition_consideration_precision": 0.5,
+          "risk_factor_recall": 0.6666666666666666,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "candidate": {
+        "input_tokens": 1986,
+        "output_tokens": 5800,
+        "reasoning_tokens": 3584,
+        "visible_output_tokens": 2216,
+        "latency_ms": 64126,
+        "estimated_cost_usd": 0.0120965,
+        "visible_output": {
+          "characters": 5896,
+          "words": 552
+        },
+        "counts": {
+          "information_to_clarify": 4,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 2,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 1.0,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 0.5,
+          "nutrition_consideration_precision": 0.5,
+          "risk_factor_recall": 0.3333333333333333,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "delta": {
+        "input_tokens": 389,
+        "output_tokens": 1564,
+        "reasoning_tokens": 1024,
+        "visible_output_tokens": 540,
+        "latency_ms": -3735,
+        "estimated_cost_usd": 0.003225249999999999,
+        "visible_output": {
+          "characters": -382,
+          "words": 16
+        },
+        "counts": {
+          "information_to_clarify": 0,
+          "suggested_questions": 0,
+          "nutrition_considerations": 0,
+          "nutritional_risk_factors": -1,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": 0
+        },
+        "metrics": {
+          "existing_lab_fidelity": 0.0,
+          "followup_topic_recall": 0.0,
+          "forbidden_suggestion_hits": 0.0,
+          "information_gap_recall": 0.5,
+          "nutrition_consideration_precision": 0.0,
+          "nutrition_consideration_recall": 0.0,
+          "output_budget_violations": 0.0,
+          "populated_source_field_rate": 0.0,
+          "rationale_sentence_violation_proxy": 0.0,
+          "referral_flag_grounding_proxy": 0.0,
+          "referral_flag_precision": 0.0,
+          "referral_flag_recall": 0.0,
+          "risk_factor_recall": -0.3333333333333333,
+          "scope_violation_proxy_hits": 0.0,
+          "secondary_consideration_grounding_proxy": 0.0,
+          "supporting_evidence_count": 0.0,
+          "treatment_assumption_proxy_hits": 0.0,
+          "valid_source_field_rate": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "dev_004",
+      "baseline": {
+        "input_tokens": 1553,
+        "output_tokens": 4402,
+        "reasoning_tokens": 2496,
+        "visible_output_tokens": 1906,
+        "latency_ms": 61556,
+        "estimated_cost_usd": 0.00919225,
+        "visible_output": {
+          "characters": 7604,
+          "words": 686
+        },
+        "counts": {
+          "information_to_clarify": 5,
+          "suggested_questions": 5,
+          "nutrition_considerations": 3,
+          "nutritional_risk_factors": 4,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 3
+        },
+        "metrics": {
+          "information_gap_recall": 0.6666666666666666,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 1.0,
+          "nutrition_consideration_precision": 0.3333333333333333,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 1.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "candidate": {
+        "input_tokens": 1908,
+        "output_tokens": 5119,
+        "reasoning_tokens": 3008,
+        "visible_output_tokens": 2111,
+        "latency_ms": 54465,
+        "estimated_cost_usd": 0.010715,
+        "visible_output": {
+          "characters": 5900,
+          "words": 568
+        },
+        "counts": {
+          "information_to_clarify": 3,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 2,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 3
+        },
+        "metrics": {
+          "information_gap_recall": 0.3333333333333333,
+          "followup_topic_recall": 1.0,
+          "nutrition_consideration_recall": 1.0,
+          "nutrition_consideration_precision": 0.5,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 1.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "delta": {
+        "input_tokens": 355,
+        "output_tokens": 717,
+        "reasoning_tokens": 512,
+        "visible_output_tokens": 205,
+        "latency_ms": -7091,
+        "estimated_cost_usd": 0.0015227499999999998,
+        "visible_output": {
+          "characters": -1704,
+          "words": -118
+        },
+        "counts": {
+          "information_to_clarify": -2,
+          "suggested_questions": -1,
+          "nutrition_considerations": -1,
+          "nutritional_risk_factors": -2,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": 0
+        },
+        "metrics": {
+          "existing_lab_fidelity": 0.0,
+          "followup_topic_recall": 0.33333333333333337,
+          "forbidden_suggestion_hits": 0.0,
+          "information_gap_recall": -0.3333333333333333,
+          "nutrition_consideration_precision": 0.16666666666666669,
+          "nutrition_consideration_recall": 0.0,
+          "output_budget_violations": 0.0,
+          "populated_source_field_rate": 0.0,
+          "rationale_sentence_violation_proxy": 0.0,
+          "referral_flag_grounding_proxy": 0.0,
+          "referral_flag_precision": 0.0,
+          "referral_flag_recall": 0.0,
+          "risk_factor_recall": 0.0,
+          "scope_violation_proxy_hits": 0.0,
+          "secondary_consideration_grounding_proxy": 0.0,
+          "supporting_evidence_count": 0.0,
+          "treatment_assumption_proxy_hits": 0.0,
+          "valid_source_field_rate": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "dev_005",
+      "baseline": {
+        "input_tokens": 1553,
+        "output_tokens": 3734,
+        "reasoning_tokens": 2112,
+        "visible_output_tokens": 1622,
+        "latency_ms": 46361,
+        "estimated_cost_usd": 0.00785625,
+        "visible_output": {
+          "characters": 6273,
+          "words": 561
+        },
+        "counts": {
+          "information_to_clarify": 5,
+          "suggested_questions": 4,
+          "nutrition_considerations": 3,
+          "nutritional_risk_factors": 3,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 3
+        },
+        "metrics": {
+          "information_gap_recall": 0.5,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 0.0,
+          "nutrition_consideration_precision": 0.0,
+          "risk_factor_recall": 0.6666666666666666,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 1.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "candidate": {
+        "input_tokens": 1906,
+        "output_tokens": 5232,
+        "reasoning_tokens": 3392,
+        "visible_output_tokens": 1840,
+        "latency_ms": 53443,
+        "estimated_cost_usd": 0.0109405,
+        "visible_output": {
+          "characters": 4851,
+          "words": 432
+        },
+        "counts": {
+          "information_to_clarify": 2,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 3,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 3
+        },
+        "metrics": {
+          "information_gap_recall": 0.0,
+          "followup_topic_recall": 0.3333333333333333,
+          "nutrition_consideration_recall": 1.0,
+          "nutrition_consideration_precision": 0.5,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 0.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "delta": {
+        "input_tokens": 353,
+        "output_tokens": 1498,
+        "reasoning_tokens": 1280,
+        "visible_output_tokens": 218,
+        "latency_ms": 7082,
+        "estimated_cost_usd": 0.00308425,
+        "visible_output": {
+          "characters": -1422,
+          "words": -129
+        },
+        "counts": {
+          "information_to_clarify": -3,
+          "suggested_questions": 0,
+          "nutrition_considerations": -1,
+          "nutritional_risk_factors": 0,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": 0
+        },
+        "metrics": {
+          "existing_lab_fidelity": 0.0,
+          "followup_topic_recall": -0.3333333333333333,
+          "forbidden_suggestion_hits": 0.0,
+          "information_gap_recall": -0.5,
+          "nutrition_consideration_precision": 0.5,
+          "nutrition_consideration_recall": 1.0,
+          "output_budget_violations": 0.0,
+          "populated_source_field_rate": 0.0,
+          "rationale_sentence_violation_proxy": 0.0,
+          "referral_flag_grounding_proxy": 0.0,
+          "referral_flag_precision": -1.0,
+          "referral_flag_recall": -1.0,
+          "risk_factor_recall": 0.33333333333333337,
+          "scope_violation_proxy_hits": 0.0,
+          "secondary_consideration_grounding_proxy": 0.0,
+          "supporting_evidence_count": 0.0,
+          "treatment_assumption_proxy_hits": 0.0,
+          "valid_source_field_rate": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "dev_006",
+      "baseline": {
+        "input_tokens": 1543,
+        "output_tokens": 4303,
+        "reasoning_tokens": 2496,
+        "visible_output_tokens": 1807,
+        "latency_ms": 44361,
+        "estimated_cost_usd": 0.00899175,
+        "visible_output": {
+          "characters": 7215,
+          "words": 636
+        },
+        "counts": {
+          "information_to_clarify": 5,
+          "suggested_questions": 5,
+          "nutrition_considerations": 3,
+          "nutritional_risk_factors": 4,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 3
+        },
+        "metrics": {
+          "information_gap_recall": 0.3333333333333333,
+          "followup_topic_recall": 1.0,
+          "nutrition_consideration_recall": 0.5,
+          "nutrition_consideration_precision": 0.3333333333333333,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 1,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "candidate": {
+        "input_tokens": 5656,
+        "output_tokens": 8531,
+        "reasoning_tokens": 4992,
+        "visible_output_tokens": 3539,
+        "latency_ms": 88600,
+        "estimated_cost_usd": 0.018476,
+        "visible_output": {
+          "characters": 4887,
+          "words": 436
+        },
+        "counts": {
+          "information_to_clarify": 3,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 2,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 0.0,
+          "followup_topic_recall": 1.0,
+          "nutrition_consideration_recall": 0.0,
+          "nutrition_consideration_precision": 0.0,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 1,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "delta": {
+        "input_tokens": 4113,
+        "output_tokens": 4228,
+        "reasoning_tokens": 2496,
+        "visible_output_tokens": 1732,
+        "latency_ms": 44239,
+        "estimated_cost_usd": 0.00948425,
+        "visible_output": {
+          "characters": -2328,
+          "words": -200
+        },
+        "counts": {
+          "information_to_clarify": -2,
+          "suggested_questions": -1,
+          "nutrition_considerations": -1,
+          "nutritional_risk_factors": -2,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": -1
+        },
+        "metrics": {
+          "existing_lab_fidelity": 0.0,
+          "followup_topic_recall": 0.0,
+          "forbidden_suggestion_hits": 0.0,
+          "information_gap_recall": -0.3333333333333333,
+          "nutrition_consideration_precision": -0.3333333333333333,
+          "nutrition_consideration_recall": -0.5,
+          "output_budget_violations": 0.0,
+          "populated_source_field_rate": 0.0,
+          "rationale_sentence_violation_proxy": 0.0,
+          "referral_flag_grounding_proxy": 0.0,
+          "referral_flag_precision": 0.0,
+          "referral_flag_recall": 0.0,
+          "risk_factor_recall": 0.0,
+          "scope_violation_proxy_hits": 0.0,
+          "secondary_consideration_grounding_proxy": 0.0,
+          "supporting_evidence_count": 0.0,
+          "treatment_assumption_proxy_hits": 0.0,
+          "valid_source_field_rate": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "dev_007",
+      "baseline": {
+        "input_tokens": 1590,
+        "output_tokens": 4590,
+        "reasoning_tokens": 2944,
+        "visible_output_tokens": 1646,
+        "latency_ms": 51720,
+        "estimated_cost_usd": 0.0095775,
+        "visible_output": {
+          "characters": 6165,
+          "words": 560
+        },
+        "counts": {
+          "information_to_clarify": 4,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 3,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 0.3333333333333333,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 0.0,
+          "nutrition_consideration_precision": 0.0,
+          "risk_factor_recall": 0.5,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "candidate": {
+        "input_tokens": 6022,
+        "output_tokens": 7376,
+        "reasoning_tokens": 3392,
+        "visible_output_tokens": 3984,
+        "latency_ms": 97491,
+        "estimated_cost_usd": 0.0162575,
+        "visible_output": {
+          "characters": 5348,
+          "words": 497
+        },
+        "counts": {
+          "information_to_clarify": 3,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 3,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 0.3333333333333333,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 0.0,
+          "nutrition_consideration_precision": 0.0,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 1.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 1
+        }
+      },
+      "delta": {
+        "input_tokens": 4432,
+        "output_tokens": 2786,
+        "reasoning_tokens": 448,
+        "visible_output_tokens": 2338,
+        "latency_ms": 45771,
+        "estimated_cost_usd": 0.006680000000000002,
+        "visible_output": {
+          "characters": -817,
+          "words": -63
+        },
+        "counts": {
+          "information_to_clarify": -1,
+          "suggested_questions": 0,
+          "nutrition_considerations": 0,
+          "nutritional_risk_factors": 0,
+          "referral_escalation_flags": -1,
+          "potential_blind_spots": 0
+        },
+        "metrics": {
+          "existing_lab_fidelity": 0.0,
+          "followup_topic_recall": 0.0,
+          "forbidden_suggestion_hits": 0.0,
+          "information_gap_recall": 0.0,
+          "nutrition_consideration_precision": 0.0,
+          "nutrition_consideration_recall": 0.0,
+          "output_budget_violations": 0.0,
+          "populated_source_field_rate": 0.0,
+          "rationale_sentence_violation_proxy": 0.0,
+          "referral_flag_grounding_proxy": 0.0,
+          "referral_flag_precision": 1.0,
+          "referral_flag_recall": 0.0,
+          "risk_factor_recall": 0.5,
+          "scope_violation_proxy_hits": 1.0,
+          "secondary_consideration_grounding_proxy": 0.0,
+          "supporting_evidence_count": 0.0,
+          "treatment_assumption_proxy_hits": 0.0,
+          "valid_source_field_rate": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "dev_008",
+      "baseline": {
+        "input_tokens": 1510,
+        "output_tokens": 2956,
+        "reasoning_tokens": 1856,
+        "visible_output_tokens": 1100,
+        "latency_ms": 35258,
+        "estimated_cost_usd": 0.0062895,
+        "visible_output": {
+          "characters": 4208,
+          "words": 348
+        },
+        "counts": {
+          "information_to_clarify": 4,
+          "suggested_questions": 4,
+          "nutrition_considerations": 1,
+          "nutritional_risk_factors": 1,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 0.75,
+          "followup_topic_recall": 0.5,
+          "nutrition_consideration_recall": 1.0,
+          "nutrition_consideration_precision": 0.0,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 1.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 0.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "candidate": {
+        "input_tokens": 1791,
+        "output_tokens": 5041,
+        "reasoning_tokens": 3456,
+        "visible_output_tokens": 1585,
+        "latency_ms": 59539,
+        "estimated_cost_usd": 0.01052975,
+        "visible_output": {
+          "characters": 4287,
+          "words": 371
+        },
+        "counts": {
+          "information_to_clarify": 3,
+          "suggested_questions": 5,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 1,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 0.5,
+          "followup_topic_recall": 0.25,
+          "nutrition_consideration_recall": 1.0,
+          "nutrition_consideration_precision": 0.0,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 1.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 0.8571428571428571,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "delta": {
+        "input_tokens": 281,
+        "output_tokens": 2085,
+        "reasoning_tokens": 1600,
+        "visible_output_tokens": 485,
+        "latency_ms": 24281,
+        "estimated_cost_usd": 0.004240249999999999,
+        "visible_output": {
+          "characters": 79,
+          "words": 23
+        },
+        "counts": {
+          "information_to_clarify": -1,
+          "suggested_questions": 1,
+          "nutrition_considerations": 1,
+          "nutritional_risk_factors": 0,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": 0
+        },
+        "metrics": {
+          "existing_lab_fidelity": 0.0,
+          "followup_topic_recall": -0.25,
+          "forbidden_suggestion_hits": 0.0,
+          "information_gap_recall": -0.25,
+          "nutrition_consideration_precision": 0.0,
+          "nutrition_consideration_recall": 0.0,
+          "output_budget_violations": 0.0,
+          "populated_source_field_rate": 0.8571428571428571,
+          "rationale_sentence_violation_proxy": 0.0,
+          "referral_flag_grounding_proxy": 0.0,
+          "referral_flag_precision": 0.0,
+          "referral_flag_recall": 0.0,
+          "risk_factor_recall": 0.0,
+          "scope_violation_proxy_hits": 0.0,
+          "secondary_consideration_grounding_proxy": 0.0,
+          "supporting_evidence_count": 0.0,
+          "treatment_assumption_proxy_hits": 0.0,
+          "valid_source_field_rate": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "dev_009",
+      "baseline": {
+        "input_tokens": 1546,
+        "output_tokens": 3974,
+        "reasoning_tokens": 2368,
+        "visible_output_tokens": 1606,
+        "latency_ms": 41211,
+        "estimated_cost_usd": 0.0083345,
+        "visible_output": {
+          "characters": 6002,
+          "words": 522
+        },
+        "counts": {
+          "information_to_clarify": 4,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 3,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 0.3333333333333333,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 0.0,
+          "nutrition_consideration_precision": 0.0,
+          "risk_factor_recall": 0.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 1.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "candidate": {
+        "input_tokens": 2060,
+        "output_tokens": 4237,
+        "reasoning_tokens": 2176,
+        "visible_output_tokens": 2061,
+        "latency_ms": 53696,
+        "estimated_cost_usd": 0.008989,
+        "visible_output": {
+          "characters": 5323,
+          "words": 484
+        },
+        "counts": {
+          "information_to_clarify": 4,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 2,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 0.3333333333333333,
+          "followup_topic_recall": 0.6666666666666666,
+          "nutrition_consideration_recall": 1.0,
+          "nutrition_consideration_precision": 0.5,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 0.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "delta": {
+        "input_tokens": 514,
+        "output_tokens": 263,
+        "reasoning_tokens": -192,
+        "visible_output_tokens": 455,
+        "latency_ms": 12485,
+        "estimated_cost_usd": 0.0006545000000000006,
+        "visible_output": {
+          "characters": -679,
+          "words": -38
+        },
+        "counts": {
+          "information_to_clarify": 0,
+          "suggested_questions": 0,
+          "nutrition_considerations": 0,
+          "nutritional_risk_factors": -1,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": 0
+        },
+        "metrics": {
+          "existing_lab_fidelity": 0.0,
+          "followup_topic_recall": 0.0,
+          "forbidden_suggestion_hits": 0.0,
+          "information_gap_recall": 0.0,
+          "nutrition_consideration_precision": 0.5,
+          "nutrition_consideration_recall": 1.0,
+          "output_budget_violations": 0.0,
+          "populated_source_field_rate": 0.0,
+          "rationale_sentence_violation_proxy": 0.0,
+          "referral_flag_grounding_proxy": 0.0,
+          "referral_flag_precision": -1.0,
+          "referral_flag_recall": -1.0,
+          "risk_factor_recall": 1.0,
+          "scope_violation_proxy_hits": 0.0,
+          "secondary_consideration_grounding_proxy": 0.0,
+          "supporting_evidence_count": 0.0,
+          "treatment_assumption_proxy_hits": 0.0,
+          "valid_source_field_rate": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "dev_010",
+      "baseline": {
+        "input_tokens": 1552,
+        "output_tokens": 3718,
+        "reasoning_tokens": 2112,
+        "visible_output_tokens": 1606,
+        "latency_ms": 41075,
+        "estimated_cost_usd": 0.007824,
+        "visible_output": {
+          "characters": 6446,
+          "words": 572
+        },
+        "counts": {
+          "information_to_clarify": 4,
+          "suggested_questions": 4,
+          "nutrition_considerations": 3,
+          "nutritional_risk_factors": 3,
+          "referral_escalation_flags": 0,
+          "potential_blind_spots": 3
+        },
+        "metrics": {
+          "information_gap_recall": 1.0,
+          "followup_topic_recall": 1.0,
+          "nutrition_consideration_recall": 1.0,
+          "nutrition_consideration_precision": 1.0,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 1.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "candidate": {
+        "input_tokens": 1900,
+        "output_tokens": 4959,
+        "reasoning_tokens": 2880,
+        "visible_output_tokens": 2079,
+        "latency_ms": 55193,
+        "estimated_cost_usd": 0.010393,
+        "visible_output": {
+          "characters": 5787,
+          "words": 544
+        },
+        "counts": {
+          "information_to_clarify": 4,
+          "suggested_questions": 4,
+          "nutrition_considerations": 2,
+          "nutritional_risk_factors": 2,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": 2
+        },
+        "metrics": {
+          "information_gap_recall": 1.0,
+          "followup_topic_recall": 0.75,
+          "nutrition_consideration_recall": 1.0,
+          "nutrition_consideration_precision": 1.0,
+          "risk_factor_recall": 1.0,
+          "referral_flag_recall": 1.0,
+          "referral_flag_precision": 0.0,
+          "forbidden_suggestion_hits": 0,
+          "existing_lab_fidelity": 1,
+          "supporting_evidence_count": 0,
+          "output_budget_violations": 0,
+          "rationale_sentence_violation_proxy": 0,
+          "valid_source_field_rate": 1.0,
+          "populated_source_field_rate": 1.0,
+          "secondary_consideration_grounding_proxy": 1.0,
+          "referral_flag_grounding_proxy": 1.0,
+          "treatment_assumption_proxy_hits": 0,
+          "scope_violation_proxy_hits": 0
+        }
+      },
+      "delta": {
+        "input_tokens": 348,
+        "output_tokens": 1241,
+        "reasoning_tokens": 768,
+        "visible_output_tokens": 473,
+        "latency_ms": 14118,
+        "estimated_cost_usd": 0.002569,
+        "visible_output": {
+          "characters": -659,
+          "words": -28
+        },
+        "counts": {
+          "information_to_clarify": 0,
+          "suggested_questions": 0,
+          "nutrition_considerations": -1,
+          "nutritional_risk_factors": -1,
+          "referral_escalation_flags": 1,
+          "potential_blind_spots": -1
+        },
+        "metrics": {
+          "existing_lab_fidelity": 0.0,
+          "followup_topic_recall": -0.25,
+          "forbidden_suggestion_hits": 0.0,
+          "information_gap_recall": 0.0,
+          "nutrition_consideration_precision": 0.0,
+          "nutrition_consideration_recall": 0.0,
+          "output_budget_violations": 0.0,
+          "populated_source_field_rate": 0.0,
+          "rationale_sentence_violation_proxy": 0.0,
+          "referral_flag_grounding_proxy": 0.0,
+          "referral_flag_precision": -1.0,
+          "referral_flag_recall": 0.0,
+          "risk_factor_recall": 0.0,
+          "scope_violation_proxy_hits": 0.0,
+          "secondary_consideration_grounding_proxy": 0.0,
+          "supporting_evidence_count": 0.0,
+          "treatment_assumption_proxy_hits": 0.0,
+          "valid_source_field_rate": 0.0
+        }
+      }
+    }
+  ]
+}

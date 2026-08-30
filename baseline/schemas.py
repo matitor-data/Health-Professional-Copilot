@@ -36,6 +36,7 @@ class EvaluationRubric(StrictModel):
     expected_nutrition_considerations: list[str]
     expected_risk_factors: list[str]
     expected_referral_flags: list[str]
+    expected_referral_pathway: Literal["none", "clarify_first", "refer"] | None = None
     expected_existing_context: list[str]
     should_not_suggest: list[str]
     supporting_sources: list[str]

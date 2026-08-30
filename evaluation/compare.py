@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -46,6 +47,23 @@ def _visible_size(row: dict[str, Any]) -> dict[str, int]:
     return {"characters": len(serialized), "words": len(serialized.split())}
 
 
+def _derived_referral_metrics(row: dict[str, Any], expected_referrals: list[str]) -> dict[str, int]:
+    referrals = row.get("brief", {}).get("referral_escalation_flags", [])
+    expected_presence, actual_presence = bool(expected_referrals), bool(referrals)
+    unsafe = sum(
+        bool(re.search(
+            r"\b(?:diagnos|order|test|medication|dose|specialist|ENT|GI)\b",
+            item.get("recommendation", "") if isinstance(item, dict) else "", flags=re.IGNORECASE,
+        )) for item in referrals
+    )
+    return {
+        "referral_presence_accuracy": int(expected_presence == actual_presence),
+        "unnecessary_referral_count": int(actual_presence and not expected_presence),
+        "missed_referral_count": int(expected_presence and not actual_presence),
+        "referral_action_safety_proxy": int(unsafe == 0),
+    }
+
+
 def _average_numeric(records: list[dict[str, Any]]) -> dict[str, Any]:
     result: dict[str, Any] = {}
     for key in records[0]:
@@ -69,6 +87,11 @@ def compare_runs(
     candidate_manifest = _read_json(candidate_dir / "manifest.json")
     baseline_rows = _read_jsonl(baseline_dir / "outputs.jsonl")
     candidate_rows = _read_jsonl(candidate_dir / "outputs.jsonl")
+    dataset_path = Path(candidate_manifest.get("dataset", ""))
+    rubrics: dict[str, dict[str, Any]] = {}
+    if dataset_path.is_file():
+        dataset = _read_json(dataset_path)
+        rubrics = {case["case_id"]: case["evaluation_rubric"] for case in dataset["cases"]}
     shared_cases = sorted(set(baseline_rows) & set(candidate_rows))
     if not shared_cases:
         raise ValueError("The runs do not contain any shared successful cases")
@@ -76,7 +99,10 @@ def compare_runs(
     cases: list[dict[str, Any]] = []
     for case_id in shared_cases:
         before, after = baseline_rows[case_id], candidate_rows[case_id]
-        metric_names = sorted(set(before.get("metrics", {})) & set(after.get("metrics", {})))
+        expected_referrals = rubrics.get(case_id, {}).get("expected_referral_flags", [])
+        before_metrics = {**before.get("metrics", {}), **_derived_referral_metrics(before, expected_referrals)}
+        after_metrics = {**after.get("metrics", {}), **_derived_referral_metrics(after, expected_referrals)}
+        metric_names = sorted(set(before_metrics) & set(after_metrics))
         before_cost = _cost(before, input_price, output_price)
         after_cost = _cost(after, input_price, output_price)
         cases.append(
@@ -91,7 +117,7 @@ def compare_runs(
                     "estimated_cost_usd": before_cost,
                     "visible_output": _visible_size(before),
                     "counts": _counts(before),
-                    "metrics": before.get("metrics", {}),
+                    "metrics": before_metrics,
                 },
                 "candidate": {
                     "input_tokens": after.get("input_tokens"),
@@ -102,7 +128,7 @@ def compare_runs(
                     "estimated_cost_usd": after_cost,
                     "visible_output": _visible_size(after),
                     "counts": _counts(after),
-                    "metrics": after.get("metrics", {}),
+                    "metrics": after_metrics,
                 },
                 "delta": {
                     "input_tokens": (after.get("input_tokens") or 0) - (before.get("input_tokens") or 0),
@@ -127,7 +153,7 @@ def compare_runs(
                         field: _counts(after)[field] - _counts(before)[field] for field in COUNT_FIELDS
                     },
                     "metrics": {
-                        name: float(after["metrics"][name]) - float(before["metrics"][name])
+                        name: float(after_metrics[name]) - float(before_metrics[name])
                         for name in metric_names
                     },
                 },

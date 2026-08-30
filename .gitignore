@@ -17,4 +17,5 @@ wheels/
 .coverage
 htmlcov/
 evaluation/runs/
+evaluation/agent_runs/
 tmp/
