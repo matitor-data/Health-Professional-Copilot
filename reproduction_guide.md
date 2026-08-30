@@ -221,17 +221,27 @@ uv run python -m nutrition_agent.replay \
 
 Replay reuses the stored compact drafts and recorded token usage; it does not call the API.
 
-There is no complete evidence-grounded solution command yet. Once the Evidence Agent exists, this
-section must include exact commands for:
+Run the Nutrition Agent followed by the Evidence Agent on one development case:
 
-1. Building or loading the approved knowledge index.
-2. Running the Nutrition Reasoning Agent and Evidence Agent.
-3. Applying deterministic scope, referral, and evidence gates.
-4. Evaluating the solution against the same locked cases.
-5. Comparing solution metrics with the frozen baseline run.
+```bash
+uv run python -m evidence_agent.runner \
+  --dataset data/cases/development/nutrition_cases_dev.json \
+  --case-id dev_003
+```
 
-Until those components are implemented, the baseline must not be presented as the complete agentic
-solution.
+The command writes `manifest.json`, `outputs.jsonl`, and `failures.jsonl` under
+`evaluation/evidence_agent_runs/<run_id>/`. Each output includes the brief before and after
+evidence, retrieval queries and chunks, the structured draft, Evidence Gate feedback, final
+assessments, response IDs, separate token counts, and stage latency.
+
+Validate the cases, approved source collection, and cached embedding index without API calls:
+
+```bash
+uv run python -m evidence_agent.runner \
+  --dataset data/cases/development/nutrition_cases_dev.json \
+  --case-id dev_003 \
+  --dry-run
+```
 
 The retrieval layer can already be reproduced independently. Run the deterministic benchmark:
 

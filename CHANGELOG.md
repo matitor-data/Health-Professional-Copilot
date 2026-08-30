@@ -9,6 +9,15 @@ have a published release.
 
 #### Implemented
 
+- Evidence Agent v1 as a separate post-processing stage after the frozen Nutrition Agent: one
+  structured assessment call per case, hybrid retrieval per nutrition consideration, explicit
+  support states, minimal retrieved-chunk citations, limitations, and final brief enrichment.
+- Deterministic Evidence Gate enforcing requested consideration IDs, retrieved-only citations,
+  support-with-citation, safe `retrieval_failed` behavior, and deterministic reconstruction of
+  missing or invalid assessments.
+- End-to-end Evidence Agent runner recording the brief before and after evidence, retrieval query
+  and results for every consideration, model draft, finalized assessments, gate feedback, response
+  IDs, embedding/model token usage, reasoning tokens, visible tokens, and stage latency.
 - Four self-contained synthetic nutrition evidence sources covering vegetarian iron assessment,
   known prediabetes, sodium in known chronic kidney disease, and endurance nutrition, with explicit
   scope boundaries and an approved-source registry for prototype use.
@@ -103,6 +112,13 @@ have a published release.
 
 #### Verified
 
+- End-to-end Evidence Agent v1 development execution on `dev_003`: three considerations assessed,
+  two supported, one partially supported, no invalid citations, no gate violations, 92 embedding
+  input tokens, 1,462 evidence-model input tokens, 2,033 output tokens, and 43.830 seconds for the
+  retrieval-and-evidence stage. Review found one valid but unnecessary secondary citation, leading
+  to a minimum-necessary-citation prompt rule for subsequent runs.
+- A second successful `dev_003` diagnostic execution is retained because delayed command-runner
+  output prompted a repeated invocation; it was not an application retry or Evidence Gate retry.
 - Embedding retrieval at the preselected 0.45 similarity threshold improved recall@1 from 0.679 to
   0.714, precision@3 from 0.333 to 0.714, and no-answer accuracy from 0.500 to 1.000 on the fixed
   36-query benchmark; precision@1 was 0.714 and recall@3 remained 0.714.
@@ -169,7 +185,7 @@ have a published release.
   0.01007; token optimization is therefore not yet achieved.
 - All 20 locked cases load and validate against their schemas.
 - `--dry-run` works without making external calls.
-- All thirty-six automated tests pass.
+- All forty-two automated tests pass.
 - Real Nutrition Agent execution on `dev_004`: one success, zero failures, zero retries, and a fully
   accepted first safety report; manual review identified and removed diagnostic wording from the
   referral renderer before accepting the implementation.

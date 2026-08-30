@@ -3,9 +3,8 @@
 This is a living record of representative system trajectories. Update it whenever an agent,
 instruction, tool, retry policy, gate, or human checkpoint changes.
 
-The repository currently contains a single-call LLM baseline. It does not yet contain the two agents
-defined for the complete Nutrition Module. The baseline trajectory below is therefore included as
-the reference behavior, while future agent sections remain explicitly marked as pending.
+The repository contains the single-call baseline, the frozen Nutrition Agent, and the Evidence
+Agent. The baseline trajectory remains the reference behavior for comparisons.
 
 ## Trajectory format
 
@@ -365,17 +364,26 @@ fixed comparison point and is not represented as clinically validated.
 
 ### Status
 
-Not implemented.
+Implemented and executed on synthetic development case `dev_003` in run
+`evaluation/evidence_agent_runs/20260830T051645Z/`.
 
-When available, add at least one representative trajectory containing:
+The frozen Nutrition Agent produced three considerations. Evidence Agent v1 created one query per
+consideration, retrieved at most three approved chunks through the hybrid retriever, and evaluated
+all three packets in one structured call. It returned two `supported` assessments and one
+`partially_supported` assessment. The deterministic Evidence Gate confirmed that every cited chunk
+had been retrieved for the corresponding consideration, and the final renderer populated
+`supporting_evidence` without modifying the Nutrition Agent sections.
 
-- The evidence request from the Nutrition Reasoning Agent.
-- Search query and approved collection version.
-- Retrieved chunks with document, section or page, and passage metadata.
-- Applicability assessment.
-- Supported, partially supported, unsupported, retrieval-failed, or outside-scope status.
-- Retry or query reformulation triggered by weak retrieval.
-- Final evidence result sent to the deterministic Evidence Gate.
+The evidence stage used 92 embedding input tokens, 1,462 model input tokens, 2,033 output tokens
+(1,472 reasoning and 561 visible), and 43,830 ms. The observable trajectory includes the exact
+queries, scores, retrieval methods, chunk hashes, model draft, finalized assessments, gate report,
+and final brief. Human review found a valid but unnecessary secondary iron citation in the fiber
+assessment; the next prompt version now requires the minimum necessary set of citations.
+
+A second successful diagnostic run exists at `20260830T052052Z` because the command runner delayed
+displaying completion from the first execution. It was not an Evidence Agent retry or a gate-driven
+correction; both runs completed with one Nutrition Agent call, one embedding request, one Evidence
+Agent call, and zero application-level retries.
 
 ## 4. Deterministic gates and checkpoints
 
