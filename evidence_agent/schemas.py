@@ -13,6 +13,7 @@ class SourceRecord(StrictModel):
     status: Literal["approved", "blocked", "pending"]
     source_type: Literal["synthetic"]
     topics: list[str] = Field(default_factory=list)
+    aliases: list[str] = Field(default_factory=list)
 
 
 class EvidenceChunk(StrictModel):
@@ -22,6 +23,7 @@ class EvidenceChunk(StrictModel):
     section: str
     text: str
     topics: list[str] = Field(default_factory=list)
+    aliases: list[str] = Field(default_factory=list)
     content_sha256: str
 
 
@@ -31,6 +33,7 @@ class RetrievalResult(StrictModel):
     title: str
     section: str
     text: str
-    score: int = Field(ge=0)
+    score: float = Field(ge=0)
     matched_terms: list[str] = Field(default_factory=list)
+    retrieval_methods: list[Literal["deterministic", "embedding"]] = Field(default_factory=list)
     content_sha256: str

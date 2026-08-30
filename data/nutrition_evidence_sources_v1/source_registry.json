@@ -14,28 +14,44 @@
       "file": "01_iron_vegetarian.md",
       "status": "approved",
       "source_type": "synthetic",
-      "topics": ["iron", "vegetarian", "plant-based", "anemia"]
+      "topics": ["iron", "vegetarian", "plant-based", "anemia"],
+      "aliases": [
+        "hierro", "ferritina", "dieta vegetariana", "alimentación vegetariana",
+        "sin carne", "hierro vegetal", "absorción de hierro", "vitamina C"
+      ]
     },
     {
       "source_id": "synthetic_prediabetes_fiber_v1",
       "file": "02_prediabetes_fiber_sugary_drinks.md",
       "status": "approved",
       "source_type": "synthetic",
-      "topics": ["prediabetes", "fiber", "sweetened-drinks", "added-sugar"]
+      "topics": ["prediabetes", "fiber", "sweetened-drinks", "added-sugar"],
+      "aliases": [
+        "fibra", "bebidas azucaradas", "gaseosa", "refresco", "azúcar añadida",
+        "cereales integrales", "alimentos integrales", "glucosa elevada"
+      ]
     },
     {
       "source_id": "synthetic_ckd_sodium_v1",
       "file": "03_ckd_sodium.md",
       "status": "approved",
       "source_type": "synthetic",
-      "topics": ["ckd", "sodium", "salt-substitutes", "potassium"]
+      "topics": ["ckd", "sodium", "salt-substitutes", "potassium"],
+      "aliases": [
+        "enfermedad renal crónica", "enfermedad renal", "riñón", "sodio", "sal",
+        "sustituto de sal", "potasio", "comidas procesadas", "retención de líquidos"
+      ]
     },
     {
       "source_id": "synthetic_endurance_v1",
       "file": "04_endurance_fueling_hydration_recovery.md",
       "status": "approved",
       "source_type": "synthetic",
-      "topics": ["endurance", "fueling", "hydration", "recovery"]
+      "topics": ["endurance", "fueling", "hydration", "recovery"],
+      "aliases": [
+        "resistencia", "maratón", "hidratación", "recuperación", "sesión larga",
+        "ejercicio prolongado", "alimentación antes de entrenar", "nutrición deportiva"
+      ]
     }
   ]
 }

@@ -1,0 +1,527 @@
+{
+  "benchmark_id": "evidence-retrieval-v1",
+  "metrics": {
+    "query_count": 36,
+    "positive_query_count": 28,
+    "negative_query_count": 8,
+    "recall@1": 1.0,
+    "precision@1": 1.0,
+    "recall@3": 1.0,
+    "precision@3": 0.625,
+    "no_answer_accuracy": 0.375
+  },
+  "queries": [
+    {
+      "query_id": "iron_01",
+      "query": "vegetarian iron sources and vitamin C",
+      "relevant_source_ids": [
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_iron_vegetarian_v1",
+        "synthetic_ckd_sodium_v1",
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "iron_02",
+      "query": "plant based diet with known anemia",
+      "relevant_source_ids": [
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_iron_vegetarian_v1",
+        "synthetic_ckd_sodium_v1",
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "iron_03",
+      "query": "meal combinations that affect non animal iron absorption",
+      "relevant_source_ids": [
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_iron_vegetarian_v1",
+        "synthetic_ckd_sodium_v1",
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "iron_04",
+      "query": "prescribed iron supplement tolerance in a vegetarian patient",
+      "relevant_source_ids": [
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_iron_vegetarian_v1",
+        "synthetic_endurance_v1",
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "iron_05",
+      "query": "fuentes de hierro en alimentación vegetariana",
+      "relevant_source_ids": [
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_iron_vegetarian_v1",
+        "synthetic_endurance_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.5
+    },
+    {
+      "query_id": "iron_06",
+      "query": "absorción de hierro vegetal y vitamina C",
+      "relevant_source_ids": [
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "iron_07",
+      "query": "paciente sin carne con ferritina baja",
+      "relevant_source_ids": [
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "prediabetes_01",
+      "query": "fiber rich foods in known prediabetes",
+      "relevant_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_prediabetes_fiber_v1",
+        "synthetic_ckd_sodium_v1",
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "prediabetes_02",
+      "query": "sweetened beverage intake and added sugar",
+      "relevant_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_prediabetes_fiber_v1",
+        "synthetic_ckd_sodium_v1",
+        "synthetic_endurance_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "prediabetes_03",
+      "query": "whole fruit compared with sugary drinks",
+      "relevant_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_prediabetes_fiber_v1",
+        "synthetic_endurance_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.5
+    },
+    {
+      "query_id": "prediabetes_04",
+      "query": "legumes whole grains and glucose management",
+      "relevant_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_prediabetes_fiber_v1",
+        "synthetic_ckd_sodium_v1",
+        "synthetic_endurance_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "prediabetes_05",
+      "query": "fibra y bebidas azucaradas en prediabetes",
+      "relevant_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "prediabetes_06",
+      "query": "consumo de gaseosas con azúcar",
+      "relevant_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "prediabetes_07",
+      "query": "alimentos integrales para glucosa elevada",
+      "relevant_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "ckd_01",
+      "query": "sodium sources in chronic kidney disease",
+      "relevant_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_ckd_sodium_v1",
+        "synthetic_iron_vegetarian_v1",
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "ckd_02",
+      "query": "packaged meals restaurant foods and renal diet",
+      "relevant_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_ckd_sodium_v1",
+        "synthetic_endurance_v1",
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "ckd_03",
+      "query": "potassium salt substitute with CKD",
+      "relevant_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "ckd_04",
+      "query": "individualized kidney nutrition restrictions",
+      "relevant_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_ckd_sodium_v1",
+        "synthetic_endurance_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.5
+    },
+    {
+      "query_id": "ckd_05",
+      "query": "sodio en enfermedad renal crónica",
+      "relevant_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "ckd_06",
+      "query": "sustituto de sal con potasio y riñón",
+      "relevant_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "ckd_07",
+      "query": "comidas procesadas y retención de líquido renal",
+      "relevant_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_ckd_sodium_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "endurance_01",
+      "query": "carbohydrate fueling during prolonged endurance exercise",
+      "relevant_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_endurance_v1",
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.5
+    },
+    {
+      "query_id": "endurance_02",
+      "query": "hydration based on sweat losses and hot environment",
+      "relevant_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_endurance_v1",
+        "synthetic_iron_vegetarian_v1",
+        "synthetic_ckd_sodium_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "endurance_03",
+      "query": "recovery meal before the next demanding training session",
+      "relevant_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_endurance_v1",
+        "synthetic_ckd_sodium_v1",
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "endurance_04",
+      "query": "sports drink is not necessary for every athlete",
+      "relevant_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_endurance_v1",
+        "synthetic_ckd_sodium_v1",
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.3333333333333333
+    },
+    {
+      "query_id": "endurance_05",
+      "query": "hidratación para entrenamiento de resistencia",
+      "relevant_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "endurance_06",
+      "query": "recuperación después de una sesión larga",
+      "relevant_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 1.0
+    },
+    {
+      "query_id": "endurance_07",
+      "query": "alimentación antes de correr un maratón",
+      "relevant_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "retrieved_source_ids": [
+        "synthetic_endurance_v1",
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "recall@1": 1.0,
+      "precision@1": 1.0,
+      "recall@3": 1.0,
+      "precision@3": 0.5
+    },
+    {
+      "query_id": "negative_01",
+      "query": "food allergy elimination protocol",
+      "relevant_source_ids": [],
+      "retrieved_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "recall@1": null,
+      "precision@1": null,
+      "recall@3": null,
+      "precision@3": null
+    },
+    {
+      "query_id": "negative_02",
+      "query": "celiac disease gluten exposure",
+      "relevant_source_ids": [],
+      "retrieved_source_ids": [],
+      "recall@1": null,
+      "precision@1": null,
+      "recall@3": null,
+      "precision@3": null
+    },
+    {
+      "query_id": "negative_03",
+      "query": "pregnancy folate requirements",
+      "relevant_source_ids": [],
+      "retrieved_source_ids": [
+        "synthetic_endurance_v1",
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "recall@1": null,
+      "precision@1": null,
+      "recall@3": null,
+      "precision@3": null
+    },
+    {
+      "query_id": "negative_04",
+      "query": "hypertension medication interaction",
+      "relevant_source_ids": [],
+      "retrieved_source_ids": [
+        "synthetic_prediabetes_fiber_v1"
+      ],
+      "recall@1": null,
+      "precision@1": null,
+      "recall@3": null,
+      "precision@3": null
+    },
+    {
+      "query_id": "negative_05",
+      "query": "alergia alimentaria al maní",
+      "relevant_source_ids": [],
+      "retrieved_source_ids": [],
+      "recall@1": null,
+      "precision@1": null,
+      "recall@3": null,
+      "precision@3": null
+    },
+    {
+      "query_id": "negative_06",
+      "query": "dieta sin gluten para celiaquía",
+      "relevant_source_ids": [],
+      "retrieved_source_ids": [
+        "synthetic_iron_vegetarian_v1"
+      ],
+      "recall@1": null,
+      "precision@1": null,
+      "recall@3": null,
+      "precision@3": null
+    },
+    {
+      "query_id": "negative_07",
+      "query": "nutrición durante el embarazo",
+      "relevant_source_ids": [],
+      "retrieved_source_ids": [
+        "synthetic_endurance_v1"
+      ],
+      "recall@1": null,
+      "precision@1": null,
+      "recall@3": null,
+      "precision@3": null
+    },
+    {
+      "query_id": "negative_08",
+      "query": "migraña y cafeína",
+      "relevant_source_ids": [],
+      "retrieved_source_ids": [],
+      "recall@1": null,
+      "precision@1": null,
+      "recall@3": null,
+      "precision@3": null
+    }
+  ]
+}

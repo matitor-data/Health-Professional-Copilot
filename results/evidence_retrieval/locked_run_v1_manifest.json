@@ -1,0 +1,31 @@
+{
+  "run_id": "evidence-retrieval-locked-run-v1",
+  "execution_policy": "single_execution_no_pre_run_configuration_changes",
+  "benchmark": "data/evaluations/locked/evidence_retrieval_locked_v1.json",
+  "benchmark_sha256": "49137514e595da147c9f3c11048dc63d5481bd4e8a76fbbad65b9f88ae6732c6",
+  "source_registry_sha256": "2d1a2b95f3d12657511a058b8133bf46b0304861c37791b44f915df0271218f7",
+  "embedding_index_sha256": "dd5789e41c7a7fcb4cc3bace6b89bc2fb0829e4c98020b3b81ac8dadfd808c37",
+  "result": "results/evidence_retrieval/locked_comparison_v1.json",
+  "result_sha256": "8ad19ecfdb61b8086db8daac26137be839e657370a43b0dfb575689a1a5b71b2",
+  "configuration": {
+    "embedding_model": "text-embedding-3-small",
+    "embedding_dimensions": 512,
+    "min_similarity": 0.45,
+    "rrf_k": 60,
+    "min_lexical_terms": 2,
+    "min_lexical_score": 4
+  },
+  "hybrid_metrics": {
+    "recall_at_1": 0.7777777777777778,
+    "recall_at_3": 0.8333333333333334,
+    "precision_at_1": 0.8333333333333334,
+    "precision_at_3": 0.8194444444444444,
+    "no_answer_accuracy": 1.0
+  },
+  "api_usage": {
+    "request_count": 1,
+    "query_count": 48,
+    "input_tokens": 599,
+    "latency_ms": 1670
+  }
+}

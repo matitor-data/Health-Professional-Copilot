@@ -15,6 +15,18 @@ have a published release.
 - Deterministic Evidence Agent retrieval foundation for the approved synthetic nutrition sources:
   manifest allowlisting, Markdown section chunking, stable lexical and topic ranking, content hashes,
   empty-result support, path-containment validation, typed results, and a local search CLI.
+- Fixed bilingual retrieval benchmark with positive and no-answer queries, reporting source-level
+  recall and precision at ranks 1 and 3 plus no-answer accuracy.
+- Cached semantic retriever using `text-embedding-3-small` at 512 dimensions, cosine similarity,
+  content-hash freshness validation, batched queries, and an explicit no-answer threshold.
+- Reproducible comparator running deterministic and embedding retrieval against the same benchmark
+  and recording per-system metrics, latency, API requests, and embedding input tokens.
+- Hybrid Evidence Agent retriever using source-level reciprocal rank fusion, semantic candidates,
+  and a guarded lexical fallback requiring at least two matched terms and a minimum lexical score;
+  each result records which retrieval methods contributed.
+- Curated bilingual topic aliases enrich both lexical scoring and embedding representations;
+  non-discriminative vocabulary is excluded from lexical matching and alias metadata participates
+  in chunk fingerprints so stale semantic indexes are rejected.
 - Nutrition Agent v3 frozen for reproducible development comparison, with model, effective prompt,
   component, dataset, pathway-rubric, API-run, replay, report, metric, token, cost, and latency
   fingerprints recorded in `nutrition_agent/frozen_agent.json`.
@@ -91,6 +103,30 @@ have a published release.
 
 #### Verified
 
+- Embedding retrieval at the preselected 0.45 similarity threshold improved recall@1 from 0.679 to
+  0.714, precision@3 from 0.333 to 0.714, and no-answer accuracy from 0.500 to 1.000 on the fixed
+  36-query benchmark; precision@1 was 0.714 and recall@3 remained 0.714.
+- The embedding index required one request and 2,282 input tokens for 24 chunks; the comparison
+  query batch required one request, 301 input tokens, and 4.224 seconds, versus 30 ms and no API
+  usage for deterministic retrieval.
+- Hybrid retrieval achieved recall@1/3 of 0.786, precision@1 of 0.786, precision@3 of 0.744, and
+  no-answer accuracy of 1.000; it recovered 22 of 28 positive queries while rejecting all eight
+  negative controls, outperforming both individual retrievers on this benchmark.
+- After bilingual enrichment, the hybrid at the unchanged 0.45 threshold achieved recall@1/3 and
+  precision@1 of 1.000, precision@3 of 0.976, and no-answer accuracy of 1.000 on the development
+  benchmark. A 0.365 candidate matched recall and no-answer accuracy but reduced precision@3 to
+  0.893, so 0.45 remains the selected development configuration pending locked evaluation.
+- A new locked bilingual benchmark was created with 48 previously unused queries: 32 single-source
+  positives, four multi-source positives, and 12 negative controls. Its SHA-256 is
+  `49137514e595da147c9f3c11048dc63d5481bd4e8a76fbbad65b9f88ae6732c6`.
+- The locked benchmark was executed exactly once without changing the selected configuration. The
+  hybrid achieved recall@1 0.778, recall@3 0.833, precision@1 0.833, precision@3 0.819, and
+  no-answer accuracy 1.000; the run used one request, 599 input tokens, and 1.670 seconds.
+- Deterministic retrieval benchmark v1 across 36 fixed bilingual queries: source-level recall@1 and
+  recall@3 of 0.679, precision@1 of 0.679, precision@3 of 0.333, and no-answer accuracy of 0.500.
+- Retrieval found the expected source for 19 of 28 positive queries, always at rank 1 when found;
+  the nine misses were Spanish paraphrases without enough lexical overlap, while four of eight
+  negative controls produced false-positive retrievals.
 - Agent v3 API run across 10 development cases: 10 successes, zero failures, zero retries, and one
   unsupported secondary consideration removed locally.
 - Deterministic replay after gap and consideration rule refinement required no new model calls and
@@ -133,7 +169,7 @@ have a published release.
   0.01007; token optimization is therefore not yet achieved.
 - All 20 locked cases load and validate against their schemas.
 - `--dry-run` works without making external calls.
-- All twenty-nine automated tests pass.
+- All thirty-six automated tests pass.
 - Real Nutrition Agent execution on `dev_004`: one success, zero failures, zero retries, and a fully
   accepted first safety report; manual review identified and removed diagnostic wording from the
   referral renderer before accepting the implementation.

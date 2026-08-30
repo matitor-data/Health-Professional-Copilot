@@ -233,6 +233,46 @@ section must include exact commands for:
 Until those components are implemented, the baseline must not be presented as the complete agentic
 solution.
 
+The retrieval layer can already be reproduced independently. Run the deterministic benchmark:
+
+```bash
+uv run python -m evidence_agent.evaluate \
+  --output results/evidence_retrieval/deterministic_v1.json
+```
+
+Build the cached semantic index using the configured `OPENAI_API_KEY`:
+
+```bash
+uv run python -m evidence_agent.embedding_retrieval --build
+```
+
+Compare both retrieval systems on the same fixed benchmark:
+
+```bash
+uv run python -m evidence_agent.compare_retrieval
+```
+
+This command compares deterministic, embedding, and hybrid retrieval. The hybrid uses source-level
+reciprocal rank fusion and admits a lexical fallback only with at least two matched terms and a
+lexical score of at least 4. The comparison is written to
+`results/evidence_retrieval/comparison_v1.json`. The recorded run used
+`text-embedding-3-small`, 512 dimensions, a cosine-similarity threshold of 0.45, 3,278 input tokens
+to build the 24-chunk index, and 301 input tokens for all 36 benchmark queries.
+
+Run one hybrid query directly:
+
+```bash
+uv run python -m evidence_agent.hybrid_retrieval \
+  "hydration based on sweat losses and hot environment" \
+  --top-k 3
+```
+
+The held-out benchmark is frozen at
+`data/evaluations/locked/evidence_retrieval_locked_v1.json`. Its only recorded execution is stored
+in `results/evidence_retrieval/locked_comparison_v1.json`, with hashes and the unchanged retrieval
+configuration in `results/evidence_retrieval/locked_run_v1_manifest.json`. Do not rerun this locked
+set for tuning; create a new versioned benchmark for any future confirmation run.
+
 ## 10. Recorded reference execution
 
 A real execution of `case_021` was recorded on 2026-08-29:
@@ -295,7 +335,7 @@ nutrition and medical review.
 - [ ] Clone the recorded commit.
 - [ ] Run `uv sync --locked`.
 - [ ] Configure `.env` without committing it.
-- [ ] Run all twenty-two tests.
+- [ ] Run all thirty-six tests.
 - [ ] Run the dry-run and validate 20 cases.
 - [ ] Run at least one baseline case.
 - [ ] Confirm that four run files were created.

@@ -19,7 +19,8 @@ TOKEN_PATTERN = re.compile(r"[a-z0-9]+")
 STOP_WORDS = {
     "a", "an", "and", "are", "as", "at", "be", "by", "can", "de", "del", "do",
     "does", "el", "en", "for", "from", "in", "is", "la", "las", "los", "of", "on",
-    "or", "para", "por", "que", "the", "to", "un", "una", "with",
+    "or", "para", "por", "que", "sin", "the", "to", "un", "una", "with",
+    "assessment", "disease", "food", "foods", "nutrition", "patient",
 }
 
 
@@ -86,7 +87,15 @@ class EvidenceRetriever:
                 text = document[start:end].strip()
                 if not text or section in {"Provenance", "Tags"}:
                     continue
-                digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
+                fingerprint = json.dumps({
+                    "source_id": record.source_id,
+                    "title": title,
+                    "section": section,
+                    "text": text,
+                    "topics": record.topics,
+                    "aliases": record.aliases,
+                }, sort_keys=True, ensure_ascii=False)
+                digest = hashlib.sha256(fingerprint.encode("utf-8")).hexdigest()
                 chunks.append(EvidenceChunk(
                     chunk_id=f"{record.source_id}:{_slug(section)}",
                     source_id=record.source_id,
@@ -94,6 +103,7 @@ class EvidenceRetriever:
                     section=section,
                     text=text,
                     topics=record.topics,
+                    aliases=record.aliases,
                     content_sha256=digest,
                 ))
         if not chunks:
@@ -109,11 +119,17 @@ class EvidenceRetriever:
         body_counts = Counter(_tokens(chunk.text))
         heading_counts = Counter(_tokens(f"{chunk.title} {chunk.section}"))
         topic_counts = Counter(_tokens(" ".join(chunk.topics)))
-        matched = sorted({token for token in query_counts if token in body_counts or token in heading_counts or token in topic_counts})
+        alias_counts = Counter(_tokens(" ".join(chunk.aliases)))
+        matched = sorted({
+            token for token in query_counts
+            if token in body_counts or token in heading_counts or token in topic_counts
+            or token in alias_counts
+        })
         score = sum(
             min(query_counts[token], body_counts[token])
             + 3 * min(query_counts[token], heading_counts[token])
             + 5 * min(query_counts[token], topic_counts[token])
+            + 5 * min(query_counts[token], alias_counts[token])
             for token in matched
         )
         normalized_query = " ".join(query_tokens)
@@ -138,6 +154,7 @@ class EvidenceRetriever:
                     text=chunk.text,
                     score=score,
                     matched_terms=matched_terms,
+                    retrieval_methods=["deterministic"],
                     content_sha256=chunk.content_sha256,
                 ))
         ranked.sort(key=lambda result: (-result.score, result.source_id, result.chunk_id))

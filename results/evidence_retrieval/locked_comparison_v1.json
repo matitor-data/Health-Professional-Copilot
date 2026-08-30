@@ -1,0 +1,1985 @@
+{
+  "comparison_id": "evidence-retrieval-comparison-v1",
+  "created_at": "2026-08-30T04:58:45.635376+00:00",
+  "benchmark": "data/evaluations/locked/evidence_retrieval_locked_v1.json",
+  "systems": {
+    "deterministic": {
+      "metrics": {
+        "query_count": 48,
+        "positive_query_count": 36,
+        "negative_query_count": 12,
+        "recall@1": 0.8055555555555556,
+        "precision@1": 0.8611111111111112,
+        "recall@3": 0.8888888888888888,
+        "precision@3": 0.5740740740740741,
+        "no_answer_accuracy": 0.3333333333333333
+      },
+      "latency_ms": 49,
+      "api_requests": 0,
+      "input_tokens": 0
+    },
+    "embeddings": {
+      "model": "text-embedding-3-small",
+      "dimensions": 512,
+      "min_similarity": 0.45,
+      "metrics": {
+        "query_count": 48,
+        "positive_query_count": 36,
+        "negative_query_count": 12,
+        "recall@1": 0.6944444444444444,
+        "precision@1": 0.75,
+        "recall@3": 0.7222222222222222,
+        "precision@3": 0.75,
+        "no_answer_accuracy": 1.0
+      },
+      "request_count": 1,
+      "input_count": 48,
+      "input_tokens": 599,
+      "latency_ms": 1670
+    },
+    "hybrid": {
+      "embedding_model": "text-embedding-3-small",
+      "embedding_dimensions": 512,
+      "min_similarity": 0.45,
+      "rrf_k": 60,
+      "min_lexical_terms": 2,
+      "min_lexical_score": 4,
+      "metrics": {
+        "query_count": 48,
+        "positive_query_count": 36,
+        "negative_query_count": 12,
+        "recall@1": 0.7777777777777778,
+        "precision@1": 0.8333333333333334,
+        "recall@3": 0.8333333333333334,
+        "precision@3": 0.8194444444444444,
+        "no_answer_accuracy": 1.0
+      },
+      "request_count": 1,
+      "input_count": 48,
+      "input_tokens": 599,
+      "latency_ms": 1670
+    }
+  },
+  "query_results": {
+    "deterministic": [
+      {
+        "query_id": "locked_iron_01",
+        "query": "meat-free eating pattern with an existing low iron result",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_prediabetes_fiber_v1",
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_iron_02",
+        "query": "how meal composition changes absorption from legumes",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_endurance_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_iron_03",
+        "query": "reviewing tolerance of clinician-prescribed iron tablets",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_ckd_sodium_v1",
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_iron_04",
+        "query": "can tiredness alone prove anemia in someone avoiding animal products",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_endurance_v1",
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_iron_05",
+        "query": "legumbres y semillas como aporte de hierro",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_06",
+        "query": "combinaci\u00f3n de comidas para aprovechar mejor el hierro de origen vegetal",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.5
+      },
+      {
+        "query_id": "locked_iron_07",
+        "query": "cansancio en una persona vegana sin diagn\u00f3stico confirmado",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_iron_08",
+        "query": "tolerancia a comprimidos de hierro indicados por el m\u00e9dico",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_01",
+        "query": "usual soda portions in a person already diagnosed with prediabetes",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1",
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_prediabetes_02",
+        "query": "beans vegetables and intact grains for blood sugar management",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1",
+          "synthetic_ckd_sodium_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_prediabetes_03",
+        "query": "distinguishing fruit from drinks containing added sweeteners",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1",
+          "synthetic_ckd_sodium_v1",
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_prediabetes_04",
+        "query": "barriers to replacing a daily sugary beverage with water",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1",
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.5
+      },
+      {
+        "query_id": "locked_prediabetes_05",
+        "query": "cantidad habitual de refrescos en una persona con prediabetes conocida",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_06",
+        "query": "diferencia entre fruta entera y bebidas con endulzantes a\u00f1adidos",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_07",
+        "query": "barreras para reemplazar bebidas dulces por agua",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_08",
+        "query": "legumbres verduras y granos enteros para controlar la glucemia",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_ckd_01",
+        "query": "reading labels for salt in packaged meals with established kidney disease",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.5
+      },
+      {
+        "query_id": "locked_ckd_02",
+        "query": "why potassium-based seasoning needs caution in renal care",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.5
+      },
+      {
+        "query_id": "locked_ckd_03",
+        "query": "restaurant sauces and fluid swelling in documented CKD",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_endurance_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_ckd_04",
+        "query": "should every kidney patient receive identical phosphorus and fluid limits",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_ckd_05",
+        "query": "leer etiquetas de sal en comidas envasadas con enfermedad renal conocida",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_06",
+        "query": "precauci\u00f3n con condimentos que reemplazan la sal y contienen potasio",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_07",
+        "query": "salsas de restaurante y edema en un paciente renal",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_08",
+        "query": "restricciones individualizadas de f\u00f3sforo l\u00edquidos y prote\u00ednas en nefropat\u00eda",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_01",
+        "query": "practicing race-day carbohydrate intake during long training sessions",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_ckd_sodium_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_endurance_02",
+        "query": "estimating sweat loss from body mass before and after exercise",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_ckd_sodium_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_endurance_03",
+        "query": "food and fluids between two hard workouts on the same day",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_endurance_04",
+        "query": "risk of drinking the maximum possible amount during a race",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      {
+        "query_id": "locked_endurance_05",
+        "query": "probar la estrategia de carbohidratos antes del d\u00eda de competencia",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_06",
+        "query": "estimar p\u00e9rdidas de sudor con el peso antes y despu\u00e9s de entrenar",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_07",
+        "query": "comida y l\u00edquidos entre dos entrenamientos exigentes el mismo d\u00eda",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_endurance_08",
+        "query": "riesgo de beber todo lo posible durante una carrera",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_multi_01",
+        "query": "vegetarian runner asking about iron intake and marathon fueling",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_endurance_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      {
+        "query_id": "locked_multi_02",
+        "query": "known prediabetes and CKD with frequent sweetened drinks and packaged meals",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1",
+          "synthetic_ckd_sodium_v1",
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      {
+        "query_id": "locked_multi_03",
+        "query": "corredor vegetariano que consulta por hierro y alimentaci\u00f3n para una carrera larga",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_multi_04",
+        "query": "prediabetes y enfermedad renal con gaseosas y comidas envasadas frecuentes",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_negative_01",
+        "query": "lactose intolerance and dairy substitution",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_02",
+        "query": "vitamin B12 supplementation after bariatric surgery",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_03",
+        "query": "low FODMAP approach for irritable bowel symptoms",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_04",
+        "query": "nutrition support through a feeding tube",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_05",
+        "query": "high cholesterol and saturated fat intake",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_prediabetes_fiber_v1",
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_06",
+        "query": "peanut allergy emergency planning",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_07",
+        "query": "intolerancia a la lactosa y reemplazo de l\u00e1cteos",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_08",
+        "query": "vitamina B12 despu\u00e9s de cirug\u00eda bari\u00e1trica",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_09",
+        "query": "alimentaci\u00f3n baja en FODMAP para colon irritable",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_10",
+        "query": "nutrici\u00f3n por sonda enteral",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_11",
+        "query": "colesterol elevado y grasas saturadas",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_12",
+        "query": "plan de emergencia por alergia al man\u00ed",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      }
+    ],
+    "embeddings": [
+      {
+        "query_id": "locked_iron_01",
+        "query": "meat-free eating pattern with an existing low iron result",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_02",
+        "query": "how meal composition changes absorption from legumes",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_03",
+        "query": "reviewing tolerance of clinician-prescribed iron tablets",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_04",
+        "query": "can tiredness alone prove anemia in someone avoiding animal products",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_05",
+        "query": "legumbres y semillas como aporte de hierro",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_iron_06",
+        "query": "combinaci\u00f3n de comidas para aprovechar mejor el hierro de origen vegetal",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_07",
+        "query": "cansancio en una persona vegana sin diagn\u00f3stico confirmado",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_iron_08",
+        "query": "tolerancia a comprimidos de hierro indicados por el m\u00e9dico",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_01",
+        "query": "usual soda portions in a person already diagnosed with prediabetes",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_02",
+        "query": "beans vegetables and intact grains for blood sugar management",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_03",
+        "query": "distinguishing fruit from drinks containing added sweeteners",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_04",
+        "query": "barriers to replacing a daily sugary beverage with water",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_05",
+        "query": "cantidad habitual de refrescos en una persona con prediabetes conocida",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_06",
+        "query": "diferencia entre fruta entera y bebidas con endulzantes a\u00f1adidos",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_07",
+        "query": "barreras para reemplazar bebidas dulces por agua",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_08",
+        "query": "legumbres verduras y granos enteros para controlar la glucemia",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_ckd_01",
+        "query": "reading labels for salt in packaged meals with established kidney disease",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_02",
+        "query": "why potassium-based seasoning needs caution in renal care",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_03",
+        "query": "restaurant sauces and fluid swelling in documented CKD",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_04",
+        "query": "should every kidney patient receive identical phosphorus and fluid limits",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_05",
+        "query": "leer etiquetas de sal en comidas envasadas con enfermedad renal conocida",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_06",
+        "query": "precauci\u00f3n con condimentos que reemplazan la sal y contienen potasio",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_07",
+        "query": "salsas de restaurante y edema en un paciente renal",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_08",
+        "query": "restricciones individualizadas de f\u00f3sforo l\u00edquidos y prote\u00ednas en nefropat\u00eda",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_endurance_01",
+        "query": "practicing race-day carbohydrate intake during long training sessions",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_02",
+        "query": "estimating sweat loss from body mass before and after exercise",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_endurance_03",
+        "query": "food and fluids between two hard workouts on the same day",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_endurance_04",
+        "query": "risk of drinking the maximum possible amount during a race",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_endurance_05",
+        "query": "probar la estrategia de carbohidratos antes del d\u00eda de competencia",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_06",
+        "query": "estimar p\u00e9rdidas de sudor con el peso antes y despu\u00e9s de entrenar",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_endurance_07",
+        "query": "comida y l\u00edquidos entre dos entrenamientos exigentes el mismo d\u00eda",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_08",
+        "query": "riesgo de beber todo lo posible durante una carrera",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_multi_01",
+        "query": "vegetarian runner asking about iron intake and marathon fueling",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_multi_02",
+        "query": "known prediabetes and CKD with frequent sweetened drinks and packaged meals",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_multi_03",
+        "query": "corredor vegetariano que consulta por hierro y alimentaci\u00f3n para una carrera larga",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_multi_04",
+        "query": "prediabetes y enfermedad renal con gaseosas y comidas envasadas frecuentes",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_negative_01",
+        "query": "lactose intolerance and dairy substitution",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_02",
+        "query": "vitamin B12 supplementation after bariatric surgery",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_03",
+        "query": "low FODMAP approach for irritable bowel symptoms",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_04",
+        "query": "nutrition support through a feeding tube",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_05",
+        "query": "high cholesterol and saturated fat intake",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_06",
+        "query": "peanut allergy emergency planning",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_07",
+        "query": "intolerancia a la lactosa y reemplazo de l\u00e1cteos",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_08",
+        "query": "vitamina B12 despu\u00e9s de cirug\u00eda bari\u00e1trica",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_09",
+        "query": "alimentaci\u00f3n baja en FODMAP para colon irritable",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_10",
+        "query": "nutrici\u00f3n por sonda enteral",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_11",
+        "query": "colesterol elevado y grasas saturadas",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_12",
+        "query": "plan de emergencia por alergia al man\u00ed",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      }
+    ],
+    "hybrid": [
+      {
+        "query_id": "locked_iron_01",
+        "query": "meat-free eating pattern with an existing low iron result",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_02",
+        "query": "how meal composition changes absorption from legumes",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_03",
+        "query": "reviewing tolerance of clinician-prescribed iron tablets",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_04",
+        "query": "can tiredness alone prove anemia in someone avoiding animal products",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_05",
+        "query": "legumbres y semillas como aporte de hierro",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_iron_06",
+        "query": "combinaci\u00f3n de comidas para aprovechar mejor el hierro de origen vegetal",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_iron_07",
+        "query": "cansancio en una persona vegana sin diagn\u00f3stico confirmado",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_iron_08",
+        "query": "tolerancia a comprimidos de hierro indicados por el m\u00e9dico",
+        "relevant_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_01",
+        "query": "usual soda portions in a person already diagnosed with prediabetes",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_02",
+        "query": "beans vegetables and intact grains for blood sugar management",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_03",
+        "query": "distinguishing fruit from drinks containing added sweeteners",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_04",
+        "query": "barriers to replacing a daily sugary beverage with water",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_05",
+        "query": "cantidad habitual de refrescos en una persona con prediabetes conocida",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_06",
+        "query": "diferencia entre fruta entera y bebidas con endulzantes a\u00f1adidos",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_07",
+        "query": "barreras para reemplazar bebidas dulces por agua",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_prediabetes_08",
+        "query": "legumbres verduras y granos enteros para controlar la glucemia",
+        "relevant_source_ids": [
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_ckd_01",
+        "query": "reading labels for salt in packaged meals with established kidney disease",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_02",
+        "query": "why potassium-based seasoning needs caution in renal care",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.5
+      },
+      {
+        "query_id": "locked_ckd_03",
+        "query": "restaurant sauces and fluid swelling in documented CKD",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_04",
+        "query": "should every kidney patient receive identical phosphorus and fluid limits",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_05",
+        "query": "leer etiquetas de sal en comidas envasadas con enfermedad renal conocida",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_06",
+        "query": "precauci\u00f3n con condimentos que reemplazan la sal y contienen potasio",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_07",
+        "query": "salsas de restaurante y edema en un paciente renal",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_ckd_08",
+        "query": "restricciones individualizadas de f\u00f3sforo l\u00edquidos y prote\u00ednas en nefropat\u00eda",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_endurance_01",
+        "query": "practicing race-day carbohydrate intake during long training sessions",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_02",
+        "query": "estimating sweat loss from body mass before and after exercise",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_03",
+        "query": "food and fluids between two hard workouts on the same day",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_endurance_04",
+        "query": "risk of drinking the maximum possible amount during a race",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_05",
+        "query": "probar la estrategia de carbohidratos antes del d\u00eda de competencia",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_06",
+        "query": "estimar p\u00e9rdidas de sudor con el peso antes y despu\u00e9s de entrenar",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_07",
+        "query": "comida y l\u00edquidos entre dos entrenamientos exigentes el mismo d\u00eda",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_endurance_08",
+        "query": "riesgo de beber todo lo posible durante una carrera",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1"
+        ],
+        "retrieved_source_ids": [],
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "recall@3": 0.0,
+        "precision@3": 0.0
+      },
+      {
+        "query_id": "locked_multi_01",
+        "query": "vegetarian runner asking about iron intake and marathon fueling",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_iron_vegetarian_v1",
+          "synthetic_endurance_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_multi_02",
+        "query": "known prediabetes and CKD with frequent sweetened drinks and packaged meals",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_prediabetes_fiber_v1",
+          "synthetic_ckd_sodium_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_multi_03",
+        "query": "corredor vegetariano que consulta por hierro y alimentaci\u00f3n para una carrera larga",
+        "relevant_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_endurance_v1",
+          "synthetic_iron_vegetarian_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_multi_04",
+        "query": "prediabetes y enfermedad renal con gaseosas y comidas envasadas frecuentes",
+        "relevant_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "retrieved_source_ids": [
+          "synthetic_ckd_sodium_v1",
+          "synthetic_prediabetes_fiber_v1"
+        ],
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0
+      },
+      {
+        "query_id": "locked_negative_01",
+        "query": "lactose intolerance and dairy substitution",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_02",
+        "query": "vitamin B12 supplementation after bariatric surgery",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_03",
+        "query": "low FODMAP approach for irritable bowel symptoms",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_04",
+        "query": "nutrition support through a feeding tube",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_05",
+        "query": "high cholesterol and saturated fat intake",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_06",
+        "query": "peanut allergy emergency planning",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_07",
+        "query": "intolerancia a la lactosa y reemplazo de l\u00e1cteos",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_08",
+        "query": "vitamina B12 despu\u00e9s de cirug\u00eda bari\u00e1trica",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_09",
+        "query": "alimentaci\u00f3n baja en FODMAP para colon irritable",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_10",
+        "query": "nutrici\u00f3n por sonda enteral",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_11",
+        "query": "colesterol elevado y grasas saturadas",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      },
+      {
+        "query_id": "locked_negative_12",
+        "query": "plan de emergencia por alergia al man\u00ed",
+        "relevant_source_ids": [],
+        "retrieved_source_ids": [],
+        "recall@1": null,
+        "precision@1": null,
+        "recall@3": null,
+        "precision@3": null
+      }
+    ]
+  }
+}
