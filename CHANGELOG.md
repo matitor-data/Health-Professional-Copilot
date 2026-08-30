@@ -5,10 +5,20 @@ have a published release.
 
 ## [Unreleased]
 
-### Current status — 2026-08-29
+### Current status — 2026-08-30
 
 #### Implemented
 
+- Four self-contained synthetic nutrition evidence sources covering vegetarian iron assessment,
+  known prediabetes, sodium in known chronic kidney disease, and endurance nutrition, with explicit
+  scope boundaries and an approved-source registry for prototype use.
+- Deterministic Evidence Agent retrieval foundation for the approved synthetic nutrition sources:
+  manifest allowlisting, Markdown section chunking, stable lexical and topic ranking, content hashes,
+  empty-result support, path-containment validation, typed results, and a local search CLI.
+- Nutrition Agent v3 frozen for reproducible development comparison, with model, effective prompt,
+  component, dataset, pathway-rubric, API-run, replay, report, metric, token, cost, and latency
+  fingerprints recorded in `nutrition_agent/frozen_agent.json`.
+- Freeze policy requires any functional change to create `nutrition-agent-v4` and a new manifest.
 - Nutrition Agent v3 compact pipeline: the model now generates only nutrition signals,
   considerations, risks, optional questions, blind spots, and limitations using source references.
 - Deterministic construction of patient overview, known medical context, existing laboratories,
@@ -123,7 +133,7 @@ have a published release.
   0.01007; token optimization is therefore not yet achieved.
 - All 20 locked cases load and validate against their schemas.
 - `--dry-run` works without making external calls.
-- All twenty-one automated tests pass.
+- All twenty-nine automated tests pass.
 - Real Nutrition Agent execution on `dev_004`: one success, zero failures, zero retries, and a fully
   accepted first safety report; manual review identified and removed diagnostic wording from the
   referral renderer before accepting the implementation.

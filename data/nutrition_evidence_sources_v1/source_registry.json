@@ -1,0 +1,41 @@
+{
+  "collection_id": "nutrition_evidence_sources_v1",
+  "collection_type": "synthetic_prototype_evidence",
+  "clinical_use": false,
+  "allowed_use": [
+    "prototype_development",
+    "automated_testing",
+    "evaluation",
+    "demonstration"
+  ],
+  "sources": [
+    {
+      "source_id": "synthetic_iron_vegetarian_v1",
+      "file": "01_iron_vegetarian.md",
+      "status": "approved",
+      "source_type": "synthetic",
+      "topics": ["iron", "vegetarian", "plant-based", "anemia"]
+    },
+    {
+      "source_id": "synthetic_prediabetes_fiber_v1",
+      "file": "02_prediabetes_fiber_sugary_drinks.md",
+      "status": "approved",
+      "source_type": "synthetic",
+      "topics": ["prediabetes", "fiber", "sweetened-drinks", "added-sugar"]
+    },
+    {
+      "source_id": "synthetic_ckd_sodium_v1",
+      "file": "03_ckd_sodium.md",
+      "status": "approved",
+      "source_type": "synthetic",
+      "topics": ["ckd", "sodium", "salt-substitutes", "potassium"]
+    },
+    {
+      "source_id": "synthetic_endurance_v1",
+      "file": "04_endurance_fueling_hydration_recovery.md",
+      "status": "approved",
+      "source_type": "synthetic",
+      "topics": ["endurance", "fueling", "hydration", "recovery"]
+    }
+  ]
+}

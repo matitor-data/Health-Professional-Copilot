@@ -41,6 +41,12 @@ does not generate diagnoses, prescribe or change medication, recommend new labor
 make autonomous clinical decisions. The nutrition professional remains responsible for decisions
 within their scope of practice.
 
+By helping nutrition professionals prepare more thoroughly for consultations, the Nutrition Module
+may indirectly benefit patients through more focused questions, fewer overlooked information gaps,
+better-grounded nutrition considerations, and more timely identification of situations that may
+require medical evaluation. It does not diagnose, replace professional judgment, or guarantee
+improved clinical outcomes.
+
 To test whether the system improves consultation preparation, we use a fixed set of synthetic
 patient cases with a predefined rubric and compare the two-agent system with a simple, single-prompt
 LLM baseline.
@@ -70,9 +76,9 @@ reproduce the evaluation process.
 
 ## Current status
 
-The repository contains the frozen single-call LLM baseline, Nutrition Reasoning Agent v3 with a
-deterministic safety gate, and synthetic development and locked evaluation sets. Evidence retrieval
-and the Evidence Gate are not implemented yet.
+The repository contains the frozen single-call LLM baseline, frozen Nutrition Reasoning Agent v3
+with a deterministic safety gate, and synthetic development and locked evaluation sets. Evidence
+retrieval and the Evidence Gate are not implemented yet.
 
 ## Setup
 

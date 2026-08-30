@@ -353,6 +353,14 @@ stored drafts were replayed after adding signal-driven coverage rules without an
 The final checkpoint accepts v3 for professional review, not locked-test execution, because the
 rules were tuned against the development rubrics and may be overfit.
 
+### Frozen Agent v3 checkpoint
+
+Agent v3 was frozen on 2026-08-30 in `nutrition_agent/frozen_agent.json`. The manifest records the
+effective prompt, component files, schemas, development dataset, prospective pathway rubric,
+reference API run, deterministic replay, comparison report, metrics, token usage, cost, and latency
+by SHA-256 where applicable. Any functional change now requires `nutrition-agent-v4`; v3 remains a
+fixed comparison point and is not represented as clinically validated.
+
 ## 3. Evidence Agent trajectory
 
 ### Status

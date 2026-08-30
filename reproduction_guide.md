@@ -15,9 +15,9 @@ The repository currently includes:
 - Deterministic lexical evaluation metrics, structural checks, and labelled heuristic proxies.
 - Unit tests and a no-cost dry-run mode.
 
-Nutrition Reasoning Agent v3 and its deterministic gap, safety, and referral gates are runnable. The Evidence Agent,
-approved knowledge base, retrieval pipeline, and Evidence Gate remain pending, so the complete
-evidence-grounded workflow is not implemented yet.
+Frozen Nutrition Reasoning Agent v3 and its deterministic gap, safety, and referral gates are
+runnable. The Evidence Agent, approved knowledge base, retrieval pipeline, and Evidence Gate remain
+pending, so the complete evidence-grounded workflow is not implemented yet.
 
 ## 2. Requirements
 
@@ -295,7 +295,7 @@ nutrition and medical review.
 - [ ] Clone the recorded commit.
 - [ ] Run `uv sync --locked`.
 - [ ] Configure `.env` without committing it.
-- [ ] Run all twenty-one tests.
+- [ ] Run all twenty-two tests.
 - [ ] Run the dry-run and validate 20 cases.
 - [ ] Run at least one baseline case.
 - [ ] Confirm that four run files were created.

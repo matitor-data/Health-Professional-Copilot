@@ -1,0 +1,58 @@
+{
+  "status": "frozen",
+  "frozen_at": "2026-08-30",
+  "agent_version": "nutrition-agent-v3",
+  "model": "gpt-5-mini",
+  "effective_prompt_sha256": "64110f803856c6f79e4082563681cde21183a5b73870c51130a30987c26f5ffb",
+  "component_files": {
+    "nutrition_agent/prompt.py": "2062aaaee1d9394bfe6f0329cf4bc7b40cdd446767294ae78a2a3e3c600186c5",
+    "nutrition_agent/schemas.py": "15b54218bfe1ae18838128be48e57e1171e4c8009011f856de07b27e27791429",
+    "nutrition_agent/patient_state.py": "6852c34c65d7c24ea03b0a70e98a8ec6e2095d6929f079c62c114a31a558c651",
+    "nutrition_agent/gaps.py": "aac0c15b0651b48930aebcaf389ac47ec817a7a7c87d70026fb0e660b726d306",
+    "nutrition_agent/referrals.py": "33223af5fe59a90f51933b035e12e47a20d9988c215e233bce92fa0d8cd8bc31",
+    "nutrition_agent/considerations.py": "0a077b1c7e53290da63ca37dd172d7206b9952281472e6193a675b664dffdbc2",
+    "nutrition_agent/source_refs.py": "cbef14f1b479f35060c831eab0e5578b3b9c5712d12d2241567ee8c17ae4c8d2",
+    "nutrition_agent/pipeline.py": "1c6c34ecdf49edb543b0672a4c5f9e00cb7481289b6af3f0dbf1be6b3f51aef7",
+    "nutrition_agent/client.py": "7a47a8cb4d181c0cbba5c3b2f5b97e72046d6c55077f096901cf38be51b54257",
+    "baseline/schemas.py": "746afb0f1990be56800c3e89fb0156d4e78956ca2a24f95f82569ad151a88690"
+  },
+  "development_dataset": "data/cases/development/nutrition_cases_dev.json",
+  "development_dataset_sha256": "ae5452d761f21a148e05ee60ac9a7238d107718b24bf80ea1c0efe932e29433d",
+  "referral_rubric": "data/cases/development/referral_pathways_v1.json",
+  "referral_rubric_version": "referral-pathways-v1",
+  "referral_rubric_sha256": "c8563b603641ca8dd93e7a121128c78aefde377d3ca476d3e081fde99017c1f5",
+  "reference_api_run": {
+    "run_id": "20260830T010612Z",
+    "successful_cases": 10,
+    "failed_cases": 0,
+    "retries": 0,
+    "locally_removed_items": 1,
+    "input_tokens": 11265,
+    "output_tokens": 33307,
+    "reasoning_tokens": 25856,
+    "visible_output_tokens": 7451,
+    "latency_ms": 249232,
+    "estimated_cost_usd": 0.06943025
+  },
+  "reference_replay": {
+    "run_id": "20260830T011416Z",
+    "source_api_run_id": "20260830T010612Z",
+    "additional_api_calls": 0,
+    "comparison_report": "evaluation/reports/agent_v3/all_development_vs_frozen_baseline/comparison.json",
+    "comparison_report_sha256": "d1f010bb3700a1a5821b05efa57020eccc70b80cf7064c06d7f214d701121d05"
+  },
+  "reference_metrics": {
+    "information_gap_recall": 0.8916666666666666,
+    "followup_topic_recall": 0.7083333333333333,
+    "nutrition_consideration_recall": 1.0,
+    "nutrition_consideration_precision": 0.7666666666666667,
+    "risk_factor_recall": 0.65,
+    "referral_flag_recall": 0.8,
+    "referral_flag_precision": 0.8,
+    "referral_pathway_accuracy": 1.0,
+    "unnecessary_referral_count": 0.0,
+    "scope_violation_proxy_hits": 0.0
+  },
+  "change_policy": "Any functional change to the prompt, schemas, deterministic engines, renderer, model, dataset, or pathway rubric requires a new agent version and frozen manifest.",
+  "limitations": "Frozen for reproducible development comparison only. Rules were tuned on synthetic development cases and are not clinically validated. Professional review is required before locked-test execution or patient use."
+}

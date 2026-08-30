@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import unittest
 from pathlib import Path
 
@@ -7,6 +9,7 @@ from baseline.runner import load_dataset
 from baseline.schemas import ExistingLabSummary
 from nutrition_agent.patient_state import build_patient_state
 from nutrition_agent.pipeline import build_brief
+from nutrition_agent.prompt import COMPACT_SYSTEM_PROMPT, PROMPT_VERSION
 from nutrition_agent.render import render_brief
 from nutrition_agent.referrals import apply_referral_decisions, evaluate_referral_eligibility
 from nutrition_agent.safety import drop_unsafe_items, validate_draft
@@ -163,6 +166,22 @@ class NutritionAgentTests(unittest.TestCase):
             [item.topic for item in brief.nutrition_considerations],
         )
         self.assertEqual(report.violations[0].rule, "INVALID_OR_EMPTY_SOURCE_REF")
+
+    def test_frozen_agent_matches_component_hashes(self) -> None:
+        frozen = json.loads(Path("nutrition_agent/frozen_agent.json").read_text())
+        self.assertEqual(frozen["status"], "frozen")
+        self.assertEqual(frozen["agent_version"], PROMPT_VERSION)
+        self.assertEqual(
+            frozen["effective_prompt_sha256"],
+            hashlib.sha256(COMPACT_SYSTEM_PROMPT.encode()).hexdigest(),
+        )
+        for path, expected_hash in frozen["component_files"].items():
+            self.assertEqual(hashlib.sha256(Path(path).read_bytes()).hexdigest(), expected_hash, path)
+        self.assertEqual(
+            frozen["reference_api_run"]["output_tokens"],
+            frozen["reference_api_run"]["reasoning_tokens"]
+            + frozen["reference_api_run"]["visible_output_tokens"],
+        )
 
 
 if __name__ == "__main__":
