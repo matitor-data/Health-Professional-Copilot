@@ -1,0 +1,48 @@
+{
+  "rubric_id": "evidence-assessment-rubric-v1",
+  "status": "development",
+  "source_run": "evaluation/evidence_agent_runs/20260830T053131Z",
+  "notes": "Human-authored prototype rubric for the exact frozen nutrition considerations in the source run. retrieval_failed is never an expected semantic status; it represents a retrieval-system miss when an expected source exists.",
+  "cases": {
+    "dev_001": [
+      {"consideration_id": "NC-01", "expected_statuses": ["partially_supported"], "required_source_ids": ["synthetic_iron_vegetarian_v1"], "allowed_source_ids": ["synthetic_iron_vegetarian_v1"], "unnecessary_source_ids": []}
+    ],
+    "dev_002": [
+      {"consideration_id": "NC-01", "expected_statuses": ["supported"], "required_source_ids": ["synthetic_iron_vegetarian_v1"], "allowed_source_ids": ["synthetic_iron_vegetarian_v1"], "unnecessary_source_ids": []},
+      {"consideration_id": "NC-02", "expected_statuses": ["supported"], "required_source_ids": ["synthetic_iron_vegetarian_v1"], "allowed_source_ids": ["synthetic_iron_vegetarian_v1"], "unnecessary_source_ids": []},
+      {"consideration_id": "NC-03", "expected_statuses": ["partially_supported"], "required_source_ids": ["synthetic_iron_vegetarian_v1"], "allowed_source_ids": ["synthetic_iron_vegetarian_v1"], "unnecessary_source_ids": []}
+    ],
+    "dev_003": [
+      {"consideration_id": "NC-01", "expected_statuses": ["supported"], "required_source_ids": ["synthetic_prediabetes_fiber_v1"], "allowed_source_ids": ["synthetic_prediabetes_fiber_v1"], "unnecessary_source_ids": []},
+      {"consideration_id": "NC-02", "expected_statuses": ["supported"], "required_source_ids": ["synthetic_prediabetes_fiber_v1"], "allowed_source_ids": ["synthetic_prediabetes_fiber_v1"], "unnecessary_source_ids": ["synthetic_iron_vegetarian_v1"]},
+      {"consideration_id": "NC-03", "expected_statuses": ["partially_supported"], "required_source_ids": ["synthetic_prediabetes_fiber_v1"], "allowed_source_ids": ["synthetic_prediabetes_fiber_v1"], "unnecessary_source_ids": ["synthetic_iron_vegetarian_v1"]}
+    ],
+    "dev_004": [
+      {"consideration_id": "NC-01", "expected_statuses": ["outside_source_scope"], "required_source_ids": [], "allowed_source_ids": [], "unnecessary_source_ids": []}
+    ],
+    "dev_005": [
+      {"consideration_id": "NC-01", "expected_statuses": ["outside_source_scope", "unsupported"], "required_source_ids": [], "allowed_source_ids": [], "unnecessary_source_ids": ["synthetic_endurance_v1"]}
+    ],
+    "dev_006": [
+      {"consideration_id": "NC-01", "expected_statuses": ["outside_source_scope"], "required_source_ids": [], "allowed_source_ids": [], "unnecessary_source_ids": []},
+      {"consideration_id": "NC-02", "expected_statuses": ["partially_supported", "supported"], "required_source_ids": ["synthetic_prediabetes_fiber_v1"], "allowed_source_ids": ["synthetic_prediabetes_fiber_v1"], "unnecessary_source_ids": []},
+      {"consideration_id": "NC-03", "expected_statuses": ["outside_source_scope", "unsupported"], "required_source_ids": [], "allowed_source_ids": [], "unnecessary_source_ids": ["synthetic_endurance_v1"]}
+    ],
+    "dev_007": [
+      {"consideration_id": "NC-01", "expected_statuses": ["supported"], "required_source_ids": ["synthetic_ckd_sodium_v1"], "allowed_source_ids": ["synthetic_ckd_sodium_v1"], "unnecessary_source_ids": []}
+    ],
+    "dev_008": [
+      {"consideration_id": "NC-01", "expected_statuses": ["partially_supported"], "required_source_ids": ["synthetic_endurance_v1"], "allowed_source_ids": ["synthetic_endurance_v1"], "unnecessary_source_ids": []}
+    ],
+    "dev_009": [
+      {"consideration_id": "NC-01", "expected_statuses": ["outside_source_scope"], "required_source_ids": [], "allowed_source_ids": [], "unnecessary_source_ids": []},
+      {"consideration_id": "NC-02", "expected_statuses": ["partially_supported", "unsupported"], "required_source_ids": [], "allowed_source_ids": ["synthetic_prediabetes_fiber_v1"], "unnecessary_source_ids": []},
+      {"consideration_id": "NC-03", "expected_statuses": ["partially_supported", "unsupported"], "required_source_ids": [], "allowed_source_ids": ["synthetic_endurance_v1"], "unnecessary_source_ids": []}
+    ],
+    "dev_010": [
+      {"consideration_id": "NC-01", "expected_statuses": ["supported"], "required_source_ids": ["synthetic_endurance_v1"], "allowed_source_ids": ["synthetic_endurance_v1"], "unnecessary_source_ids": []},
+      {"consideration_id": "NC-02", "expected_statuses": ["supported"], "required_source_ids": ["synthetic_endurance_v1"], "allowed_source_ids": ["synthetic_endurance_v1"], "unnecessary_source_ids": []},
+      {"consideration_id": "NC-03", "expected_statuses": ["outside_source_scope", "unsupported"], "required_source_ids": [], "allowed_source_ids": [], "unnecessary_source_ids": ["synthetic_endurance_v1"]}
+    ]
+  }
+}

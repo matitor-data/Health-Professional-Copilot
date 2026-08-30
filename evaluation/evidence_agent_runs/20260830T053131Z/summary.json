@@ -1,0 +1,46 @@
+{
+  "run_id": "20260830T053131Z",
+  "dataset": "data/cases/development/nutrition_cases_dev.json",
+  "successful_cases": 10,
+  "failed_cases": 0,
+  "assessment_count": 20,
+  "support_status_counts": {
+    "supported": 10,
+    "partially_supported": 4,
+    "unsupported": 3,
+    "outside_source_scope": 0,
+    "retrieval_failed": 3
+  },
+  "evidence_gate": {
+    "accepted_cases": 10,
+    "rejected_cases": 0,
+    "invalid_citations": 0,
+    "retrieval_empty_events": 3,
+    "valid_retrieved_references": 18,
+    "assessments_with_multiple_references": 1
+  },
+  "final_brief": {
+    "supporting_evidence_items": 14,
+    "unsupported_or_unresolved_items_excluded": 6
+  },
+  "nutrition_agent_usage": {
+    "input_tokens": 11265,
+    "output_tokens": 38208,
+    "reasoning_tokens": 30720,
+    "visible_output_tokens": 7488,
+    "latency_ms": 304256
+  },
+  "evidence_agent_usage": {
+    "embedding_input_tokens": 590,
+    "model_input_tokens": 10602,
+    "model_output_tokens": 12004,
+    "reasoning_tokens": 8896,
+    "visible_output_tokens": 3108,
+    "latency_ms": 107430
+  },
+  "manual_review_notes": [
+    "dev_003 NC-03 retained a valid but unnecessary secondary iron citation despite the minimum-citation instruction.",
+    "The three retrieval_failed outcomes safely reflect topics absent from the four-source prototype collection.",
+    "The three unsupported outcomes used retrieved evidence to explain why support was not established and were excluded from final supporting_evidence."
+  ]
+}

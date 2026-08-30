@@ -11,7 +11,7 @@ from evidence_agent.embedding_retrieval import (
     DEFAULT_MIN_SIMILARITY,
     EmbeddingRetriever,
 )
-from evidence_agent.retrieval import DEFAULT_SOURCE_DIR, EvidenceRetriever
+from evidence_agent.retrieval import DEFAULT_SOURCE_DIR, EvidenceRetriever, _tokens
 from evidence_agent.schemas import RetrievalResult
 
 
@@ -44,9 +44,12 @@ class HybridRetriever:
         self.last_semantic_results: list[list[RetrievalResult]] = []
 
     def _eligible_lexical(self, result: RetrievalResult) -> bool:
+        chunk = next(chunk for chunk in self.chunks if chunk.chunk_id == result.chunk_id)
+        metadata_terms = set(_tokens(" ".join([*chunk.topics, *chunk.aliases])))
         return (
             result.score >= self.min_lexical_score
             and len(set(result.matched_terms)) >= self.min_lexical_terms
+            and bool(set(result.matched_terms) & metadata_terms)
         )
 
     def _fuse(

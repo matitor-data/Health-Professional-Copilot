@@ -7,6 +7,7 @@ from openai import OpenAI
 
 from baseline.schemas import BaselineBrief
 from evidence_agent.agent_schemas import EvidenceAgentResult, EvidenceAssessmentBundle, EvidenceTrajectoryItem
+from evidence_agent.coverage import collection_has_topic_signal
 from evidence_agent.gate import validate_and_finalize
 from evidence_agent.hybrid_retrieval import HybridRetriever
 from evidence_agent.pipeline import enrich_brief
@@ -50,6 +51,10 @@ class OpenAIEvidenceAgent:
             consideration_id: results
             for (consideration_id, _), results in zip(considerations, ranked, strict=True)
         }
+        collection_coverage = {
+            consideration_id: collection_has_topic_signal(self.retriever.deterministic, query)
+            for (consideration_id, _), query in zip(considerations, queries, strict=True)
+        }
         trajectory = [
             EvidenceTrajectoryItem(
                 consideration_id=consideration_id,
@@ -74,7 +79,9 @@ class OpenAIEvidenceAgent:
             if draft is None:
                 raise RuntimeError("Evidence Agent response did not contain a parsed assessment bundle.")
 
-        assessments, gate_report = validate_and_finalize(considerations, retrievals, draft)
+        assessments, gate_report = validate_and_finalize(
+            considerations, retrievals, draft, collection_coverage,
+        )
         result = EvidenceAgentResult(
             assessments=assessments, gate_report=gate_report, trajectory=trajectory,
         )

@@ -76,9 +76,40 @@ reproduce the evaluation process.
 
 ## Current status
 
-The repository contains the frozen single-call LLM baseline, frozen Nutrition Reasoning Agent v3
-with a deterministic safety gate, and synthetic development and locked evaluation sets. Evidence
-retrieval and the Evidence Gate are not implemented yet.
+The repository contains the frozen single-call LLM baseline, frozen Nutrition Reasoning Agent v3,
+and frozen Evidence Agent v1.1. The complete prototype includes deterministic nutrition safety and
+referral rules, hybrid retrieval over an approved synthetic source collection, and an Evidence Gate
+that prevents untraced citations from reaching the final brief.
+
+The system is frozen for reproducible prototype comparison only. Its cases, evidence, and evaluation
+rubrics are synthetic; it is not clinically validated, intended for production, or suitable for
+patient-care decisions.
+
+The one-time locked comparison is complete. The solution improved scope-safety proxies, citation
+traceability, and visible concision but scored below the simple baseline on the current lexical
+recall and precision metrics. See [`execution_report.md`](execution_report.md) for the preserved
+result and limitations.
+
+## Hot take and key insight
+
+> The value of a clinical AI system is not in making the final decision. It is in helping the
+> professional notice what might otherwise be missed. Every suggestion should remain a traceable
+> hypothesis to verify, never an answer to accept.
+
+This project also exposed an important engineering lesson: more agent reasoning does not
+automatically produce better professional support. In the locked prototype evaluation, the agents
+improved scope safety, output concision, and evidence traceability, but reduced measured information
+recall. Verification can make suggestions safer, but safety and traceability must be evaluated
+separately from whether the system notices the right information in the first place.
+
+## Future direction
+
+The current prototype implements only the Nutrition Module. In the future, Health Professional
+Copilot could support additional healthcare professions through separate, scope-specific modules.
+Each module should have its own professional responsibilities, input requirements, approved evidence
+collection, deterministic safety rules, evaluation rubrics, and escalation pathways. Shared patient
+context could then support collaboration between professionals without allowing one module to make
+decisions outside its defined scope.
 
 ## Setup
 
@@ -134,6 +165,29 @@ deterministic gap coverage, grounding, scope, and referral-eligibility checks, r
 items locally without a general retry, and renders the same `BaselineBrief` contract used by the baseline. Agent trajectories are saved under
 `evaluation/agent_runs/<run_id>/` and ignored by Git.
 
+## Run the complete Nutrition Module
+
+Validate the complete pipeline without API calls:
+
+```bash
+uv run python -m evidence_agent.runner \
+  --dataset data/cases/development/nutrition_cases_dev.json \
+  --case-id dev_003 --dry-run
+```
+
+Run the official synthetic demonstration from intake through the final evidence-enriched brief:
+
+```bash
+uv run python -m evidence_agent.runner \
+  --dataset data/cases/development/nutrition_cases_dev.json \
+  --case-id dev_003 \
+  --output-root evaluation/evidence_demo_runs
+```
+
+The saved trajectory contains the brief before and after evidence, retrieval queries and tool
+results, model assessments, gate feedback, citations, separate reasoning and visible token counts,
+and latency for both agents. The reference demonstration is run `20260830T153611Z`.
+
 ## Baseline boundary
 
 The baseline uses one structured patient intake, one versioned prompt, one LLM call, and one
@@ -149,9 +203,17 @@ a substitute for clinical adjudication or semantic evaluation by qualified revie
 baseline/                  Prompt, schemas, OpenAI client, and runner
 baseline/prompts/          Reproducible prompt versions v1-v4
 nutrition_agent/           Patient state, reasoning client, safety gate, renderer, and runner
+evidence_agent/            Hybrid retrieval, evidence assessment, gate, metrics, and runner
 data/cases/development/    Synthetic cases used for iteration
 data/cases/locked_test/    Synthetic cases not used for prompt tuning
-evaluation/                Metrics, run comparison, reports, and generated artifacts
+data/nutrition_evidence_sources_v1/  Approved synthetic prototype sources
+evaluation/                Metrics, recorded runs, locked manifests, and reports
+results/evidence_retrieval/ Retrieval benchmark results
 tests/                     Contract and safety tests
-docs/                      Product specification
+docs/                      Product specification and documentation index
 ```
+
+See [`evaluation/README.md`](evaluation/README.md) and [`docs/README.md`](docs/README.md) for the
+artifact layout and documentation index. Root-level deliverables remain in place intentionally so a
+reviewer can find the reproduction guide, trajectories, execution report, changelog, and video
+script without navigating the package tree.

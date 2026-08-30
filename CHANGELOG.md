@@ -9,6 +9,36 @@ have a published release.
 
 #### Implemented
 
+- Repository navigation clarified with documentation and evaluation indexes. Root deliverables and
+  frozen artifact paths remain unchanged to preserve review visibility, tests, hashes, and exact
+  reproduction commands.
+- Product direction records Nutrition as the first scope-specific module within a future modular
+  Health Professional Copilot. Additional professions may be added later only with their own scope,
+  evidence, safety rules, evaluations, and escalation pathways; they are not part of this prototype.
+- One-time locked end-to-end comparison plan and execution: frozen baseline run
+  `20260830T155457Z` and frozen solution run `20260830T161328Z` each completed all 20 synthetic
+  locked cases with zero failures. Configuration and artifact hashes are recorded in
+  `evaluation/locked_execution_manifest_v1.json`.
+- Root `execution_report.md` and machine-readable locked comparison report, including consultation
+  metrics, separate reasoning and visible tokens, combined two-agent cost and latency, Evidence Gate
+  acceptance, support states, and citation provenance validity.
+- Evidence Agent v1.1 frozen in `evidence_agent/frozen_agent.json`, including hashes for the prompt,
+  functional components, source registry, embedding index, development rubric, reference report,
+  fixed-input runs, demonstration run, prototype acceptance criteria, and known limitations. Any
+  functional change now requires `evidence-agent-v2`.
+- Recorded complete synthetic demonstration `20260830T153611Z` for `dev_003`: the Nutrition Agent
+  and Evidence Agent completed without retries, the Evidence Gate accepted all three assessments,
+  and the final brief contained three traceable evidence entries.
+- Development Evidence Agent rubric for the fixed 20 nutrition considerations, measuring support
+  status, required-source recall, allowed-source precision, unnecessary citations, abstention, and
+  expected-source retrieval misses.
+- Fixed-input Evidence Agent runner and stability evaluator, allowing repeated evidence assessment
+  without rerunning or varying the frozen Nutrition Agent output.
+- Collection-coverage classification distinguishes an empty retrieval caused by missing indexed
+  evidence (`retrieval_failed`) from a topic outside the synthetic collection
+  (`outside_source_scope`).
+- Lexical fallback now requires its matched terms to overlap the approved source's topics or aliases,
+  reducing unrelated secondary-source retrievals.
 - Evidence Agent v1 as a separate post-processing stage after the frozen Nutrition Agent: one
   structured assessment call per case, hybrid retrieval per nutrition consideration, explicit
   support states, minimal retrieved-chunk citations, limitations, and final brief enrichment.
@@ -112,6 +142,23 @@ have a published release.
 
 #### Verified
 
+- Ten-case Evidence Agent v1.1 development run `20260830T053131Z`: 10 successes, zero failures, 20
+  assessments (10 supported, four partially supported, three unsupported, and three
+  retrieval-failed), 10 accepted gates, zero invalid citations, and 14 final supporting-evidence
+  items. The evidence stage used 590 embedding tokens, 10,602 model input tokens, 12,004 output
+  tokens, and 107.430 seconds summed across cases.
+- Manual review of the ten-case evidence run found one unnecessary secondary citation in
+  `dev_003/NC-03`; all unsupported and retrieval-failed assessments were excluded from the final
+  supporting-evidence section, and no source was fabricated for uncovered topics.
+- A command-runner visibility failure caused an unintended second complete ten-case execution
+  (`20260830T052956Z`); both runs had 10 successes, zero failures, and only three non-blocking
+  retrieval-empty gate events, but their generated consideration counts and support classifications
+  differed, exposing output variability that should be measured before freezing Evidence Agent v1.1.
+- Evidence Agent development metrics now measure retrieval and support coverage, citation validity,
+  citation-count minimality proxy, limitation coverage, renderer fidelity, token/latency usage, and
+  run-to-run stability. Both ten-case runs achieved 1.000 gate acceptance, citation validity,
+  limitation coverage, and renderer fidelity; consideration alignment F1 was 0.619, with 0.846
+  support-status and citation-set agreement among 13 aligned considerations.
 - End-to-end Evidence Agent v1 development execution on `dev_003`: three considerations assessed,
   two supported, one partially supported, no invalid citations, no gate violations, 92 embedding
   input tokens, 1,462 evidence-model input tokens, 2,033 output tokens, and 43.830 seconds for the
@@ -151,7 +198,7 @@ have a published release.
 - V3 reduced mean cost from USD 0.00835 for the frozen baseline to USD 0.00694, latency from 50.0 to
   24.9 seconds, input tokens from 1,555 to 1,127, and visible output words from 541 to 343.
 - V3 risk-factor recall remained below the frozen baseline (0.650 versus 0.733), and the deterministic
-  rules may be overfit to the development cases; professional review is required before locked-test use.
+  rules may be overfit to the development cases; locked results must be interpreted as prototype-only.
 - Ten-case Agent v2 experiment: 10 successes, zero failures, two corrected retries, and zero final
   unnecessary referrals.
 - From Agent v1 to v2, referral precision improved from 0.30 to 0.80, presence accuracy from 0.60 to
@@ -171,6 +218,16 @@ have a published release.
   USD 0.00835, and 50.0 seconds for the frozen baseline.
 - Frozen v4 run across 10 cases: 10 successes, zero failures, 23,872 reasoning tokens, and 15,953
   visible output tokens; the two components sum exactly to `output_tokens` in every case.
+- Two post-correction fixed-input Evidence Agent repetitions completed 10/10 cases. Both produced
+  the same 20 consideration texts and the same 15 citations, with citation validity and single-cite
+  minimality proxies of 1.0; support-status agreement was 0.85.
+- Against the development evidence rubric, the repetitions achieved status accuracy of 0.80 and
+  0.75, required-source recall of 0.833 each, allowed-source precision of 0.733 each, and three
+  unnecessary citations each. Correct-abstention rates were 0.75 and 0.625.
+- The corrected runs classified five considerations per run as `outside_source_scope` and none as
+  `retrieval_failed`, replacing the earlier conflation of absent collection coverage with retrieval
+  failure. Each run used 590 embedding tokens and 7,530 model input tokens; visible output was
+  2,723 and 2,702 tokens respectively.
 - Complete development experiment with v1, v2, and v3 on the same 10 cases: 30 successful calls
   and zero failures.
 - V3 achieved nutrition-consideration recall/precision of 0.60/0.40 versus 0.40/0.27 for v1 and
@@ -185,13 +242,17 @@ have a published release.
   0.01007; token optimization is therefore not yet achieved.
 - All 20 locked cases load and validate against their schemas.
 - `--dry-run` works without making external calls.
-- All forty-two automated tests pass.
+- All forty-seven automated tests pass.
 - Real Nutrition Agent execution on `dev_004`: one success, zero failures, zero retries, and a fully
   accepted first safety report; manual review identified and removed diagnostic wording from the
   referral renderer before accepting the implementation.
 - The installed OpenAI SDK supports structured outputs through `responses.parse`.
 
 #### Current limitations
+
+- The locked comparison did not support the primary quality hypothesis: the solution scored below
+  the baseline on all displayed recall and precision metrics. It improved scope-safety proxies,
+  citation traceability, and visible concision while increasing cost and latency.
 
 - Nutrition Agent v2 is safer than v1 but is not eligible to replace the frozen baseline because
   information-gap and nutrition-consideration quality remain below the acceptance criteria.
@@ -201,18 +262,20 @@ have a published release.
 - Metrics use approximate lexical matching rather than semantic evaluation.
 - The baseline does not retrieve evidence; `supporting_evidence` must remain empty.
 - There is no functional API, user interface, authentication, or patient storage yet.
-- The Evidence Agent, Evidence Gate, and knowledge base are not yet implemented.
+- Evidence Agent support-state classification remains nondeterministic: two identical fixed-input
+  repetitions agreed on 17 of 20 statuses, although all 20 consideration texts and all citation sets
+  were identical.
+- The Evidence Agent rubric is development-only and was derived from an observed run; its labels and
+  synthetic source collection are suitable only for prototype measurement.
 - Complete deterministic referral and escalation rules are still pending.
 
 #### Proposed next steps
 
-- Run the frozen baseline on the 20 locked cases and save the first reference report.
-- Review cases and rubrics with nutrition and medical professionals.
-- Add semantic evaluation and professional adjudication.
-- Run the Nutrition Reasoning Agent on all development cases and compare it with the frozen baseline.
-- Build the approved source registry and Evidence Agent.
-- Add deterministic scope, referral, and escalation rules.
-- Implement the Evidence Gate before presenting evidence-backed claims.
+- Record the five-minute video using the saved `dev_003` trajectory and locked comparison report.
+- Present the negative locked quality result alongside the demonstrated safety, traceability, and
+  concision improvements.
+- Treat any future quality work as a new version and new benchmark rather than modifying or rerunning
+  this frozen prototype evaluation.
 
 ## [0.1.0] — Pending
 

@@ -15,9 +15,9 @@ The repository currently includes:
 - Deterministic lexical evaluation metrics, structural checks, and labelled heuristic proxies.
 - Unit tests and a no-cost dry-run mode.
 
-Frozen Nutrition Reasoning Agent v3 and its deterministic gap, safety, and referral gates are
-runnable. The Evidence Agent, approved knowledge base, retrieval pipeline, and Evidence Gate remain
-pending, so the complete evidence-grounded workflow is not implemented yet.
+Frozen Nutrition Reasoning Agent v3 and frozen Evidence Agent v1.1 are runnable with their
+deterministic gates. The synthetic approved-source collection and hybrid retrieval are included.
+This is an evaluable prototype, not a clinically validated system.
 
 ## 2. Requirements
 
@@ -97,7 +97,7 @@ uv run python -m unittest discover -s tests -v
 Expected result:
 
 ```text
-Ran 18 tests
+Ran 46 tests
 OK
 ```
 
@@ -283,7 +283,60 @@ in `results/evidence_retrieval/locked_comparison_v1.json`, with hashes and the u
 configuration in `results/evidence_retrieval/locked_run_v1_manifest.json`. Do not rerun this locked
 set for tuning; create a new versioned benchmark for any future confirmation run.
 
+To measure the Evidence Agent independently from Nutrition Agent variability, reuse the frozen
+nutrition briefs from the recorded reference run:
+
+```bash
+uv run python -m evidence_agent.fixed_runner \
+  --output-root evaluation/evidence_fixed_runs
+```
+
+Run it twice without changing the configuration, then evaluate both timestamped directories against
+the development rubric:
+
+```bash
+uv run python -m evidence_agent.metrics \
+  evaluation/evidence_fixed_runs/<first_run_id> \
+  evaluation/evidence_fixed_runs/<second_run_id> \
+  --rubric data/evaluations/evidence_agent/evidence_assessment_rubric_v1.json \
+  --output evaluation/reports/evidence_agent/fixed_input_evaluation.json
+```
+
+The rubric measures support-status accuracy, required-source recall, allowed-source precision,
+unnecessary citations, correct abstention, and retrieval misses. It is a development rubric derived
+from the fixed 20 considerations in run `20260830T053131Z`; it is not a locked test or an independent
+clinical review. The two recorded post-correction repetitions took approximately 75 and 91 seconds
+of summed Evidence Agent latency. Each used 590 embedding tokens and about 10,253 total model tokens.
+
 ## 10. Recorded reference execution
+
+### Locked end-to-end comparison
+
+The frozen systems were each executed exactly once on the 20 locked synthetic cases:
+
+```bash
+uv run python -m baseline.runner \
+  --dataset data/cases/locked_test/nutrition_cases_021_040.json \
+  --prompt-version nutrition-baseline-v4 \
+  --output-root evaluation/locked_runs/baseline
+
+uv run python -m evidence_agent.runner \
+  --dataset data/cases/locked_test/nutrition_cases_021_040.json \
+  --nutrition-model gpt-5-mini --evidence-model gpt-5-mini \
+  --output-root evaluation/locked_runs/solution
+
+uv run python -m evaluation.locked_compare \
+  --baseline-run evaluation/locked_runs/baseline/20260830T155457Z \
+  --solution-run evaluation/locked_runs/solution/20260830T161328Z \
+  --json-output evaluation/reports/locked/final_comparison_v1.json \
+  --markdown-output execution_report.md
+```
+
+Both runs completed 20/20 cases without failures. The baseline took approximately 14.3 minutes of
+summed model latency and cost an estimated USD 0.16469; the solution took approximately 17.1 minutes
+and cost USD 0.18512. Do not rerun this locked benchmark for tuning. The original configuration,
+artifact hashes, and outcome are stored in `evaluation/locked_evaluation_plan_v1.json`,
+`evaluation/locked_execution_manifest_v1.json`, and `execution_report.md`.
 
 A real execution of `case_021` was recorded on 2026-08-29:
 
@@ -333,19 +386,20 @@ complexity, output length, model availability, caching, retries, and pricing cha
 
 ## 11. Current evaluation caveat
 
-The current evaluator uses deterministic lexical overlap. This makes runs easy to reproduce, but it
-can underestimate semantically correct answers that use different wording. The results must not be
-treated as clinically validated performance.
+The consultation evaluator uses deterministic lexical overlap. This makes runs easy to reproduce,
+but it can underestimate semantically correct answers that use different wording. The evidence
+rubric is also a development artifact derived from synthetic considerations. Results describe only
+prototype behavior and must not be treated as clinically validated performance.
 
-Future reports should preserve the deterministic metrics and add semantic evaluation plus qualified
-nutrition and medical review.
+Professional review would be required before any production or patient-care use, but it is not an
+acceptance requirement for this non-production prototype.
 
 ## 12. Reproduction checklist
 
 - [ ] Clone the recorded commit.
 - [ ] Run `uv sync --locked`.
 - [ ] Configure `.env` without committing it.
-- [ ] Run all thirty-six tests.
+- [ ] Run all forty-seven tests.
 - [ ] Run the dry-run and validate 20 cases.
 - [ ] Run at least one baseline case.
 - [ ] Confirm that four run files were created.

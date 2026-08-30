@@ -1,0 +1,89 @@
+{
+  "status": "frozen",
+  "frozen_at": "2026-08-30",
+  "agent_version": "evidence-agent-v1.1",
+  "model": "gpt-5-mini",
+  "embedding_model": "text-embedding-3-small",
+  "embedding_dimensions": 512,
+  "effective_prompt_sha256": "aba8630243af4e0d58c6ed9088383ceacb05d63b711901b2f5018755f45fa099",
+  "component_files": {
+    "evidence_agent/agent.py": "ade124b1a42798eda95019354fb866b39747a03420267494b2d07862223cf341",
+    "evidence_agent/agent_schemas.py": "0c2ca41fbaf8cd5c1b48158873ecdb85fc7b3bb7c9b87a5ac1da4ef0c5935806",
+    "evidence_agent/coverage.py": "cb8b87fc50ef404775ad72234d8591dd2e11bb1afe6baa53416ad792857406a6",
+    "evidence_agent/gate.py": "ebae35e1043178132cb57d65f8c460483d3412fa80d7ba1bfacb1d7776e5d12e",
+    "evidence_agent/hybrid_retrieval.py": "34a9843a4826cbee602d4922acf08f516595c31744c9229bc4b22cea4da28352",
+    "evidence_agent/embedding_retrieval.py": "9963bff585ad243dfd7822fd094e14247b005d85e9346a26340849f2ad6368d5",
+    "evidence_agent/retrieval.py": "8565d654adeb91b58c933171a7c9350f3796eaed06d111361e3f661f0a8877df",
+    "evidence_agent/pipeline.py": "496e90dea7f8210e63c574c489e14c9ade034a9d3f456efb9eb70d06a7cb97eb",
+    "evidence_agent/prompt.py": "2b5852eee800e2a49f4817e3fb74658b10784ec63908a79574a411c4dae1b2d8",
+    "evidence_agent/schemas.py": "7719e4d98c97a9abc6e6e5323149f119b79940e69298c5c69d34c4f4d9a0616a",
+    "baseline/schemas.py": "746afb0f1990be56800c3e89fb0156d4e78956ca2a24f95f82569ad151a88690"
+  },
+  "retrieval_configuration": {
+    "mode": "hybrid_source_level_rrf",
+    "semantic_threshold": 0.45,
+    "lexical_minimum_score": 4.0,
+    "lexical_minimum_matched_terms": 2,
+    "lexical_topic_or_alias_overlap_required": true,
+    "max_results_per_consideration": 3,
+    "source_registry": "data/nutrition_evidence_sources_v1/source_registry.json",
+    "source_registry_sha256": "2d1a2b95f3d12657511a058b8133bf46b0304861c37791b44f915df0271218f7",
+    "embedding_index": "data/evidence_indexes/nutrition_embeddings_v1.json",
+    "embedding_index_sha256": "dd5789e41c7a7fcb4cc3bace6b89bc2fb0829e4c98020b3b81ac8dadfd808c37"
+  },
+  "development_rubric": {
+    "path": "data/evaluations/evidence_agent/evidence_assessment_rubric_v1.json",
+    "sha256": "3364e1e6d65f0fad7ec9d3996e841604d19c8e76c77678f7bd0c78edf4429f2a",
+    "scope": "Development-only rubric derived from 20 fixed synthetic considerations."
+  },
+  "reference_fixed_runs": [
+    "evaluation/evidence_fixed_runs_v1_2/20260830T061425Z",
+    "evaluation/evidence_fixed_runs_v1_2/20260830T151601Z"
+  ],
+  "reference_metrics": {
+    "successful_cases_per_run": 10,
+    "gate_acceptance_rate": 1.0,
+    "citation_validity": 1.0,
+    "exact_consideration_match_rate": 1.0,
+    "citation_set_agreement": 1.0,
+    "support_status_agreement": 0.85,
+    "support_status_accuracy": [0.8, 0.75],
+    "required_source_recall": [0.8333333333333334, 0.8333333333333334],
+    "allowed_source_precision": [0.7333333333333333, 0.7333333333333333],
+    "unnecessary_citation_count": [3, 3],
+    "correct_abstention_rate": [0.75, 0.625]
+  },
+  "reference_report": {
+    "path": "evaluation/reports/evidence_agent/fixed_input_evaluation_v1_2.json",
+    "sha256": "710edc2204047cb9e6dbc1a193f6f5d578b5f8097c846c94fa2663454ef88309"
+  },
+  "reference_demo": {
+    "case_id": "dev_003",
+    "run_id": "20260830T153611Z",
+    "outputs_sha256": "e559dd08b3e8780f1ccf315036574af5bbf29850b196f0dcb50aa7171dd912bc",
+    "nutrition_input_tokens": 1070,
+    "nutrition_output_tokens": 3400,
+    "nutrition_reasoning_tokens": 2624,
+    "nutrition_visible_output_tokens": 776,
+    "nutrition_latency_ms": 42605,
+    "embedding_input_tokens": 84,
+    "evidence_model_input_tokens": 1263,
+    "evidence_model_output_tokens": 1768,
+    "evidence_reasoning_tokens": 1280,
+    "evidence_visible_output_tokens": 488,
+    "evidence_latency_ms": 18193,
+    "support_statuses": ["supported", "supported", "partially_supported"],
+    "gate_accepted": true
+  },
+  "prototype_acceptance": {
+    "all_citations_retrieved": true,
+    "citations_traceable": true,
+    "invented_citations_blocked": true,
+    "safe_empty_retrieval_state": true,
+    "nutrition_sections_preserved": true,
+    "all_reference_gates_accepted": true,
+    "all_reference_cases_completed": true
+  },
+  "change_policy": "Any functional change to the prompt, schemas, retrieval configuration, collection coverage logic, Evidence Gate, renderer, model, source registry, or embedding index requires evidence-agent-v2 and a new frozen manifest.",
+  "limitations": "Frozen only as a reproducible synthetic-data prototype. It is not clinically validated, is not intended for production or patient care, and must not be used for diagnosis or autonomous clinical decisions. Support-state agreement was 0.85 and the development rubric found some unnecessary citations."
+}

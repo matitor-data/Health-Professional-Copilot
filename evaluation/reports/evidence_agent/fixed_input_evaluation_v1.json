@@ -1,0 +1,347 @@
+{
+  "report_id": "evidence-agent-development-measurements-v1",
+  "metric_notes": {
+    "citation_validity": "Checks only that every citation was retrieved for that consideration.",
+    "single_citation_proxy": "Measures citation-count minimality, not semantic necessity.",
+    "consideration_alignment": "Greedy lexical alignment at Jaccard >= 0.35; it is a stability proxy.",
+    "support_status_agreement": "Agreement only among lexically aligned considerations."
+  },
+  "runs": {
+    "20260830T060137Z": {
+      "case_count": 10,
+      "successful_case_count": 10,
+      "assessment_count": 20,
+      "support_status_counts": {
+        "supported": 10,
+        "partially_supported": 5,
+        "retrieval_failed": 3,
+        "outside_source_scope": 1,
+        "unsupported": 1
+      },
+      "gate_acceptance_rate": 1.0,
+      "blocking_gate_violation_count": 0,
+      "gate_event_counts": {
+        "RETRIEVAL_EMPTY": 3
+      },
+      "retrieval_coverage": 0.85,
+      "evidence_support_coverage": 0.75,
+      "full_support_rate": 0.5,
+      "unresolved_rate": 0.25,
+      "citation_validity": 1.0,
+      "cited_assessment_rate": 0.8,
+      "single_citation_proxy": 0.9375,
+      "limitation_coverage": 1.0,
+      "eligible_render_fidelity": 1.0,
+      "ineligible_exclusion_fidelity": 1.0,
+      "reference_count": 17,
+      "usage": {
+        "embedding_input_tokens": 590,
+        "model_input_tokens": 10602,
+        "model_output_tokens": 11151,
+        "reasoning_tokens": 8128,
+        "visible_output_tokens": 3023,
+        "latency_ms": 96312
+      }
+    },
+    "20260830T060358Z": {
+      "case_count": 10,
+      "successful_case_count": 10,
+      "assessment_count": 20,
+      "support_status_counts": {
+        "partially_supported": 4,
+        "supported": 10,
+        "retrieval_failed": 3,
+        "unsupported": 3
+      },
+      "gate_acceptance_rate": 1.0,
+      "blocking_gate_violation_count": 0,
+      "gate_event_counts": {
+        "RETRIEVAL_EMPTY": 3
+      },
+      "retrieval_coverage": 0.85,
+      "evidence_support_coverage": 0.7,
+      "full_support_rate": 0.5,
+      "unresolved_rate": 0.3,
+      "citation_validity": 1.0,
+      "cited_assessment_rate": 0.85,
+      "single_citation_proxy": 1.0,
+      "limitation_coverage": 1.0,
+      "eligible_render_fidelity": 1.0,
+      "ineligible_exclusion_fidelity": 1.0,
+      "reference_count": 17,
+      "usage": {
+        "embedding_input_tokens": 590,
+        "model_input_tokens": 10602,
+        "model_output_tokens": 11869,
+        "reasoning_tokens": 8704,
+        "visible_output_tokens": 3165,
+        "latency_ms": 94057
+      }
+    }
+  },
+  "stability": {
+    "left_run": "20260830T060137Z",
+    "right_run": "20260830T060358Z",
+    "common_case_count": 10,
+    "left_assessment_count": 20,
+    "right_assessment_count": 20,
+    "assessment_count_difference": 0,
+    "aligned_assessment_count": 20,
+    "alignment_threshold": 0.35,
+    "consideration_alignment_precision_left": 1.0,
+    "consideration_alignment_recall_right": 1.0,
+    "consideration_alignment_f1": 1.0,
+    "exact_consideration_match_rate": 1.0,
+    "support_status_agreement": 0.8,
+    "citation_set_agreement": 0.9,
+    "aligned_pairs": [
+      {
+        "case_id": "dev_001",
+        "left_consideration": "Maintain dietary variety and balanced meal composition",
+        "right_consideration": "Maintain dietary variety and balanced meal composition",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "partially_supported",
+        "status_agreement": false,
+        "citation_set_agreement": false
+      },
+      {
+        "case_id": "dev_002",
+        "left_consideration": "Clarify oral iron adherence, dosing, side effects, and timing relative to meals and beverages that inhibit absorption.",
+        "right_consideration": "Clarify oral iron adherence, dosing, side effects, and timing relative to meals and beverages that inhibit absorption.",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "partially_supported",
+        "right_status": "partially_supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_002",
+        "left_consideration": "Meal factors affecting vegetarian iron absorption",
+        "right_consideration": "Meal factors affecting vegetarian iron absorption",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_002",
+        "left_consideration": "Adequate dietary iron within a vegetarian eating pattern",
+        "right_consideration": "Adequate dietary iron within a vegetarian eating pattern",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_003",
+        "left_consideration": "Explore combined strategies for spreading vegetable intake across meals and the patient's activity patterns to align nutrition advice with daily routines.",
+        "right_consideration": "Explore combined strategies for spreading vegetable intake across meals and the patient's activity patterns to align nutrition advice with daily routines.",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "partially_supported",
+        "right_status": "partially_supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_003",
+        "left_consideration": "Increase fiber-rich foods and overall dietary quality",
+        "right_consideration": "Increase fiber-rich foods and overall dietary quality",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_003",
+        "left_consideration": "Reduce frequent sugar-sweetened beverages",
+        "right_consideration": "Reduce frequent sugar-sweetened beverages",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_004",
+        "left_consideration": "Current intake may be inadequate due to difficulty swallowing solids",
+        "right_consideration": "Current intake may be inadequate due to difficulty swallowing solids",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "retrieval_failed",
+        "right_status": "retrieval_failed",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_005",
+        "left_consideration": "Oral intake and hydration are currently severely limited",
+        "right_consideration": "Oral intake and hydration are currently severely limited",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "outside_source_scope",
+        "right_status": "unsupported",
+        "status_agreement": false,
+        "citation_set_agreement": false
+      },
+      {
+        "case_id": "dev_006",
+        "left_consideration": "Assess and address short sleep together with irregular meal timing as a combined influence on evening food choices and appetite regulation.",
+        "right_consideration": "Assess and address short sleep together with irregular meal timing as a combined influence on evening food choices and appetite regulation.",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "unsupported",
+        "right_status": "unsupported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_006",
+        "left_consideration": "Make gradual improvements to overall dietary quality",
+        "right_consideration": "Make gradual improvements to overall dietary quality",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_006",
+        "left_consideration": "Build a sustainable regular meal structure",
+        "right_consideration": "Build a sustainable regular meal structure",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "retrieval_failed",
+        "right_status": "retrieval_failed",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_007",
+        "left_consideration": "Reduce high-sodium packaged foods within existing clinician guidance",
+        "right_consideration": "Reduce high-sodium packaged foods within existing clinician guidance",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_008",
+        "left_consideration": "Collect basic anthropometrics, a 24-hour or 3-day intake recall, and typical activity level before the appointment.",
+        "right_consideration": "Collect basic anthropometrics, a 24-hour or 3-day intake recall, and typical activity level before the appointment.",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "partially_supported",
+        "right_status": "partially_supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_009",
+        "left_consideration": "Account for the reported weight-change context",
+        "right_consideration": "Account for the reported weight-change context",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_009",
+        "left_consideration": "Align meal pattern with the consultation goal",
+        "right_consideration": "Align meal pattern with the consultation goal",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_009",
+        "left_consideration": "Meal regularity may relate to afternoon energy if lunch is skipped",
+        "right_consideration": "Meal regularity may relate to afternoon energy if lunch is skipped",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "retrieval_failed",
+        "right_status": "retrieval_failed",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_010",
+        "left_consideration": "Confirm creatine 3 g daily timing and assess protein distribution across three meals and two snacks to support recovery from strength sessions.",
+        "right_consideration": "Confirm creatine 3 g daily timing and assess protein distribution across three meals and two snacks to support recovery from strength sessions.",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "partially_supported",
+        "right_status": "unsupported",
+        "status_agreement": false,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_010",
+        "left_consideration": "Recovery nutrition and hydration",
+        "right_consideration": "Recovery nutrition and hydration",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "partially_supported",
+        "right_status": "supported",
+        "status_agreement": false,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_010",
+        "left_consideration": "Carbohydrate availability for endurance training",
+        "right_consideration": "Carbohydrate availability for endurance training",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      }
+    ]
+  },
+  "rubric_id": "evidence-assessment-rubric-v1",
+  "rubric_evaluation": {
+    "20260830T060137Z": {
+      "expected_assessment_count": 20,
+      "missing_assessment_count": 0,
+      "unexpected_assessment_count": 0,
+      "support_status_accuracy": 0.6,
+      "required_source_recall": 0.9166666666666666,
+      "allowed_source_precision": 0.7647058823529411,
+      "unnecessary_citation_count": 3,
+      "unnecessary_citation_rate": 0.17647058823529413,
+      "correct_abstention_rate": 0.625,
+      "expected_source_retrieval_miss_count": 0
+    },
+    "20260830T060358Z": {
+      "expected_assessment_count": 20,
+      "missing_assessment_count": 0,
+      "unexpected_assessment_count": 0,
+      "support_status_accuracy": 0.75,
+      "required_source_recall": 0.9166666666666666,
+      "allowed_source_precision": 0.7647058823529411,
+      "unnecessary_citation_count": 4,
+      "unnecessary_citation_rate": 0.23529411764705882,
+      "correct_abstention_rate": 0.75,
+      "expected_source_retrieval_miss_count": 0
+    }
+  }
+}

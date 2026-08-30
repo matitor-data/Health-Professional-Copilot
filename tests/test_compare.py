@@ -6,9 +6,21 @@ import unittest
 from pathlib import Path
 
 from evaluation.compare import compare_runs, render_markdown
+from evaluation.locked_compare import build_report as build_locked_report
 
 
 class CompareTests(unittest.TestCase):
+    def test_locked_comparator_on_development_runs(self) -> None:
+        report = build_locked_report(
+            Path("evaluation/runs/development/nutrition-baseline-v4/20260829T232323Z"),
+            Path("evaluation/evidence_agent_runs/20260830T053131Z"),
+            Path("data/cases/development/nutrition_cases_dev.json"),
+        )
+        self.assertEqual(report["shared_successful_case_count"], 10)
+        self.assertEqual(report["baseline_failure_count"], 0)
+        self.assertEqual(report["solution_failure_count"], 0)
+        self.assertEqual(report["evidence"]["citation_validity"], 1.0)
+
     def test_compare_runs(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

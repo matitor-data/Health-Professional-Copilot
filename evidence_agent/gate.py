@@ -11,6 +11,7 @@ def validate_and_finalize(
     considerations: list[tuple[str, NutritionConsideration]],
     retrievals: dict[str, list[RetrievalResult]],
     draft: EvidenceAssessmentBundle | None,
+    collection_coverage: dict[str, bool] | None = None,
 ) -> tuple[list[EvidenceAssessment], EvidenceGateReport]:
     expected = {consideration_id: consideration for consideration_id, consideration in considerations}
     violations: list[EvidenceGateViolation] = []
@@ -37,15 +38,20 @@ def validate_and_finalize(
         allowed_refs = {result.chunk_id for result in retrieved}
         item = by_id.get(consideration_id)
         if not retrieved:
+            covered = (collection_coverage or {}).get(consideration_id, True)
             violations.append(EvidenceGateViolation(
                 rule="RETRIEVAL_EMPTY", consideration_id=consideration_id,
                 message="No approved evidence chunk passed retrieval thresholds.",
             ))
             assessments.append(EvidenceAssessment(
                 consideration_id=consideration_id, consideration=consideration.topic,
-                support_status="retrieval_failed", evidence_refs=[],
-                rationale="No approved source was retrieved for this consideration.",
-                limitations=["Absence of retrieved evidence does not prove the consideration is false."],
+                support_status="retrieval_failed" if covered else "outside_source_scope",
+                evidence_refs=[],
+                rationale=(
+                    "No approved source was retrieved for a topic represented in the collection."
+                    if covered else "The approved prototype collection does not cover this topic."
+                ),
+                limitations=["Absence of evidence in this collection does not prove the consideration is false."],
             ))
             continue
         if item is None:

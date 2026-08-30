@@ -1,166 +1,166 @@
-# Baseline del Nutrition Module
+# Nutrition Module Baseline
 
-## Que es la baseline
+## What the baseline is
 
-La baseline es la version mas sencilla del sistema que permite comprobar si un modelo de lenguaje
-puede ayudar a preparar una consulta nutricional.
+The baseline is the simplest version of the system for testing whether a language model can help
+prepare for a nutrition consultation.
 
-Su objetivo no es representar el producto final. Funciona como punto de comparacion: cuando se
-incorporen los dos agentes, la busqueda de evidencia y las reglas de seguridad avanzadas, podremos
-medir si realmente mejoran los resultados respecto de esta implementacion simple.
+It is not intended to represent the final product. It serves as a comparison point: after adding
+the two agents, evidence retrieval, and advanced safety rules, we can measure whether they actually
+improve results over this simple implementation.
 
-## Como funciona
+## How it works
 
-El flujo tiene cuatro pasos:
+The flow has four steps:
 
 ```text
-Datos estructurados del paciente
-              ↓
-       Un prompt versionado
-              ↓
-       Una llamada al LLM
-              ↓
-Brief validado con Pydantic
+Structured patient data
+          ↓
+  A versioned prompt
+          ↓
+    One LLM call
+          ↓
+Pydantic-validated brief
 ```
 
-1. El runner carga uno o varios casos desde el dataset.
-2. Los datos del paciente se validan antes de enviarlos al modelo.
-3. El modelo recibe un unico prompt con las reglas del Nutrition Module.
-4. La respuesta se convierte en un brief estructurado y se valida.
-5. El brief se compara con la rubrica esperada del caso.
-6. Los resultados, errores y metricas se guardan en una carpeta identificada por fecha y hora.
+1. The runner loads one or more cases from the dataset.
+2. Patient data is validated before being sent to the model.
+3. The model receives a single prompt containing the Nutrition Module rules.
+4. The response is converted into a structured brief and validated.
+5. The brief is compared with the case's expected rubric.
+6. Results, errors, and metrics are stored in a timestamped directory.
 
-La baseline no utiliza herramientas, retrieval, base de conocimiento, Evidence Agent, Evidence
-Gate ni ciclos autonomos. Cada paciente genera como maximo una llamada al modelo.
+The baseline does not use tools, retrieval, a knowledge base, an Evidence Agent, an Evidence Gate,
+or autonomous loops. Each patient produces at most one model call.
 
-## Informacion de entrada
+## Input information
 
-Cada caso contiene datos como:
+Each case contains information such as:
 
-- Edad, sexo, altura y peso.
-- Motivo de consulta y objetivo principal.
-- Diagnosticos medicos conocidos.
-- Sintomas y duracion.
-- Medicacion y suplementos.
-- Patron alimentario, actividad fisica y descanso.
-- Cambios recientes de peso.
-- Resultados de laboratorio existentes.
-- Antecedentes familiares y notas adicionales.
+- Age, sex, height, and weight.
+- Reason for consultation and primary goal.
+- Known medical diagnoses.
+- Symptoms and duration.
+- Medications and supplements.
+- Dietary pattern, physical activity, and sleep.
+- Recent weight changes.
+- Existing laboratory results.
+- Family history and additional notes.
 
-Los diagnosticos conocidos son contexto de entrada. La baseline no puede inventar, inferir ni
-proponer un diagnostico medico.
+Known diagnoses are input context. The baseline cannot invent, infer, or propose a medical
+diagnosis.
 
-## Contenido del brief
+## Brief contents
 
-La salida sigue una estructura fija:
+The output follows a fixed structure:
 
-- `patient_overview`: resumen breve del caso.
-- `known_medical_context`: diagnosticos y contexto medico ya informado.
-- `information_to_clarify`: informacion ausente, ambigua o contradictoria.
-- `suggested_questions`: entre 3 y 5 preguntas de alto valor.
-- `nutrition_considerations`: aspectos nutricionales para revisar durante la consulta.
-- `nutritional_risk_factors`: factores de riesgo relevantes para la evaluacion nutricional.
-- `referral_escalation_flags`: situaciones que pueden requerir evaluacion medica.
-- `potential_blind_spots`: areas que podrian pasar inadvertidas.
-- `supporting_evidence`: permanece vacio porque la baseline no tiene retrieval.
-- `relevant_existing_labs`: reproduce resultados ya existentes sin alterarlos.
-- `limitations`: informacion insuficiente o elementos fuera del alcance.
+- `patient_overview`: a concise summary of the case.
+- `known_medical_context`: diagnoses and medical context already reported.
+- `information_to_clarify`: missing, ambiguous, or contradictory information.
+- `suggested_questions`: between 3 and 5 high-value questions.
+- `nutrition_considerations`: nutrition-related topics to review during the consultation.
+- `nutritional_risk_factors`: risk factors relevant to the nutrition assessment.
+- `referral_escalation_flags`: situations that may require medical evaluation.
+- `potential_blind_spots`: areas that could otherwise be overlooked.
+- `supporting_evidence`: remains empty because the baseline does not use retrieval.
+- `relevant_existing_labs`: reproduces existing results without altering them.
+- `limitations`: insufficient information or elements outside the module's scope.
 
-Cada consideracion generada debe indicar que campos del paciente la motivaron.
+Every generated consideration must identify the patient fields that motivated it.
 
-La version congelada `nutrition-baseline-v4` limita el brief a un maximo de 5 gaps, 3
-consideraciones nutricionales, 4 factores de riesgo, 2 referral flags y 3 blind spots. Todos los
-racionales deben tener una sola oracion concisa.
+The frozen `nutrition-baseline-v4` limits the brief to at most 5 gaps, 3 nutrition considerations,
+4 risk factors, 2 referral flags, and 3 blind spots. Every rationale must consist of one concise
+sentence.
 
-Los limites son techos, no objetivos. Las listas opcionales pueden quedar vacias cuando no exista
-un elemento relevante y respaldado por el intake; `suggested_questions` conserva entre 3 y 5
-preguntas. Cada corrida registra por separado tokens de razonamiento y tokens de salida visible.
+These limits are ceilings, not targets. Optional lists may remain empty when the intake contains no
+relevant and supported item; `suggested_questions` retains a range of 3 to 5 questions. Each run
+records reasoning tokens and visible output tokens separately.
 
-Ademas, evita expandir riesgos genericos por patron alimentario, prioriza solo informacion capaz de
-cambiar la consulta, prohibe asumir adherencia o respuesta al tratamiento, diferencia lo no
-informado de lo ausente, exige dos elementos especificos para consideraciones secundarias y obliga a
-que cada referral flag describa solamente hechos observados.
+The baseline also avoids expanding generic risks from a dietary pattern, prioritizes only
+information that could change the consultation, prohibits assumptions about treatment adherence or
+response, distinguishes unreported information from evidence of absence, requires two specific
+elements for secondary considerations, and requires every referral flag to describe only observed
+facts.
 
-## Limites de seguridad
+## Safety boundaries
 
-El prompt establece que la baseline:
+The prompt establishes that the baseline:
 
-- No diagnostica ni propone probabilidades de enfermedad.
-- No agrega diagnosticos que no aparezcan en `known_diagnoses`.
-- No prescribe ni modifica medicacion o dosis de suplementos.
-- No recomienda solicitar nuevos estudios de laboratorio.
-- No inventa fuentes o citas.
-- No interpreta informacion faltante como un hallazgo negativo.
-- Puede indicar que el paciente podria necesitar evaluacion medica, sin afirmar un diagnostico.
-- Debe abstenerse cuando la informacion sea insuficiente o este fuera del alcance nutricional.
+- Does not diagnose or propose disease probabilities.
+- Does not add diagnoses that are absent from `known_diagnoses`.
+- Does not prescribe or modify medications or supplement doses.
+- Does not recommend ordering new laboratory tests.
+- Does not invent sources or citations.
+- Does not interpret missing information as a negative finding.
+- May indicate that the patient could require medical evaluation without asserting a diagnosis.
+- Must abstain when information is insufficient or outside nutrition scope.
 
 ## Dataset
 
-El conjunto actual se encuentra en:
+The current dataset is located at:
 
 ```text
 data/cases/locked_test/nutrition_cases_021_040.json
 ```
 
-Contiene 20 casos sinteticos (`case_021` a `case_040`). Cada caso incluye una ficha de paciente y
-una rubrica con los conceptos esperados. Los datos fueron generados de forma sintetica y no estan
-clinicamente validados.
+It contains 20 synthetic cases (`case_021` through `case_040`). Each case includes a patient intake
+and a rubric with the expected concepts. The data was generated synthetically and has not been
+clinically validated.
 
-Este archivo se considera un conjunto bloqueado: no deberia utilizarse para ajustar el prompt. Si
-se crean casos para experimentar con el prompt, deben guardarse en un conjunto de desarrollo
-separado.
+This file is treated as a locked set and should not be used to adjust the prompt. Cases created for
+prompt experiments must be stored in a separate development set.
 
-## Evaluacion
+## Evaluation
 
-La evaluacion actual mide de forma aproximada:
+The current evaluation approximately measures:
 
-- Recall de gaps de informacion.
-- Recall de temas de seguimiento.
-- Recall y precision de consideraciones nutricionales.
-- Recall de factores de riesgo nutricional.
-- Recall y precision de flags de derivacion.
-- Fidelidad de los laboratorios existentes.
-- Sugerencias expresamente prohibidas.
-- Cantidad de evidencia generada, que debe ser cero.
+- Information-gap recall.
+- Follow-up topic recall.
+- Nutrition-consideration recall and precision.
+- Nutritional risk-factor recall.
+- Referral-flag recall and precision.
+- Existing laboratory fidelity.
+- Explicitly prohibited suggestions.
+- The amount of generated evidence, which must be zero.
 
-La comparacion actual es lexical: busca solapamiento entre conceptos esperados y generados. Es util
-para obtener resultados reproducibles, pero no reemplaza una evaluacion semantica ni la revision de
-profesionales de nutricion y medicina.
+The current comparison is lexical: it searches for overlap between expected and generated concepts.
+It is useful for producing reproducible results, but it does not replace semantic evaluation or
+review by nutrition and medical professionals.
 
-## Archivos principales
+## Main files
 
 ```text
-baseline/schemas.py     Modelos de entrada, dataset y brief
-baseline/prompt.py      Reglas del sistema y prompt versionado
-baseline/client.py      Llamada estructurada a OpenAI
-baseline/runner.py      CLI, ejecucion y persistencia de resultados
-evaluation/metrics.py   Metricas deterministas iniciales
-tests/test_baseline.py  Pruebas de contratos y restricciones
+baseline/schemas.py     Input, dataset, and brief models
+baseline/prompt.py      System rules and versioned prompt
+baseline/client.py      Structured OpenAI call
+baseline/runner.py      CLI, execution, and result persistence
+evaluation/metrics.py   Initial deterministic metrics
+tests/test_baseline.py  Contract and constraint tests
 ```
 
-## Como ejecutarla
+## How to run it
 
-Primero hay que configurar `OPENAI_API_KEY` en un archivo `.env`.
+First, configure `OPENAI_API_KEY` in a `.env` file.
 
-Validar los casos sin realizar llamadas a la API:
+Validate the cases without making API calls:
 
 ```bash
 uv run python -m baseline.runner --dry-run
 ```
 
-Ejecutar un caso:
+Run one case:
 
 ```bash
 uv run python -m baseline.runner --case-id case_021
 ```
 
-Ejecutar los 20 casos:
+Run all 20 cases:
 
 ```bash
 uv run python -m baseline.runner
 ```
 
-Cada ejecucion real crea:
+Each real execution creates:
 
 ```text
 evaluation/runs/<run_id>/
@@ -170,21 +170,21 @@ evaluation/runs/<run_id>/
 └── metrics.json
 ```
 
-El manifiesto registra el modelo, la version y hash del prompt, el dataset, su hash y los casos
-evaluados. Esto permite comparar ejecuciones de manera reproducible.
+The manifest records the model, prompt version and hash, dataset and hash, and evaluated cases. This
+makes it possible to compare executions reproducibly.
 
-## Que falta para el MVP completo
+## What is missing from the complete MVP
 
-La baseline todavia no incluye:
+The baseline does not include:
 
-- Nutrition Reasoning Agent y Evidence Agent como componentes separados.
-- Fuentes clinicas aprobadas y versionadas.
-- Extraccion, chunking, embeddings o retrieval.
-- Validacion de aplicabilidad de la evidencia.
+- Separate Nutrition Reasoning Agent and Evidence Agent components.
+- Approved and versioned clinical sources.
+- Extraction, chunking, embeddings, or retrieval.
+- Evidence applicability validation.
 - Evidence Gate.
-- Reglas deterministas completas de referral y escalamiento.
-- API y frontend.
-- Persistencia de pacientes y autenticacion.
-- Evaluacion clinica de los casos y resultados.
+- Complete deterministic referral and escalation rules.
+- API and frontend.
+- Patient persistence and authentication.
+- Clinical evaluation of cases and results.
 
-Estos componentes deben compararse contra la baseline antes de incorporarse definitivamente.
+These components must be compared against the baseline before they are incorporated permanently.

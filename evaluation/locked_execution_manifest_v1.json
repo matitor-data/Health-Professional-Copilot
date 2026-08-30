@@ -1,0 +1,26 @@
+{
+  "status": "complete",
+  "execution_date": "2026-08-30",
+  "plan": "evaluation/locked_evaluation_plan_v1.json",
+  "policy_followed": "Each frozen system was executed once. No prompt, rule, source, index, model, or retrieval configuration was changed after observing results, and no rerun was performed.",
+  "baseline": {
+    "run_id": "20260830T155457Z",
+    "successful_cases": 20,
+    "failed_cases": 0,
+    "manifest_sha256": "afa1dcf303425a804e2b253e57a948f35509686265920d4c4d89a2957621600b",
+    "outputs_sha256": "7c8987d852083711f46d81b7cdbf32b336a10c3d93f226db43af37e5e8208eac"
+  },
+  "solution": {
+    "run_id": "20260830T161328Z",
+    "successful_cases": 20,
+    "failed_cases": 0,
+    "manifest_sha256": "b6bfb0beca0016114fcf330b2df8b99692c2721329ba603a6bd73a8d0cfefb64",
+    "outputs_sha256": "34a393aad4ea14b6e72b1eb64492f56f22f8dbd54111b9788401c839d024dee0"
+  },
+  "comparison": {
+    "json": "evaluation/reports/locked/final_comparison_v1.json",
+    "json_sha256": "747ba11a12d9136748147b2f3df26b1bbcba11f302c0af238852bd314836a3cd",
+    "markdown": "execution_report.md"
+  },
+  "result": "The primary quality hypothesis was not supported by the locked lexical metrics. The solution improved scope safety, citation provenance, and visible concision, but reduced the measured recall and precision metrics while increasing latency and estimated cost."
+}

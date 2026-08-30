@@ -349,8 +349,9 @@ V3 made one compact model call per case. Source references were resolved locally
 medical context, existing labs, gaps, questions, referrals, and supported considerations were
 rendered deterministically. The first deterministic output exposed generic gap wording, so the
 stored drafts were replayed after adding signal-driven coverage rules without another API call.
-The final checkpoint accepts v3 for professional review, not locked-test execution, because the
-rules were tuned against the development rubrics and may be overfit.
+The final checkpoint accepts v3 for a one-time locked synthetic prototype comparison. Because the
+rules were tuned against the development rubrics and may be overfit, the result cannot be treated as
+clinical validation or used for patient care.
 
 ### Frozen Agent v3 checkpoint
 
@@ -385,6 +386,91 @@ displaying completion from the first execution. It was not an Evidence Agent ret
 correction; both runs completed with one Nutrition Agent call, one embedding request, one Evidence
 Agent call, and zero application-level retries.
 
+### Ten-case Evidence Agent checkpoint
+
+Run `20260830T053131Z` executed the complete two-agent pipeline on all ten development cases with 10
+successes and zero failures. Across 20 nutrition considerations, the Evidence Agent produced 10
+`supported`, four `partially_supported`, three `unsupported`, and three `retrieval_failed`
+assessments. All ten gates accepted the safe final state; the only gate events were three expected,
+non-blocking empty-retrieval notices. Eighteen cited references matched retrieved chunks, while six
+unsupported or unresolved considerations were excluded from final `supporting_evidence`.
+
+Manual review retained one open quality finding: `dev_003/NC-03` cited a secondary iron chunk that
+was related but unnecessary. No retry was performed and the prompt or retrieval configuration was
+not changed during the run. Aggregate counts and token usage are stored in the run's `summary.json`.
+
+The earlier command-runner invocation also completed silently as run `20260830T052956Z`, producing
+another 10 successes and zero failures. It returned 22 assessments (12 supported, six partially
+supported, three retrieval-failed, and one outside-source-scope), compared with 20 assessments in
+the reference run. Both had three safe empty-retrieval events and no blocking gate violations. This
+was an infrastructure-level duplicate rather than an agent retry, but the differing consideration
+and support distributions are evidence of run-to-run model variability that requires evaluation.
+
+The reproducible stability report is stored at
+`evaluation/reports/evidence_agent/development_measurements_v1.json`. It records perfect structural
+safety metrics in both runs but a consideration-alignment F1 of 0.619 and support-status agreement
+of 0.846 among aligned items. Exact repeated considerations disagreed in `dev_001` and `dev_005`,
+so Evidence Agent v1.1 remains a development candidate rather than a frozen component.
+
+### Fixed-input evidence checkpoint
+
+The development rubric in `data/evaluations/evidence_agent/evidence_assessment_rubric_v1.json`
+labels the 20 exact considerations from reference run `20260830T053131Z`. The fixed runner bypasses
+the Nutrition Agent and submits those same briefs to retrieval and Evidence Agent v1.1. This makes
+the remaining variation attributable to the evidence stage.
+
+Initial fixed runs exposed two problems: empty retrieval was always called `retrieval_failed`, even
+when the source collection did not cover the topic, and lexical fallback could attach a secondary
+source whose generic words matched but whose registered topic did not. Human review prompted two
+general corrections: collection-aware empty-result states and topic/alias eligibility for lexical
+fallback. No rubric label, source text, embedding threshold, or prompt was changed between the two
+post-correction repetitions.
+
+Runs `20260830T061425Z` and `20260830T151601Z` each completed all ten cases without retries or gate
+failures. They produced the same 20 consideration texts and the same 15 citations; consideration
+alignment, exact-text matching, and citation-set agreement were all 1.0. Support-state agreement was
+0.85, with three disagreements. Rubric status accuracy was 0.80 and 0.75, required-source recall was
+0.833 in both, allowed-source precision was 0.733 in both, and each run retained three unnecessary
+citations. The checkpoint therefore confirms structural and citation stability but does not justify
+freezing the Evidence Agent's semantic classification.
+
+An attempted repetition at `20260830T151125Z` recorded ten `APIConnectionError` failures inside the
+restricted environment. It was repeated with authorized API access as `20260830T151601Z`; this was
+an infrastructure retry, not model feedback or a gate correction.
+
+### Frozen Evidence Agent checkpoint and demonstration
+
+Evidence Agent v1.1 was frozen on 2026-08-30 in `evidence_agent/frozen_agent.json` for synthetic
+prototype comparison. The manifest fingerprints the prompt, functional code, retrieval settings,
+source registry, embedding index, development rubric, reference report, fixed-input runs, and
+demonstration. Any functional change requires `evidence-agent-v2`.
+
+Run `evaluation/evidence_demo_runs/20260830T153611Z/` records the official one-case demonstration
+for `dev_003`. Nutrition Agent produced three considerations in one model call. Hybrid retrieval
+returned the permitted synthetic evidence packets, Evidence Agent classified two considerations as
+`supported` and one as `partially_supported`, and the deterministic gate accepted the result with
+no violations. The final brief contains three traceable evidence entries and preserves every
+pre-evidence nutrition section.
+
+The Nutrition stage used 1,070 input tokens and 3,400 output tokens (2,624 reasoning and 776 visible)
+in 42.605 seconds. The evidence stage used 84 embedding tokens, 1,263 model input tokens, and 1,768
+model output tokens (1,280 reasoning and 488 visible) in 18.193 seconds. This is a representative
+synthetic trajectory, not a claim of clinical validity.
+
+### Locked end-to-end trajectory
+
+The frozen baseline and complete module were each executed once on the 20 locked synthetic cases.
+Baseline run `20260830T155457Z` and solution run `20260830T161328Z` both completed 20/20 cases with
+zero failures. No prompt, rule, source, index, model, or retrieval setting was changed after results
+were observed, and neither system was rerun.
+
+The locked lexical metrics rejected the primary quality hypothesis: the complete module produced
+lower information-gap, consideration, risk-factor, and referral recall than the baseline. It did
+reduce the scope-violation proxy from 0.15 to zero, reduce visible tokens by about 35%, preserve zero
+unnecessary referrals, and achieve 1.0 Evidence Gate acceptance and citation provenance validity.
+Mean cost rose by about 12% and mean latency by about 19%. Full hashes and results are recorded in
+`evaluation/locked_execution_manifest_v1.json` and `execution_report.md`.
+
 ## 4. Deterministic gates and checkpoints
 
 These components are not agents, but their observable decisions belong in each trajectory:
@@ -398,7 +484,9 @@ These components are not agents, but their observable decisions belong in each t
 
 ## 5. Removed experiments
 
-No implemented agent experiment has been removed yet.
+The general model correction loop used by earlier Nutrition Agent versions was removed in v3.
+Invalid optional items are now removed deterministically and core sections are rendered locally.
+This reduced retry-driven cost and variability while retaining explicit limitations in the output.
 
 The baseline intentionally excludes retrieval and multi-agent loops. This is a design control, not a
 failed experiment: it preserves a simple comparison point. Once experiments are run and rejected,

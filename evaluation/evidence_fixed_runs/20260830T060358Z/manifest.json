@@ -1,0 +1,26 @@
+{
+  "run_id": "20260830T060358Z",
+  "created_at": "2026-08-30T06:05:32.368352+00:00",
+  "mode": "fixed_nutrition_briefs",
+  "source_run": "evaluation/evidence_agent_runs/20260830T053131Z",
+  "source_outputs_sha256": "e9ce6f0a880a7518d0fe4d6b041d448d9176c89789446af9dabb48f8d57a3091",
+  "model": "gpt-5-mini",
+  "prompt_version": "evidence-agent-v1.1",
+  "prompt_sha256": "aba8630243af4e0d58c6ed9088383ceacb05d63b711901b2f5018755f45fa099",
+  "source_registry_sha256": "2d1a2b95f3d12657511a058b8133bf46b0304861c37791b44f915df0271218f7",
+  "embedding_index_sha256": "dd5789e41c7a7fcb4cc3bace6b89bc2fb0829e4c98020b3b81ac8dadfd808c37",
+  "rubric": "data/evaluations/evidence_agent/evidence_assessment_rubric_v1.json",
+  "rubric_sha256": "3364e1e6d65f0fad7ec9d3996e841604d19c8e76c77678f7bd0c78edf4429f2a",
+  "case_ids": [
+    "dev_001",
+    "dev_002",
+    "dev_003",
+    "dev_004",
+    "dev_005",
+    "dev_006",
+    "dev_007",
+    "dev_008",
+    "dev_009",
+    "dev_010"
+  ]
+}

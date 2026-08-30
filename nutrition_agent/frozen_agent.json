@@ -54,5 +54,5 @@
     "scope_violation_proxy_hits": 0.0
   },
   "change_policy": "Any functional change to the prompt, schemas, deterministic engines, renderer, model, dataset, or pathway rubric requires a new agent version and frozen manifest.",
-  "limitations": "Frozen for reproducible development comparison only. Rules were tuned on synthetic development cases and are not clinically validated. Professional review is required before locked-test execution or patient use."
+  "limitations": "Frozen for reproducible synthetic prototype comparison only. Rules were tuned on development cases and are not clinically validated. Locked synthetic evaluation is permitted for prototype measurement; professional review is required before any production or patient-care use."
 }

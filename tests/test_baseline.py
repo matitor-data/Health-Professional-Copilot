@@ -106,6 +106,20 @@ class BaselineTests(unittest.TestCase):
         self.assertEqual(frozen["status"], "frozen")
         self.assertEqual(frozen["prompt_version"], PROMPT_VERSION)
         self.assertEqual(
+            frozen["prompt_file_sha256"],
+            __import__("hashlib").sha256(Path(frozen["prompt_file"]).read_bytes()).hexdigest(),
+        )
+        self.assertEqual(
+            frozen["schema_file_sha256"],
+            __import__("hashlib").sha256(Path(frozen["schema_file"]).read_bytes()).hexdigest(),
+        )
+        self.assertEqual(
+            frozen["locked_test_dataset_sha256"],
+            __import__("hashlib").sha256(
+                Path(frozen["locked_test_dataset"]).read_bytes()
+            ).hexdigest(),
+        )
+        self.assertEqual(
             frozen["reference_run"]["output_tokens"],
             frozen["reference_run"]["reasoning_tokens"]
             + frozen["reference_run"]["visible_output_tokens"],

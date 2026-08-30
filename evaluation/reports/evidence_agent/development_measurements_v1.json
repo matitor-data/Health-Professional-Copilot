@@ -1,0 +1,242 @@
+{
+  "report_id": "evidence-agent-development-measurements-v1",
+  "metric_notes": {
+    "citation_validity": "Checks only that every citation was retrieved for that consideration.",
+    "single_citation_proxy": "Measures citation-count minimality, not semantic necessity.",
+    "consideration_alignment": "Greedy lexical alignment at Jaccard >= 0.35; it is a stability proxy.",
+    "support_status_agreement": "Agreement only among lexically aligned considerations."
+  },
+  "runs": {
+    "20260830T052956Z": {
+      "case_count": 10,
+      "successful_case_count": 10,
+      "assessment_count": 22,
+      "support_status_counts": {
+        "supported": 12,
+        "partially_supported": 6,
+        "retrieval_failed": 3,
+        "outside_source_scope": 1
+      },
+      "gate_acceptance_rate": 1.0,
+      "blocking_gate_violation_count": 0,
+      "gate_event_counts": {
+        "RETRIEVAL_EMPTY": 3
+      },
+      "retrieval_coverage": 0.8636363636363636,
+      "evidence_support_coverage": 0.8181818181818182,
+      "full_support_rate": 0.5454545454545454,
+      "unresolved_rate": 0.18181818181818182,
+      "citation_validity": 1.0,
+      "cited_assessment_rate": 0.8181818181818182,
+      "single_citation_proxy": 0.7777777777777778,
+      "limitation_coverage": 1.0,
+      "eligible_render_fidelity": 1.0,
+      "ineligible_exclusion_fidelity": 1.0,
+      "reference_count": 22,
+      "usage": {
+        "embedding_input_tokens": 704,
+        "model_input_tokens": 13059,
+        "model_output_tokens": 13823,
+        "reasoning_tokens": 10240,
+        "visible_output_tokens": 3583,
+        "latency_ms": 131594
+      }
+    },
+    "20260830T053131Z": {
+      "case_count": 10,
+      "successful_case_count": 10,
+      "assessment_count": 20,
+      "support_status_counts": {
+        "partially_supported": 4,
+        "supported": 10,
+        "retrieval_failed": 3,
+        "unsupported": 3
+      },
+      "gate_acceptance_rate": 1.0,
+      "blocking_gate_violation_count": 0,
+      "gate_event_counts": {
+        "RETRIEVAL_EMPTY": 3
+      },
+      "retrieval_coverage": 0.85,
+      "evidence_support_coverage": 0.7,
+      "full_support_rate": 0.5,
+      "unresolved_rate": 0.3,
+      "citation_validity": 1.0,
+      "cited_assessment_rate": 0.85,
+      "single_citation_proxy": 0.9411764705882353,
+      "limitation_coverage": 1.0,
+      "eligible_render_fidelity": 1.0,
+      "ineligible_exclusion_fidelity": 1.0,
+      "reference_count": 18,
+      "usage": {
+        "embedding_input_tokens": 590,
+        "model_input_tokens": 10602,
+        "model_output_tokens": 12004,
+        "reasoning_tokens": 8896,
+        "visible_output_tokens": 3108,
+        "latency_ms": 107430
+      }
+    }
+  },
+  "stability": {
+    "left_run": "20260830T052956Z",
+    "right_run": "20260830T053131Z",
+    "common_case_count": 10,
+    "left_assessment_count": 22,
+    "right_assessment_count": 20,
+    "assessment_count_difference": 2,
+    "aligned_assessment_count": 13,
+    "alignment_threshold": 0.35,
+    "consideration_alignment_precision_left": 0.5909090909090909,
+    "consideration_alignment_recall_right": 0.65,
+    "consideration_alignment_f1": 0.6190476190476191,
+    "exact_consideration_match_rate": 1.0,
+    "support_status_agreement": 0.8461538461538461,
+    "citation_set_agreement": 0.8461538461538461,
+    "aligned_pairs": [
+      {
+        "case_id": "dev_001",
+        "left_consideration": "Maintain dietary variety and balanced meal composition",
+        "right_consideration": "Maintain dietary variety and balanced meal composition",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "partially_supported",
+        "status_agreement": false,
+        "citation_set_agreement": false
+      },
+      {
+        "case_id": "dev_002",
+        "left_consideration": "Meal factors affecting vegetarian iron absorption",
+        "right_consideration": "Meal factors affecting vegetarian iron absorption",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_002",
+        "left_consideration": "Adequate dietary iron within a vegetarian eating pattern",
+        "right_consideration": "Adequate dietary iron within a vegetarian eating pattern",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_003",
+        "left_consideration": "Increase fiber-rich foods and overall dietary quality",
+        "right_consideration": "Increase fiber-rich foods and overall dietary quality",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_003",
+        "left_consideration": "Reduce frequent sugar-sweetened beverages",
+        "right_consideration": "Reduce frequent sugar-sweetened beverages",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_004",
+        "left_consideration": "Current intake may be inadequate due to difficulty swallowing solids",
+        "right_consideration": "Current intake may be inadequate due to difficulty swallowing solids",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "retrieval_failed",
+        "right_status": "retrieval_failed",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_005",
+        "left_consideration": "Oral intake and hydration are currently severely limited",
+        "right_consideration": "Oral intake and hydration are currently severely limited",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "outside_source_scope",
+        "right_status": "unsupported",
+        "status_agreement": false,
+        "citation_set_agreement": false
+      },
+      {
+        "case_id": "dev_006",
+        "left_consideration": "Make gradual improvements to overall dietary quality",
+        "right_consideration": "Make gradual improvements to overall dietary quality",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_006",
+        "left_consideration": "Build a sustainable regular meal structure",
+        "right_consideration": "Build a sustainable regular meal structure",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "retrieval_failed",
+        "right_status": "retrieval_failed",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_007",
+        "left_consideration": "Reduce high-sodium packaged foods within existing clinician guidance",
+        "right_consideration": "Reduce high-sodium packaged foods within existing clinician guidance",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_009",
+        "left_consideration": "Meal regularity may relate to afternoon energy if lunch is skipped",
+        "right_consideration": "Meal regularity may relate to afternoon energy if lunch is skipped",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "retrieval_failed",
+        "right_status": "retrieval_failed",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_010",
+        "left_consideration": "Recovery nutrition and hydration",
+        "right_consideration": "Recovery nutrition and hydration",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      },
+      {
+        "case_id": "dev_010",
+        "left_consideration": "Carbohydrate availability for endurance training",
+        "right_consideration": "Carbohydrate availability for endurance training",
+        "lexical_similarity": 1.0,
+        "exact_match": true,
+        "left_status": "supported",
+        "right_status": "supported",
+        "status_agreement": true,
+        "citation_set_agreement": true
+      }
+    ]
+  }
+}
